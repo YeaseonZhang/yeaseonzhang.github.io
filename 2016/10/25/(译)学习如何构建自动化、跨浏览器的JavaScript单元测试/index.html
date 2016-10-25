@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="翻译," />
 
 
 
@@ -84,37 +84,25 @@
 
 
 
-<meta name="description" content="作者：Philip Walton原文链接：点此查看
-
-
-译文仅供个人学习，不用于任何形式商业目的，转载请注明原作者、文章来源、翻译作者及链接，版权归原文作者所有。
+<meta name="description" content="作者：Philip Walton译者：Yeaseon原文链接：点此查看
 
 我们都知道在多个浏览器中测试我们的代码是多么的重要。至少在我们发布第一个项目的时候，我认为我们在网络开发社区做大部分工作还是相当不错的。
-我们做的不够好的工作是测试代码时每一次做出的改变。
-我个人对此感到很惭愧。我已经把“学习如何构">
+我们做的不够好的工作是测试代码时每一次做出的改变。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="(译)学习如何构建自动化、跨浏览器的JavaScript单元测试">
-<meta property="og:url" content="http://yoursite.com/2016/07/19/(译)学习如何构建自动化、跨浏览器的JavaScript单元测试/index.html">
+<meta property="og:url" content="http://yoursite.com/2016/10/25/(译)学习如何构建自动化、跨浏览器的JavaScript单元测试/index.html">
 <meta property="og:site_name" content="YeaseonZhang">
-<meta property="og:description" content="作者：Philip Walton原文链接：点此查看
-
-
-译文仅供个人学习，不用于任何形式商业目的，转载请注明原作者、文章来源、翻译作者及链接，版权归原文作者所有。
+<meta property="og:description" content="作者：Philip Walton译者：Yeaseon原文链接：点此查看
 
 我们都知道在多个浏览器中测试我们的代码是多么的重要。至少在我们发布第一个项目的时候，我认为我们在网络开发社区做大部分工作还是相当不错的。
-我们做的不够好的工作是测试代码时每一次做出的改变。
-我个人对此感到很惭愧。我已经把“学习如何构">
-<meta property="og:updated_time" content="2016-10-25T07:06:57.749Z">
+我们做的不够好的工作是测试代码时每一次做出的改变。">
+<meta property="og:updated_time" content="2016-10-25T07:19:46.709Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="(译)学习如何构建自动化、跨浏览器的JavaScript单元测试">
-<meta name="twitter:description" content="作者：Philip Walton原文链接：点此查看
-
-
-译文仅供个人学习，不用于任何形式商业目的，转载请注明原作者、文章来源、翻译作者及链接，版权归原文作者所有。
+<meta name="twitter:description" content="作者：Philip Walton译者：Yeaseon原文链接：点此查看
 
 我们都知道在多个浏览器中测试我们的代码是多么的重要。至少在我们发布第一个项目的时候，我认为我们在网络开发社区做大部分工作还是相当不错的。
-我们做的不够好的工作是测试代码时每一次做出的改变。
-我个人对此感到很惭愧。我已经把“学习如何构">
+我们做的不够好的工作是测试代码时每一次做出的改变。">
 
 
 
@@ -264,8 +252,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-07-19T22:52:50+08:00" content="2016-07-19">
-              2016-07-19
+            <time itemprop="dateCreated" datetime="2016-10-25T12:52:50+08:00" content="2016-10-25">
+              2016-10-25
             </time>
           </span>
 
@@ -293,17 +281,14 @@
 
       
         <blockquote>
-<p>作者：Philip Walton<br>原文链接：<a href="https://philipwalton.com/articles/learning-how-to-set-up-automated-cross-browser-javascript-unit-testing" target="_blank" rel="external">点此查看</a></p>
+<p>作者：Philip Walton<br>译者：Yeaseon<br>原文链接：<a href="https://philipwalton.com/articles/learning-how-to-set-up-automated-cross-browser-javascript-unit-testing" target="_blank" rel="external">点此查看</a></p>
 </blockquote>
-<hr>
-<p>译文仅供个人学习，不用于任何形式商业目的，转载请注明原作者、文章来源、翻译作者及链接，版权归原文作者所有。</p>
-<hr>
 <p>我们都知道在多个浏览器中测试我们的代码是多么的重要。至少在我们发布第一个项目的时候，我认为我们在网络开发社区做大部分工作还是相当不错的。</p>
 <p>我们做的不够好的工作是测试代码时每一次做出的改变。</p>
+<a id="more"></a>
 <p>我个人对此感到很惭愧。我已经把“学习如何构建自动化、跨浏览器的JavaScript的单元测试”列在我的年度to-do清单中，但我每一次坐下来真正想要做的时候，我又退却了。虽然我肯定这一部分原因是因为我的懒惰，同时我认为这也是由于缺乏良好的可用信息在这个主题上。</p>
 <p>有许多工具和框架（例如 Karma）宣称“要使自动化的JavaScript测试变得简单”，但以我的经验看来这些工具引入的复杂性比他们摆脱的复杂性更多。在我的工作经验中，如果你是一个专家这些工具“能工作”的很好，但对于一个初学者是很糟糕的。我想要真正了解的是这个流程是如何在引擎中工作的，以便在它出现问题的时候（总会出现问题的），我能解决它。</p>
 <p>对我来说，充分了解这些是如何工作的最好方法就是尝试从头开始重新创建它。所以我决定去构建我自己的测试工具，然后把我的所学分享到社区中。</p>
-<a id="more"></a>
 <h2 id="手工测试流程"><a href="#手工测试流程" class="headerlink" title="手工测试流程"></a>手工测试流程</h2><p>在我解释自动化过程之前，我认为最重要的是确保我们都在同一页面上进行手工测试工作。</p>
 <p>毕竟，自动化是关于使用机器来关闭负载的重复部分的现有工作流程。如果你在充分理解手工过程之前尝试去开始自动化，它也不会像你理解了自动化过程一样。</p>
 <p>在手工过程中，你写了一个你的测试文件，它可能看起来像是：</p>
@@ -437,18 +422,24 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/翻译/" rel="tag">#翻译</a>
+          
+        </div>
+      
 
       
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2016/10/23/2016-10-23-写于1024之前/" rel="next" title="2016-10-23,写于1024之前...">
+                <i class="fa fa-chevron-left"></i> 2016-10-23,写于1024之前...
+              </a>
+            
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/10/23/2016-10-23-写于1024之前/" rel="prev" title="2016-10-23,写于1024之前...">
-                2016-10-23,写于1024之前... <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -523,6 +514,13 @@
 
           
 
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
           
 
         </nav>
