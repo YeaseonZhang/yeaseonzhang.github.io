@@ -72,3 +72,7 @@ deploy:
   type: git
   repo: ssh://git@github.com/YeaseonZhang/yeaseonzhang.github.io
   branch: master
+
+# Third-party-services
+## Baidu analytice
+baidu_analytics: a6c706d9802419456e07ac9edc18dbb1
