@@ -254,7 +254,7 @@ duoshuo_shortname: yeaseonzhang-github
 #add_this_id:
 
 # Share
-duoshuo_share: true
+duoshuo_share: false
 
 # Google Webmaster tools verification setting
 # See: https://www.google.com/webmasters/
