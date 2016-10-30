@@ -1,301 +1,75 @@
-<!doctype html>
-
-
-
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>YeaseonZhang</title>
   
-
-
-<html class="theme-next pisces use-motion">
-<head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
-
-
-
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
-
-
-
-
-
-
-
-
-
-
-
-
+  <link href="/atom.xml" rel="self"/>
   
+  <link href="http://yoursite.com/"/>
+  <updated>2016-10-30T03:34:45.580Z</updated>
+  <id>http://yoursite.com/</id>
   
-  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
-
-
-
-
+  <author>
+    <name>Yeaseon</name>
+    
+  </author>
   
+  <generator uri="http://hexo.io/">Hexo</generator>
   
-  
-  
-
-  
+  <entry>
+    <title>JavaScript对于cookie的读、写操作</title>
+    <link href="http://yoursite.com/2016/10/27/JavaScript%E5%AF%B9%E4%BA%8Ecookie%E7%9A%84%E8%AF%BB%E3%80%81%E5%86%99%E6%93%8D%E4%BD%9C/"/>
+    <id>http://yoursite.com/2016/10/27/JavaScript对于cookie的读、写操作/</id>
+    <published>2016-10-27T08:58:52.000Z</published>
+    <updated>2016-10-30T03:34:45.580Z</updated>
+    
+    <content type="html"><![CDATA[<p>前端开发中，不可避免的总要接触<code>session</code>、<code>cookie</code>这些网络数据打交道进行一些操作。<br>所以说作为一个前端er,<br>如果不会操作<code>cookie</code>，怎么好意思呐。<br>接下来，我们就来讲讲对于<code>cookie</code>的读写…</p>
+<a id="more"></a>
+<h2 id="cookie的操作"><a href="#cookie的操作" class="headerlink" title="cookie的操作"></a><code>cookie</code>的操作</h2><h3 id="写入cookie"><a href="#写入cookie" class="headerlink" title="写入cookie"></a>写入<code>cookie</code></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">function setCookie(cName, cValue, days) &#123;  </div><div class="line">    var expires = new Date();  </div><div class="line">    expires.setTime(expires.getTime() + parseInt(days) * 24 * 60 * 60 * 1000);  </div><div class="line">    document.cookie = cName + &quot;=&quot; + escape(cValue) + &quot;;expires=&quot; + expires.toGMTString()+&quot;;path=/;domain=xxx.cn&quot;;  </div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<p>这个函数也十分简单,我们可以设置<code>cookie</code>的名字、值以及有效期。<br><strong>注</strong>：我们并没有重写这个<code>cookie</code>，这是添加了我们设置的<code>cookie</code>。</p>
+<ul>
+<li><code>expires</code>: cookie的过期时间，注意这里要使用格林威治时间</li>
+<li><code>path</code>: 这个参数表示cookie保存的路径，如果没有给出的话会保存为当前站点的，如果给出值”/“的话会保存到当前虚拟目录</li>
+<li><code>domain</code>: 这个参数有点类似于session的保存路径，默认情况下保存在当前客户端,也可以自定义到其他位置</li>
+</ul>
+<h3 id="读取cookie"><a href="#读取cookie" class="headerlink" title="读取cookie"></a>读取<code>cookie</code></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">function getCookie(name)&#123;    </div><div class="line">    var arr = document.cookie.match(new RegExp(&quot;(^| )&quot;+name+&quot;=([^;]*)(;|$)&quot;));  </div><div class="line">    if(arr != null) </div><div class="line">	    return decodeURI(arr[2]);</div><div class="line">    return null;  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>说一说，上面的正则表达式吧。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">new RegExp(&quot;(^| )&quot;+name+&quot;=([^;]*)(;|$)&quot;)</div></pre></td></tr></table></figure></p>
+<ul>
+<li><code>^</code>以什么开头，所以<code>(^| )&quot;+name+&quot;</code>就是以<code>&quot;name&quot;</code>或者<code>&quot; name&quot;</code>开头的</li>
+<li><code>[^;]*</code>匹配除了<code>;</code>以外的任意字符</li>
+<li><code>$</code>以什么结尾，所以<code>(;|$)</code>就是以<code>&quot;;&quot;</code>或者<code>&quot;&quot;</code>结尾</li>
+<li><code>decodeURI()</code>函数可对<code>encodeURI()</code> 函数编码过的 URI 进行解码</li>
+</ul>
+<p>上述例子，还使用了一个技巧就是<code>()</code>进行分组，得到的正则表达式结果就是一个<code>Array</code>类型，每个<code>()</code>包括的部分都是数组的一部分，<code>index</code>从1开始。</p>
+<ul>
+<li><code>arr[0]</code>是匹配的整个结果。</li>
+<li><code>arr[1]</code>是<code>&quot;&quot;</code>或者<code>&quot; &quot;</code></li>
+<li><code>arr[2]</code>是我们要获取<code>name</code>的<code>value</code>值</li>
+<li><code>arr[4]</code>是是<code>&quot;&quot;</code>或者<code>&quot;;&quot;</code></li>
+</ul>
+<h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>介绍JS操作<code>cookie</code>的文章网上也有很多，本文不胜详尽，只是列出了我熟悉的一部分。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;前端开发中，不可避免的总要接触&lt;code&gt;session&lt;/code&gt;、&lt;code&gt;cookie&lt;/code&gt;这些网络数据打交道进行一些操作。&lt;br&gt;所以说作为一个前端er,&lt;br&gt;如果不会操作&lt;code&gt;cookie&lt;/code&gt;，怎么好意思呐。&lt;br&gt;接下来，我们就来讲讲对于&lt;code&gt;cookie&lt;/code&gt;的读写…&lt;/p&gt;
+    
+    </summary>
     
     
-  
-
-  
-
-  
-
-  
-
-  
-
-  
+      <category term="JavaScipt" scheme="http://yoursite.com/tags/JavaScipt/"/>
     
+      <category term="cookie" scheme="http://yoursite.com/tags/cookie/"/>
     
-    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  </entry>
   
-
-
-
-
-
-
-<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
-
-<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
-
-
-  <meta name="keywords" content="翻译," />
-
-
-
-
-
-  <link rel="alternate" href="/atom.xml" title="YeaseonZhang" type="application/atom+xml" />
-
-
-
-
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
-
-
-
-
-
-
-<meta name="description" content="作者：Philip Walton译者：Yeaseon原文链接：点此查看
-
-我们都知道在多个浏览器中测试我们的代码是多么的重要。至少在我们发布第一个项目的时候，我认为我们在网络开发社区做大部分工作还是相当不错的。我们做的不够好的工作是测试代码时每一次做出的改变。我个人对此感到很惭愧。我已经把“学习如何构建自动化、跨浏览器的JavaScript的单元测试”列在我的年度to-do清单中，但我每一次坐下">
-<meta property="og:type" content="article">
-<meta property="og:title" content="(译)学习如何构建自动化、跨浏览器的JavaScript单元测试">
-<meta property="og:url" content="http://yoursite.com/2016/10/25/(译)学习如何构建自动化、跨浏览器的JavaScript单元测试/index.html">
-<meta property="og:site_name" content="YeaseonZhang">
-<meta property="og:description" content="作者：Philip Walton译者：Yeaseon原文链接：点此查看
-
-我们都知道在多个浏览器中测试我们的代码是多么的重要。至少在我们发布第一个项目的时候，我认为我们在网络开发社区做大部分工作还是相当不错的。我们做的不够好的工作是测试代码时每一次做出的改变。我个人对此感到很惭愧。我已经把“学习如何构建自动化、跨浏览器的JavaScript的单元测试”列在我的年度to-do清单中，但我每一次坐下">
-<meta property="og:updated_time" content="2016-10-26T12:22:50.736Z">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="(译)学习如何构建自动化、跨浏览器的JavaScript单元测试">
-<meta name="twitter:description" content="作者：Philip Walton译者：Yeaseon原文链接：点此查看
-
-我们都知道在多个浏览器中测试我们的代码是多么的重要。至少在我们发布第一个项目的时候，我认为我们在网络开发社区做大部分工作还是相当不错的。我们做的不够好的工作是测试代码时每一次做出的改变。我个人对此感到很惭愧。我已经把“学习如何构建自动化、跨浏览器的JavaScript的单元测试”列在我的年度to-do清单中，但我每一次坐下">
-
-
-
-<script type="text/javascript" id="hexo.configuration">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    scheme: 'Pisces',
-    sidebar: {"position":"left","display":"post"},
-    fancybox: true,
-    motion: true,
-    duoshuo: {
-      userId: 6345335535917073000,
-      author: 'Yeaseon'
-    }
-  };
-</script>
-
-  <title> (译)学习如何构建自动化、跨浏览器的JavaScript单元测试 | YeaseonZhang </title>
-</head>
-
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
-
-  
-
-
-
-  <script type="text/javascript">
-    var _hmt = _hmt || [];
-    (function() {
-      var hm = document.createElement("script");
-      hm.src = "//hm.baidu.com/hm.js?a6c706d9802419456e07ac9edc18dbb1";
-      var s = document.getElementsByTagName("script")[0];
-      s.parentNode.insertBefore(hm, s);
-    })();
-  </script>
-
-
-
-
-
-
-
-
-  
-  
+  <entry>
+    <title>(译)学习如何构建自动化、跨浏览器的JavaScript单元测试</title>
+    <link href="http://yoursite.com/2016/10/25/(%E8%AF%91)%E5%AD%A6%E4%B9%A0%E5%A6%82%E4%BD%95%E6%9E%84%E5%BB%BA%E8%87%AA%E5%8A%A8%E5%8C%96%E3%80%81%E8%B7%A8%E6%B5%8F%E8%A7%88%E5%99%A8%E7%9A%84JavaScript%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95/"/>
+    <id>http://yoursite.com/2016/10/25/(译)学习如何构建自动化、跨浏览器的JavaScript单元测试/</id>
+    <published>2016-10-25T04:52:50.000Z</published>
+    <updated>2016-10-26T12:22:50.736Z</updated>
     
-  
-
-  <div class="container one-collumn sidebar-position-left page-post-detail ">
-    <div class="headband"></div>
-
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-meta ">
-  
-
-  <div class="custom-logo-site-title">
-    <a href="/"  class="brand" rel="start">
-      <span class="logo-line-before"><i></i></span>
-      <span class="site-title">YeaseonZhang</span>
-      <span class="logo-line-after"><i></i></span>
-    </a>
-  </div>
-  <p class="site-subtitle"></p>
-</div>
-
-<div class="site-nav-toggle">
-  <button>
-    <span class="btn-bar"></span>
-    <span class="btn-bar"></span>
-    <span class="btn-bar"></span>
-  </button>
-</div>
-
-<nav class="site-nav">
-  
-
-  
-    <ul id="menu" class="menu">
-      
-        
-        <li class="menu-item menu-item-home">
-          <a href="/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
-            
-            首页
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-archives">
-          <a href="/archives" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
-            
-            归档
-          </a>
-        </li>
-      
-
-      
-    </ul>
-  
-
-  
-</nav>
-
- </div>
-    </header>
-
-    <main id="main" class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          <div id="content" class="content">
-            
-
-  <div id="posts" class="posts-expand">
-    
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                (译)学习如何构建自动化、跨浏览器的JavaScript单元测试
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-10-25T12:52:50+08:00" content="2016-10-25">
-              2016-10-25
-            </time>
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/10/25/(译)学习如何构建自动化、跨浏览器的JavaScript单元测试/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/25/(译)学习如何构建自动化、跨浏览器的JavaScript单元测试/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-             <span id="/2016/10/25/(译)学习如何构建自动化、跨浏览器的JavaScript单元测试/" class="leancloud_visitors" data-flag-title="(译)学习如何构建自动化、跨浏览器的JavaScript单元测试">
-               &nbsp; | &nbsp;
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               <span class="post-meta-item-text">阅读次数 </span>
-               <span class="leancloud-visitors-count"></span>
-              </span>
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        <blockquote>
+    <content type="html"><![CDATA[<blockquote>
 <p>作者：Philip Walton<br>译者：Yeaseon<br>原文链接：<a href="https://philipwalton.com/articles/learning-how-to-set-up-automated-cross-browser-javascript-unit-testing" target="_blank" rel="external">点此查看</a></p>
 </blockquote>
 <p>我们都知道在多个浏览器中测试我们的代码是多么的重要。至少在我们发布第一个项目的时候，我认为我们在网络开发社区做大部分工作还是相当不错的。<br>我们做的不够好的工作是测试代码时每一次做出的改变。<br>我个人对此感到很惭愧。我已经把“学习如何构建自动化、跨浏览器的JavaScript的单元测试”列在我的年度to-do清单中，但我每一次坐下来真正想要做的时候，我又退却了。虽然我肯定这一部分原因是因为我的懒惰，同时我认为这也是由于缺乏良好的可用信息在这个主题上。<br>有许多工具和框架（例如 Karma）宣称“要使自动化的JavaScript测试变得简单”，但以我的经验看来这些工具引入的复杂性比他们摆脱的复杂性更多。在我的工作经验中，如果你是一个专家这些工具“能工作”的很好，但对于一个初学者是很糟糕的。我想要真正了解的是这个流程是如何在引擎中工作的，以便在它出现问题的时候（总会出现问题的），我能解决它。<br>对我来说，充分了解这些是如何工作的最好方法就是尝试从头开始重新创建它。所以我决定去构建我自己的测试工具，然后把我的所学分享到社区中。<br><a id="more"></a></p>
@@ -413,443 +187,53 @@
 <blockquote>
 <p>如果你能看到这里，很感谢你的耐心阅读。<br>这是我翻译的第一篇技术文档，自身水平有限，所以翻译总有不当与疏漏，如有发现还请您耐心评论指出。</p>
 </blockquote>
-
-      
-    </div>
-
-    <div>
-      
-        
-      
-    </div>
-
-    <div>
-      
-        
-
-      
-    </div>
-
-    <footer class="post-footer">
-      
-        <div class="post-tags">
-          
-            <a href="/tags/翻译/" rel="tag">#翻译</a>
-          
-        </div>
-      
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/2016/10/23/2016-10-23-写于1024之前/" rel="next" title="2016-10-23,写于1024之前...">
-                <i class="fa fa-chevron-left"></i> 2016-10-23,写于1024之前...
-              </a>
-            
-          </div>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/10/27/JavaScript对于cookie的读、写操作/" rel="prev" title="JavaScript对于cookie的读、写操作">
-                JavaScript对于cookie的读、写操作 <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
-      
-
-      
-      
-    </footer>
-  </article>
-
-
-
-    <div class="post-spread">
-      
-    </div>
-  </div>
-
-
-          </div>
-          
-
-
-          
-  <div class="comments" id="comments">
+]]></content>
     
-      <div class="ds-thread" data-thread-key="2016/10/25/(译)学习如何构建自动化、跨浏览器的JavaScript单元测试/"
-           data-title="(译)学习如何构建自动化、跨浏览器的JavaScript单元测试" data-url="http://yoursite.com/2016/10/25/(译)学习如何构建自动化、跨浏览器的JavaScript单元测试/">
-      </div>
+    <summary type="html">
     
-  </div>
-
-
-        </div>
-        
-          
-  
-  <div class="sidebar-toggle">
-    <div class="sidebar-toggle-line-wrap">
-      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
-    </div>
-  </div>
-
-  <aside id="sidebar" class="sidebar">
-    <div class="sidebar-inner">
-
-      
-
-      
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview">
-            站点概览
-          </li>
-        </ul>
-      
-
-      <section class="site-overview sidebar-panel ">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-          <img class="site-author-image" itemprop="image"
-               src="/images/avatar.png"
-               alt="Yeaseon" />
-          <p class="site-author-name" itemprop="name">Yeaseon</p>
-          <p class="site-description motion-element" itemprop="description">做一个有信仰的人。如果没有，那么就让你成为自己的信仰！</p>
-        </div>
-        <nav class="site-state motion-element">
-          <div class="site-state-item site-state-posts">
-            <a href="/archives">
-              <span class="site-state-item-count">3</span>
-              <span class="site-state-item-name">日志</span>
-            </a>
-          </div>
-
-          
-
-          
-            <div class="site-state-item site-state-tags">
-              
-                <span class="site-state-item-count">4</span>
-                <span class="site-state-item-name">标签</span>
-              
-            </div>
-          
-
-        </nav>
-
-        
-          <div class="feed-link motion-element">
-            <a href="/atom.xml" rel="alternate">
-              <i class="fa fa-rss"></i>
-              RSS
-            </a>
-          </div>
-        
-
-        <div class="links-of-author motion-element">
-          
-            
-              <span class="links-of-author-item">
-                <a href="https://github.com/YeaseonZhang" target="_blank" title="GitHub">
-                  
-                    <i class="fa fa-fw fa-github"></i>
-                  
-                  GitHub
-                </a>
-              </span>
-            
-              <span class="links-of-author-item">
-                <a href="http://weibo.com/yeaseonzhang" target="_blank" title="Weibo">
-                  
-                    <i class="fa fa-fw fa-weibo"></i>
-                  
-                  Weibo
-                </a>
-              </span>
-            
-          
-        </div>
-
-        
-        
-
-        
-        
-
-      </section>
-
-      
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-            
-              
-            
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#手工测试流程"><span class="nav-number">1.</span> <span class="nav-text">手工测试流程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#错误检测"><span class="nav-number">1.1.</span> <span class="nav-text">错误检测</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#手工方式的优点"><span class="nav-number">1.2.</span> <span class="nav-text">手工方式的优点</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#自动化流程"><span class="nav-number">2.</span> <span class="nav-text">自动化流程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#需求"><span class="nav-number">2.1.</span> <span class="nav-text">需求</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#如何进行云测试"><span class="nav-number">2.2.</span> <span class="nav-text">如何进行云测试</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#API方法"><span class="nav-number">2.3.</span> <span class="nav-text">API方法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#让Mocha测试结果对于Sauce-Labs的webdriver客户端有用"><span class="nav-number">2.3.1.</span> <span class="nav-text">让Mocha测试结果对于Sauce Labs的webdriver客户端有用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#确定你的测试通过还是失败"><span class="nav-number">2.3.2.</span> <span class="nav-text">确定你的测试通过还是失败</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#本地访问测试"><span class="nav-number">2.4.</span> <span class="nav-text">本地访问测试</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#ngrok"><span class="nav-number">2.4.1.</span> <span class="nav-text">ngrok</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#整合碎片化"><span class="nav-number">3.</span> <span class="nav-text">整合碎片化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使测试变得更容易"><span class="nav-number">4.</span> <span class="nav-text">使测试变得更容易</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Easy-Sauce"><span class="nav-number">4.1.</span> <span class="nav-text">Easy Sauce</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#结语"><span class="nav-number">5.</span> <span class="nav-text">结语</span></a></li></ol></div>
-            
-          </div>
-        </section>
-      
-
-    </div>
-  </aside>
-
-
-        
-      </div>
-    </main>
-
-    <footer id="footer" class="footer">
-      <div class="footer-inner">
-        <div class="copyright" >
-  
-  &copy; 
-  <span itemprop="copyrightYear">2016</span>
-  <span class="with-love">
-    <i class="fa fa-heart"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">Yeaseon</span>
-</div>
-
-<div class="powered-by">
-  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
-</div>
-
-<div class="theme-info">
-  主题 -
-  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
-    NexT.Pisces
-  </a>
-</div>
-
-        
-
-        
-      </div>
-    </footer>
-
-    <div class="back-to-top">
-      <i class="fa fa-arrow-up"></i>
-    </div>
-  </div>
-
-  
-
-<script type="text/javascript">
-  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
-    window.Promise = null;
-  }
-</script>
-
-
-
-
-
-
-
-
-
-  
-
-
-
-  
-  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
-
-  
-  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-
-  
-  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
-
-  
-  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
-
-
-
-  
-  
-
-
-  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
-
-  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
-
-
-
-  
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
-
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
-
-
-
-  
-
-  
+      &lt;blockquote&gt;
+&lt;p&gt;作者：Philip Walton&lt;br&gt;译者：Yeaseon&lt;br&gt;原文链接：&lt;a href=&quot;https://philipwalton.com/articles/learning-how-to-set-up-automated-cross-browser-javascript-unit-testing&quot;&gt;点此查看&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;我们都知道在多个浏览器中测试我们的代码是多么的重要。至少在我们发布第一个项目的时候，我认为我们在网络开发社区做大部分工作还是相当不错的。&lt;br&gt;我们做的不够好的工作是测试代码时每一次做出的改变。&lt;br&gt;我个人对此感到很惭愧。我已经把“学习如何构建自动化、跨浏览器的JavaScript的单元测试”列在我的年度to-do清单中，但我每一次坐下来真正想要做的时候，我又退却了。虽然我肯定这一部分原因是因为我的懒惰，同时我认为这也是由于缺乏良好的可用信息在这个主题上。&lt;br&gt;有许多工具和框架（例如 Karma）宣称“要使自动化的JavaScript测试变得简单”，但以我的经验看来这些工具引入的复杂性比他们摆脱的复杂性更多。在我的工作经验中，如果你是一个专家这些工具“能工作”的很好，但对于一个初学者是很糟糕的。我想要真正了解的是这个流程是如何在引擎中工作的，以便在它出现问题的时候（总会出现问题的），我能解决它。&lt;br&gt;对我来说，充分了解这些是如何工作的最好方法就是尝试从头开始重新创建它。所以我决定去构建我自己的测试工具，然后把我的所学分享到社区中。&lt;br&gt;
     
-  
-
-  <script type="text/javascript">
-    var duoshuoQuery = {short_name:"yeaseonzhang-github"};
-    (function() {
-      var ds = document.createElement('script');
-      ds.type = 'text/javascript';ds.async = true;
-      ds.id = 'duoshuo-script';
-      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-      ds.charset = 'UTF-8';
-      (document.getElementsByTagName('head')[0]
-      || document.getElementsByTagName('body')[0]).appendChild(ds);
-    })();
-  </script>
-
-  
+    </summary>
     
-      
-      <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
-      <script src="/js/src/hook-duoshuo.js"></script>
     
+      <category term="翻译" scheme="http://yoursite.com/tags/%E7%BF%BB%E8%AF%91/"/>
+    
+  </entry>
   
-
-
-
-
-
+  <entry>
+    <title>2016-10-23,写于1024之前...</title>
+    <link href="http://yoursite.com/2016/10/23/2016-10-23-%E5%86%99%E4%BA%8E1024%E4%B9%8B%E5%89%8D/"/>
+    <id>http://yoursite.com/2016/10/23/2016-10-23-写于1024之前/</id>
+    <published>2016-10-23T14:52:50.000Z</published>
+    <updated>2016-10-26T12:22:50.736Z</updated>
+    
+    <content type="html"><![CDATA[<p>其实一直有打算自己搭建一个博客的，但是犹豫种种的借口以及毕业之后拖延症病发，所以迟迟没有动手去做这件事。<br>最近，越来越觉得不应该这样下去啦。<br>就像五月天的歌词：<strong>我知道潮落之后一定有潮起，有什么了不起</strong>，现在“潮落”，也应该开始“潮起”了。</p>
+<a id="more"></a>
+<h3 id="搭建博客的目的"><a href="#搭建博客的目的" class="headerlink" title="搭建博客的目的"></a>搭建博客的目的</h3><ol>
+<li>现在能够写作/发帖的网站实在太多了，既然不能做到兼顾，那还不如自己精心运营一个自己的博客</li>
+<li>将自己每天的所学所得，有一个分享的“部落”。而不是向之前一样，用<strong>马克飞象</strong>同步到自己的<strong>印象笔记</strong>中</li>
+<li>作为一个web前端开发人员，能够将自己日常所学新技巧，可以<strong>“捣鼓”</strong>到自己的博客上</li>
+<li><strong>Just for fun!!!</strong></li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Hello world, again !</div></pre></td></tr></table></figure>
+<p>明天<strong>10-24</strong>, 祝所有的程序猿“No-Bug-Day”。<br>最近，会把自己在“简书”，“博客园”上面放的文章迁移过来。</p>
+<blockquote>
+<p>Night-night，Yeaseon.</p>
+</blockquote>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;其实一直有打算自己搭建一个博客的，但是犹豫种种的借口以及毕业之后拖延症病发，所以迟迟没有动手去做这件事。&lt;br&gt;最近，越来越觉得不应该这样下去啦。&lt;br&gt;就像五月天的歌词：&lt;strong&gt;我知道潮落之后一定有潮起，有什么了不起&lt;/strong&gt;，现在“潮落”，也应该开始“潮起”了。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="随笔" scheme="http://yoursite.com/tags/%E9%9A%8F%E7%AC%94/"/>
+    
+  </entry>
   
-  
-  
-
-  
-
-  
-  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
-  <script>AV.initialize("WRhU6WJqX6Fl91VYiTKraW5C-gzGzoHsz", "Wnpzp3uupeQuANib4F7Ew7dv");</script>
-  <script>
-    function showTime(Counter) {
-      var query = new AV.Query(Counter);
-      var entries = [];
-      var $visitors = $(".leancloud_visitors");
-
-      $visitors.each(function () {
-        entries.push( $(this).attr("id").trim() );
-      });
-
-      query.containedIn('url', entries);
-      query.find()
-        .done(function (results) {
-          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
-
-          if (results.length === 0) {
-            $visitors.find(COUNT_CONTAINER_REF).text(0);
-            return;
-          }
-
-          for (var i = 0; i < results.length; i++) {
-            var item = results[i];
-            var url = item.get('url');
-            var time = item.get('time');
-            var element = document.getElementById(url);
-
-            $(element).find(COUNT_CONTAINER_REF).text(time);
-          }
-        })
-        .fail(function (object, error) {
-          console.log("Error: " + error.code + " " + error.message);
-        });
-    }
-
-    function addCount(Counter) {
-      var $visitors = $(".leancloud_visitors");
-      var url = $visitors.attr('id').trim();
-      var title = $visitors.attr('data-flag-title').trim();
-      var query = new AV.Query(Counter);
-
-      query.equalTo("url", url);
-      query.find({
-        success: function(results) {
-          if (results.length > 0) {
-            var counter = results[0];
-            counter.fetchWhenSave(true);
-            counter.increment("time");
-            counter.save(null, {
-              success: function(counter) {
-                var $element = $(document.getElementById(url));
-                $element.find('.leancloud-visitors-count').text(counter.get('time'));
-              },
-              error: function(counter, error) {
-                console.log('Failed to save Visitor num, with error message: ' + error.message);
-              }
-            });
-          } else {
-            var newcounter = new Counter();
-            /* Set ACL */
-            var acl = new AV.ACL();
-            acl.setPublicReadAccess(true);
-            acl.setPublicWriteAccess(true);
-            newcounter.setACL(acl);
-            /* End Set ACL */
-            newcounter.set("title", title);
-            newcounter.set("url", url);
-            newcounter.set("time", 1);
-            newcounter.save(null, {
-              success: function(newcounter) {
-                var $element = $(document.getElementById(url));
-                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
-              },
-              error: function(newcounter, error) {
-                console.log('Failed to create');
-              }
-            });
-          }
-        },
-        error: function(error) {
-          console.log('Error:' + error.code + " " + error.message);
-        }
-      });
-    }
-
-    $(function() {
-      var Counter = AV.Object.extend("Counter");
-      if ($('.leancloud_visitors').length == 1) {
-        addCount(Counter);
-      } else if ($('.post-title-link').length > 1) {
-        showTime(Counter);
-      }
-    });
-  </script>
-
-
-
-  
-<script type="text/javascript" async src="//push.zhanzhang.baidu.com/push.js">
-</script>
-
-
-</body>
-</html>
+</feed>

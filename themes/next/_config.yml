@@ -11,7 +11,7 @@ keywords: "Yeaseon"
 # Set rss to false to disable feed link.
 # Leave rss as empty to use site's feed link.
 # Set rss to specific value if you have burned your feed already.
-rss:
+rss: /atom.xml
 
 # Specify the date when the site was setup
 since: 2016
@@ -117,9 +117,9 @@ font:
 # Social Links
 # Key is the link label showing to end users.
 # Value is the target link (E.g. GitHub: https://github.com/iissnan)
-#social:
-  #LinkLabel: Link
-
+social:
+  GitHub: https://github.com/YeaseonZhang
+  Weibo: http://weibo.com/yeaseonzhang
 
 # Social Links Icons
 # Icon Mapping:
