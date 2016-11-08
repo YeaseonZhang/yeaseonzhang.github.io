@@ -1,0 +1,1041 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Lodash," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="YeaseonZhang" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="Lodash是一个具有一致接口、模块化、高性能等特性的 JavaScript 工具库。还有一个类似的库是underscore，不过underscore不能按需加载。朋友说：这种工具库，平时都是先用先写的。不过我觉得，还是很有必要学习一下的，看下源码的实现。本文主要是对Lodash的API,用自己理解的方式做一下说明。可能理解有误，不过还是要记录下来，当再用的时候有据可查。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Lodash API学习--数组篇">
+<meta property="og:url" content="http://yoursite.com/2016/11/08/Lodash API学习--数组/index.html">
+<meta property="og:site_name" content="YeaseonZhang">
+<meta property="og:description" content="Lodash是一个具有一致接口、模块化、高性能等特性的 JavaScript 工具库。还有一个类似的库是underscore，不过underscore不能按需加载。朋友说：这种工具库，平时都是先用先写的。不过我觉得，还是很有必要学习一下的，看下源码的实现。本文主要是对Lodash的API,用自己理解的方式做一下说明。可能理解有误，不过还是要记录下来，当再用的时候有据可查。">
+<meta property="og:updated_time" content="2016-11-08T06:36:08.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Lodash API学习--数组篇">
+<meta name="twitter:description" content="Lodash是一个具有一致接口、模块化、高性能等特性的 JavaScript 工具库。还有一个类似的库是underscore，不过underscore不能按需加载。朋友说：这种工具库，平时都是先用先写的。不过我觉得，还是很有必要学习一下的，看下源码的实现。本文主要是对Lodash的API,用自己理解的方式做一下说明。可能理解有误，不过还是要记录下来，当再用的时候有据可查。">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 6345335535917073000,
+      author: 'Yeaseon'
+    }
+  };
+</script>
+
+  <title> Lodash API学习--数组篇 | YeaseonZhang </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?a6c706d9802419456e07ac9edc18dbb1";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">YeaseonZhang</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Lodash API学习--数组篇
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-11-08T10:52:00+08:00" content="2016-11-08">
+              2016-11-08
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/11/08/Lodash API学习--数组/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/11/08/Lodash API学习--数组/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+             <span id="/2016/11/08/Lodash API学习--数组/" class="leancloud_visitors" data-flag-title="Lodash API学习--数组篇">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><strong>Lodash</strong>是一个具有一致接口、模块化、高性能等特性的 JavaScript 工具库。还有一个类似的库是<strong>underscore</strong>，不过<strong>underscore</strong>不能按需加载。<br>朋友说：这种工具库，平时都是先用先写的。<br>不过我觉得，还是很有必要学习一下的，看下源码的实现。<br>本文主要是对<strong>Lodash</strong>的API,用自己理解的方式做一下说明。可能理解有误，不过还是要记录下来，当再用的时候有据可查。</p>
+<a id="more"></a>
+<h3 id="chunk"><a href="#chunk" class="headerlink" title="_.chunk"></a><code>_.chunk</code></h3><ul>
+<li><code>_.chunk(array, [size=1])</code></li>
+</ul>
+<p>将数组进行分块，按照<code>size</code>指定的长度，默认长度<code>1</code></p>
+<h3 id="compact"><a href="#compact" class="headerlink" title="_.compact"></a><code>_.compact</code></h3><ul>
+<li><code>_.compact(array)</code></li>
+</ul>
+<p>剔除数组中没有意义的值，比如<code>false, null, 0, &quot;&quot;, undefined 和 NaN</code> </p>
+<h3 id="concat"><a href="#concat" class="headerlink" title="_.concat"></a><code>_.concat</code></h3><ul>
+<li><code>_.concat(array, [values])</code></li>
+</ul>
+<p>创建一个新的数组来保存原始数组，增加值/数组之后的结果</p>
+<p>例子：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">var array = [1];</div><div class="line">var other = _.concat(array, 2, [3], [[4]]);</div><div class="line"> </div><div class="line">console.log(other);</div><div class="line">// =&gt; [1, 2, 3, [4]]</div><div class="line"> </div><div class="line">console.log(array);</div><div class="line">// =&gt; [1]</div></pre></td></tr></table></figure></p>
+<h3 id="difference"><a href="#difference" class="headerlink" title="_.difference"></a><code>_.difference</code></h3><ul>
+<li><code>_.difference(array, [values])</code></li>
+</ul>
+<p>这个函数就比较复杂了，就想看一下源码，发现嵌套的函数太多。就投机取巧直接测试吧。这个函数，大概的作用就是将<code>array</code>和<code>[values]</code>进行比较，将<code>array</code>中比<code>[values]</code>中多出的值，保存到一个新的数组中。</p>
+<p>例子：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">//官网就比较敷衍了</div><div class="line">_.difference([2, 1], [2, 3]);</div><div class="line">// =&gt; [1]</div><div class="line"></div><div class="line">//下面是我做的一些测试</div><div class="line">_.difference([1, 1, &quot;1&quot;, 2, 2], [1]);</div><div class="line">// =&gt; [&quot;1&quot;, 2, 2]</div><div class="line">// 只要array中比[values]中多出的值，都会返回，不管个数出现了几次</div></pre></td></tr></table></figure></p>
+<h3 id="differenceBy"><a href="#differenceBy" class="headerlink" title="_.differenceBy"></a><code>_.differenceBy</code></h3><ul>
+<li><code>_.differenceBy(array, [values], [iteratee=_.identity])</code></li>
+</ul>
+<p>这个方法就是在<code>_.difference</code>方法的基础上，增加了一个参数。反正是看了一会，才看明白这个第三个参数，怎么工作的。</p>
+<p>例子：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">_.differenceBy([2.1, 1.2], [2.3, 3.4], Math.floor);</div><div class="line">// =&gt; [1.2]</div><div class="line"> </div><div class="line">// The `_.property` iteratee shorthand.</div><div class="line">_.differenceBy([&#123; &apos;x&apos;: 2 &#125;, &#123; &apos;x&apos;: 1 &#125;], [&#123; &apos;x&apos;: 1 &#125;], &apos;x&apos;);</div><div class="line">// =&gt; [&#123; &apos;x&apos;: 2 &#125;]</div></pre></td></tr></table></figure></p>
+<p>第一个官方例子，就是看了半天没看懂。我以为是先<code>_.difference</code>在对得到的结果进行<code>Math.floor</code>运算，其实是想错了。 如果这么工作的话，就没必要设计<code>_.differenceBy</code>了，直接用<code>_.difference.xx()</code>就可以，所以我一开始的想当然是有问题的。<br>正确地工作步骤是，对前两个参数，分别执行第三个参数过滤，然后再比较找出<code>array</code>中比<code>[values]</code>中多出的部分，然后返回这些多余部分的原始值的一个数组。<br>就拿第一个说吧，执行过滤之后是<code>[2,1]</code>和<code>[2,3]</code>，应该是返回<code>[1]</code>的原始值<code>[1.2]</code>，就酱。</p>
+<h3 id="differenceWith"><a href="#differenceWith" class="headerlink" title="_.differenceWith"></a><code>_.differenceWith</code></h3><ul>
+<li><code>_.differenceWith(array, [values], [comparator])</code></li>
+</ul>
+<p>没太看懂。。。</p>
+<h3 id="drop"><a href="#drop" class="headerlink" title="_.drop"></a><code>_.drop</code></h3><ul>
+<li><code>_.drop(array, [n=1])</code></li>
+</ul>
+<p>我理解的是抛弃前n个数组元素，返回剩下的数组元素，默认抛弃第一个。</p>
+<p>例子：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">_.drop([1, 2, 3]);</div><div class="line">// =&gt; [2, 3]</div><div class="line"> </div><div class="line">_.drop([1, 2, 3], 2);</div><div class="line">// =&gt; [3]</div><div class="line"> </div><div class="line">_.drop([1, 2, 3], 5);</div><div class="line">// =&gt; []</div><div class="line"> </div><div class="line">_.drop([1, 2, 3], 0);</div><div class="line">// =&gt; [1, 2, 3]</div></pre></td></tr></table></figure></p>
+<h3 id="dropRight"><a href="#dropRight" class="headerlink" title="_.dropRight"></a><code>_.dropRight</code></h3><ul>
+<li><code>_.dropRight(array, [n=1])</code></li>
+</ul>
+<p><code>_.dropRight</code>和<code>_.drop</code>功能是一样的，就是<code>_.drop</code>是从后往前抛弃n个数组元素，默认抛弃最后一个。</p>
+<p>例子：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">_.dropRight([1, 2, 3]);</div><div class="line">// =&gt; [1, 2]</div><div class="line"> </div><div class="line">_.dropRight([1, 2, 3], 2);</div><div class="line">// =&gt; [1]</div><div class="line"> </div><div class="line">_.dropRight([1, 2, 3], 5);</div><div class="line">// =&gt; []</div><div class="line"> </div><div class="line">_.dropRight([1, 2, 3], 0);</div><div class="line">// =&gt; [1, 2, 3]</div></pre></td></tr></table></figure></p>
+<h3 id="dropRightWhile"><a href="#dropRightWhile" class="headerlink" title="_.dropRightWhile"></a><code>_.dropRightWhile</code></h3><ul>
+<li><code>_.dropRightWhile(array, [predicate=_.identity])</code></li>
+</ul>
+<p>从尾端查询数组<code>array</code>，第一个不满足<code>predicate</code>条件的元素开始截取数组。<br>参数<code>predicate</code>提供的是一个属性名称，就通过提供的参数使用<code>_.property</code>方法返回一个回调函数。<br>参数<code>predicate</code>提供的是一个对象，就用<code>_.matches</code>方法匹配相同的元素，相同返回<code>true</code>，不同返回<code>false</code>。<br>参数<code>predicate</code>也可以提供一个函数，该函数有三个参数<code>value, index, array</code></p>
+<p><code>_.dropRightWhile</code>这个函数还牵扯到另外两个函数，<code>_.property</code>和<code>_.matches</code>。</p>
+<p>例子：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">var users = [</div><div class="line">  &#123; &apos;user&apos;: &apos;barney&apos;,  &apos;active&apos;: true &#125;,</div><div class="line">  &#123; &apos;user&apos;: &apos;fred&apos;,    &apos;active&apos;: false &#125;,</div><div class="line">  &#123; &apos;user&apos;: &apos;pebbles&apos;, &apos;active&apos;: false &#125;</div><div class="line">];</div><div class="line"> </div><div class="line">_.dropRightWhile(users, function(o) &#123; return !o.active; &#125;);</div><div class="line">// =&gt; objects for [&apos;barney&apos;]</div><div class="line"> </div><div class="line">// The `_.matches` iteratee shorthand.</div><div class="line">_.dropRightWhile(users, &#123; &apos;user&apos;: &apos;pebbles&apos;, &apos;active&apos;: false &#125;);</div><div class="line">// =&gt; objects for [&apos;barney&apos;, &apos;fred&apos;]</div><div class="line"> </div><div class="line">// The `_.matchesProperty` iteratee shorthand.</div><div class="line">_.dropRightWhile(users, [&apos;active&apos;, false]);</div><div class="line">// =&gt; objects for [&apos;barney&apos;]</div><div class="line"> </div><div class="line">// The `_.property` iteratee shorthand.</div><div class="line">_.dropRightWhile(users, &apos;active&apos;);</div><div class="line">// =&gt; objects for [&apos;barney&apos;, &apos;fred&apos;, &apos;pebbles&apos;]</div></pre></td></tr></table></figure></p>
+<h3 id="dropWhile"><a href="#dropWhile" class="headerlink" title="_.dropWhile"></a><code>_.dropWhile</code></h3><ul>
+<li><code>_.dropWhile(array, [predicate=_.identity])</code></li>
+</ul>
+<p>这个方法与上面<code>_.dropRightWhile</code>不同之处，是从数组的首端开始查询。</p>
+<h3 id="fill"><a href="#fill" class="headerlink" title="_.fill"></a><code>_.fill</code></h3><ul>
+<li><code>_.fill(array, value, [start=0], [end=array.length])</code></li>
+</ul>
+<p>将<code>value</code>填充到<code>array</code>中，<code>start</code>默认为0，<code>end</code>默认为<code>array.length</code>。这个就比较好理解了。</p>
+<p>例子：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">var array = [1, 2, 3];</div><div class="line"> </div><div class="line">_.fill(array, &apos;a&apos;);</div><div class="line">console.log(array);</div><div class="line">// =&gt; [&apos;a&apos;, &apos;a&apos;, &apos;a&apos;]</div><div class="line"> </div><div class="line">_.fill(Array(3), 2);</div><div class="line">// =&gt; [2, 2, 2]</div><div class="line"> </div><div class="line">_.fill([4, 6, 8, 10], &apos;*&apos;, 1, 3);</div><div class="line">// =&gt; [4, &apos;*&apos;, &apos;*&apos;, 10]</div></pre></td></tr></table></figure></p>
+<h3 id="findIndex"><a href="#findIndex" class="headerlink" title="_.findIndex"></a><code>_.findIndex</code></h3><ul>
+<li><code>_.findIndex(array, [predicate=_.identity], [fromIndex=0])</code></li>
+</ul>
+<p>返回满足<code>predicate</code>条件的一个<code>array</code>数组的<code>index</code>，也可以指定从哪里开始查询，没找到满足条件的返回<code>-1</code></p>
+<p>例子：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">var users = [</div><div class="line">  &#123; &apos;user&apos;: &apos;barney&apos;,  &apos;active&apos;: false &#125;,</div><div class="line">  &#123; &apos;user&apos;: &apos;fred&apos;,    &apos;active&apos;: false &#125;,</div><div class="line">  &#123; &apos;user&apos;: &apos;pebbles&apos;, &apos;active&apos;: true &#125;</div><div class="line">];</div><div class="line"> </div><div class="line">_.findIndex(users, function(o) &#123; return o.user == &apos;barney&apos;; &#125;);</div><div class="line">// =&gt; 0</div><div class="line"> </div><div class="line">// The `_.matches` iteratee shorthand.</div><div class="line">_.findIndex(users, &#123; &apos;user&apos;: &apos;fred&apos;, &apos;active&apos;: false &#125;);</div><div class="line">// =&gt; 1</div><div class="line"> </div><div class="line">// The `_.matchesProperty` iteratee shorthand.</div><div class="line">_.findIndex(users, [&apos;active&apos;, false]);</div><div class="line">// =&gt; 0</div><div class="line"> </div><div class="line">// The `_.property` iteratee shorthand.</div><div class="line">_.findIndex(users, &apos;active&apos;);</div><div class="line">// =&gt; 2</div></pre></td></tr></table></figure></p>
+<h3 id="findLastIndex"><a href="#findLastIndex" class="headerlink" title="_.findLastIndex"></a><code>_.findLastIndex</code></h3><ul>
+<li><code>_.findLastIndex(array, [predicate=_.identity], [fromIndex=array.length -1])</code></li>
+</ul>
+<p>和<code>_.findIndex</code>基本相同，不过<code>_.findLastIndex</code>是从尾部往首部开始查找。</p>
+<p>例子：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">var users = [</div><div class="line">  &#123; &apos;user&apos;: &apos;barney&apos;,  &apos;active&apos;: true &#125;,</div><div class="line">  &#123; &apos;user&apos;: &apos;fred&apos;,    &apos;active&apos;: false &#125;,</div><div class="line">  &#123; &apos;user&apos;: &apos;pebbles&apos;, &apos;active&apos;: false &#125;</div><div class="line">];</div><div class="line"> </div><div class="line">_.findLastIndex(users, function(o) &#123; return o.user == &apos;pebbles&apos;; &#125;);</div><div class="line">// =&gt; 2</div><div class="line"> </div><div class="line">// The `_.matches` iteratee shorthand.</div><div class="line">_.findLastIndex(users, &#123; &apos;user&apos;: &apos;barney&apos;, &apos;active&apos;: true &#125;);</div><div class="line">// =&gt; 0</div><div class="line"> </div><div class="line">// The `_.matchesProperty` iteratee shorthand.</div><div class="line">_.findLastIndex(users, [&apos;active&apos;, false]);</div><div class="line">// =&gt; 2</div><div class="line"> </div><div class="line">// The `_.property` iteratee shorthand.</div><div class="line">_.findLastIndex(users, &apos;active&apos;);</div><div class="line">// =&gt; 0</div></pre></td></tr></table></figure></p>
+<h3 id="flatten"><a href="#flatten" class="headerlink" title="_.flatten"></a><code>_.flatten</code></h3><ul>
+<li><code>_.flatten(array)</code></li>
+</ul>
+<p>这个函数的作用是将<code>array</code>减少一个维度。</p>
+<p>例子：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">_.flatten([1, [2, [3, [4]], 5]]);</div><div class="line">// =&gt; [1, 2, [3, [4]], 5]</div></pre></td></tr></table></figure></p>
+<h3 id="flattenDeep"><a href="#flattenDeep" class="headerlink" title="_.flattenDeep"></a><code>_.flattenDeep</code></h3><ul>
+<li><code>_.flattenDeep(array)</code></li>
+</ul>
+<p>相当于递归执行<code>_.flatten</code>，最终将<code>array</code>变成一维数组。</p>
+<p>例子：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">_.flattenDeep([1, [2, [3, [4]], 5]]);</div><div class="line">// =&gt; [1, 2, 3, 4, 5]</div></pre></td></tr></table></figure></p>
+<h3 id="flattenDepth"><a href="#flattenDepth" class="headerlink" title="_.flattenDepth"></a><code>_.flattenDepth</code></h3><ul>
+<li><code>_.flattenDepth(array, [depth=1])</code></li>
+</ul>
+<p>相当于指定执行<code>_.flattenDepth``depth</code>次，默认<code>depth</code>为1。</p>
+<p>例子：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">var array = [1, [2, [3, [4]], 5]];</div><div class="line"> </div><div class="line">_.flattenDepth(array, 1);</div><div class="line">// =&gt; [1, 2, [3, [4]], 5]</div><div class="line"> </div><div class="line">_.flattenDepth(array, 2);</div><div class="line">// =&gt; [1, 2, 3, [4], 5]</div></pre></td></tr></table></figure></p>
+<h3 id="fromPairs"><a href="#fromPairs" class="headerlink" title="_.fromPairs"></a><code>_.fromPairs</code></h3><ul>
+<li><code>_.fromPairs(pairs)</code></li>
+</ul>
+<p>将<code>pairs</code>键值对转换成一个对象。</p>
+<p>例子：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">_.fromPairs([[&apos;a&apos;, 1], [&apos;b&apos;, 2]]);</div><div class="line">// =&gt; &#123; &apos;a&apos;: 1, &apos;b&apos;: 2 &#125;</div><div class="line"></div><div class="line">_.fromPairs([[&apos;a&apos;, 1], [&apos;b&apos;, 2], [&apos;c&apos;, [&apos;d&apos;, 4]]]);</div><div class="line">// =&gt; &#123; &apos;a&apos;: 1, &apos;b&apos;: 2, &apos;c&apos;: [ &apos;d&apos;, 4 ] &#125;</div></pre></td></tr></table></figure></p>
+<h3 id="head"><a href="#head" class="headerlink" title="_.head"></a><code>_.head</code></h3><ul>
+<li><code>_.head(array)</code></li>
+</ul>
+<p>返回<code>array</code>的第一个元素，别名<code>_.first</code></p>
+<p>例子：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">_.head([1, 2, 3]);</div><div class="line">// =&gt; 1</div><div class="line"> </div><div class="line">_.head([]);</div><div class="line">// =&gt; undefined</div><div class="line"></div><div class="line">_.head([[1, 4], 2, 3]);</div><div class="line">// =&gt; [1, 4]</div></pre></td></tr></table></figure></p>
+<h3 id="last"><a href="#last" class="headerlink" title="_.last"></a><code>_.last</code></h3><ul>
+<li><code>_.last(array)</code></li>
+</ul>
+<p>返回<code>array</code>的最后一个元素。</p>
+<p>例子：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">_.last([1, 2, 3]);</div><div class="line">// =&gt; 3</div></pre></td></tr></table></figure></p>
+<h3 id="nth"><a href="#nth" class="headerlink" title="_.nth"></a><code>_.nth</code></h3><ul>
+<li><code>_.nth(array, [n=0])</code></li>
+</ul>
+<p>获取指定<code>index</code>的<code>array</code>数组元素。</p>
+<p>例子：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">var array = [&apos;a&apos;, &apos;b&apos;, &apos;c&apos;, &apos;d&apos;];</div><div class="line"> </div><div class="line">_.nth(array, 1);</div><div class="line">// =&gt; &apos;b&apos;</div><div class="line"> </div><div class="line">_.nth(array, -2);</div><div class="line">// =&gt; &apos;c&apos;;</div></pre></td></tr></table></figure></p>
+<h3 id="tail"><a href="#tail" class="headerlink" title="_.tail"></a><code>_.tail</code></h3><ul>
+<li><code>_.tail(array)</code></li>
+</ul>
+<p>返回去除第一个元素的数组。</p>
+<p>例子：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">_.tail([1, 2, 3]);</div><div class="line">// =&gt; [2, 3]</div></pre></td></tr></table></figure></p>
+<h3 id="indexOf"><a href="#indexOf" class="headerlink" title="_.indexOf"></a><code>_.indexOf</code></h3><ul>
+<li><code>_.indexOf(array, value, [fromIndex=0])</code></li>
+</ul>
+<p>在<code>array</code>中查找<code>value</code>，返回找到的第一个匹配的<code>index</code>，没找到则返回<code>-1</code>，第三个参数<code>fromIndex</code>指定查找的起始位置，默认为0；</p>
+<p>例子：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">_.indexOf([1, 2, 1, 2], 2);</div><div class="line">// =&gt; 1</div><div class="line"></div><div class="line">_.indexOf([1, 2, 1, 2], 3);</div><div class="line">// =&gt; -1</div><div class="line"> </div><div class="line">// Search from the `fromIndex`.</div><div class="line">_.indexOf([1, 2, 1, 2], 2, 2);</div><div class="line">// =&gt; 3</div></pre></td></tr></table></figure></p>
+<h3 id="lastIndexOf"><a href="#lastIndexOf" class="headerlink" title="_.lastIndexOf"></a><code>_.lastIndexOf</code></h3><ul>
+<li><code>_.lastIndexOf(array, value, [fromIndex=array.length-1])</code></li>
+</ul>
+<p>和<code>_.indexOf</code>方法一样，不过是从尾部开始查找。</p>
+<p>例子：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">_.lastIndexOf([1, 2, 1, 2], 2);</div><div class="line">// =&gt; 3</div><div class="line"> </div><div class="line">// Search from the `fromIndex`.</div><div class="line">_.lastIndexOf([1, 2, 1, 2], 2, 2);</div><div class="line">// =&gt; 1</div></pre></td></tr></table></figure></p>
+<h3 id="initial"><a href="#initial" class="headerlink" title="_.initial"></a><code>_.initial</code></h3><ul>
+<li><code>_.initial(array)</code></li>
+</ul>
+<p>去除<code>array</code>最后一个元素，并返回。</p>
+<p>例子：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">_.initial([1, 2, 3]);</div><div class="line">// =&gt; [1, 2]</div><div class="line"></div><div class="line">_.initial([1, 2, 3, [4, 5]]);</div><div class="line">// =&gt; [1, 2, 3]</div></pre></td></tr></table></figure></p>
+<h3 id="intersection"><a href="#intersection" class="headerlink" title="_.intersection"></a><code>_.intersection</code></h3><ul>
+<li><code>_.intersection([arrays])</code></li>
+</ul>
+<p>取出各数组中全等的元素，使用<code>SameValueZero</code>方式平等比较。</p>
+<p>例子：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">_.intersection([2, 1], [2, 3]);</div><div class="line">// =&gt; [2]</div><div class="line"></div><div class="line">_.intersection([1, 2], [4, 2], [2, 1]);</div><div class="line">// =&gt; [2]</div></pre></td></tr></table></figure></p>
+<h3 id="intersectionBy"><a href="#intersectionBy" class="headerlink" title="_.intersectionBy"></a><code>_.intersectionBy</code></h3><ul>
+<li><code>_.intersectionBy([arrays], [iteratee=_.identity])</code></li>
+</ul>
+<p><code>_.intersectionBy</code>就是在<code>_.intersection</code>的基础上接受了一个<code>iteratee</code>迭代器，生成了一个比较的标准，类似于<code>_.differenceBy</code>。</p>
+<p>例子：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">_.intersectionBy([2.1, 1.2], [2.3, 3.4], Math.floor);</div><div class="line">// =&gt; [2.1]</div><div class="line"> </div><div class="line">// The `_.property` iteratee shorthand.</div><div class="line">_.intersectionBy([&#123; &apos;x&apos;: 1 &#125;], [&#123; &apos;x&apos;: 2 &#125;, &#123; &apos;x&apos;: 1 &#125;], &apos;x&apos;);</div><div class="line">// =&gt; [&#123; &apos;x&apos;: 1 &#125;]</div></pre></td></tr></table></figure></p>
+<h3 id="intersectionWith"><a href="#intersectionWith" class="headerlink" title="_.intersectionWith"></a><code>_.intersectionWith</code></h3><ul>
+<li><code>_.intersectionWith([arrays], [comparator])</code></li>
+</ul>
+<p>这个函数和<code>_.differenceWith</code>差不多，一样没太看懂。<br>先略过。</p>
+<h3 id="join"><a href="#join" class="headerlink" title="_.join"></a><code>_.join</code></h3><ul>
+<li><code>_.join(array, [separator=&#39;,&#39;])</code></li>
+</ul>
+<p>将<code>array</code>转换成字符串类型并通过<code>separator</code>分隔开，默认使用<code>,</code>分隔。</p>
+<p>例子：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">_.join([&apos;a&apos;, &apos;b&apos;, &apos;c&apos;], &apos;~&apos;);</div><div class="line">// =&gt; &apos;a~b~c&apos;</div><div class="line"></div><div class="line">_.join([&apos;a&apos;, &apos;b&apos;, &apos;c&apos;, [&apos;d&apos;, &apos;e&apos;]], &apos;-&apos;);</div><div class="line">// =&gt; &apos;a-b-c-d,e&apos;</div></pre></td></tr></table></figure></p>
+<h3 id="pull"><a href="#pull" class="headerlink" title="_.pull"></a><code>_.pull</code></h3><ul>
+<li><code>_.pull(array, [values])</code></li>
+</ul>
+<p>移除<code>array</code>中所有的指定<code>values</code>，需要注意的是这个函数会对原始<code>array</code>做修改。</p>
+<p>例子：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">var array = [&apos;a&apos;, &apos;b&apos;, &apos;c&apos;, &apos;a&apos;, &apos;b&apos;, &apos;c&apos;];</div><div class="line"> </div><div class="line">_.pull(array, &apos;a&apos;, &apos;c&apos;);</div><div class="line">console.log(array);</div><div class="line">// =&gt; [&apos;b&apos;, &apos;b&apos;]</div></pre></td></tr></table></figure></p>
+<h3 id="pullAll"><a href="#pullAll" class="headerlink" title="_.pullAll"></a><code>_.pullAll</code></h3><ul>
+<li><code>_.pullAll(array, values)</code></li>
+</ul>
+<p><code>_.pullAll</code>方法应该是<code>_.pull</code>方法的升级，这个方法是在<strong>Lodash 4.0.0</strong>中提出的。</p>
+<p>例子：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">var array = [&apos;a&apos;, &apos;b&apos;, &apos;c&apos;, &apos;a&apos;, &apos;b&apos;, &apos;c&apos;];</div><div class="line"> </div><div class="line">_.pullAll(array, [&apos;a&apos;, &apos;c&apos;]);</div><div class="line">console.log(array);</div><div class="line">// =&gt; [&apos;b&apos;, &apos;b&apos;]</div></pre></td></tr></table></figure></p>
+<h3 id="pullAllBy"><a href="#pullAllBy" class="headerlink" title="_.pullAllBy"></a><code>_.pullAllBy</code></h3><ul>
+<li><code>_.pullAllBy(array, values, [iteratee=_.identity])</code></li>
+</ul>
+<p><code>_.pullAllBy</code>方法很像<code>_.pullAll</code>方法，除了可以接受一个迭代器<code>iteratee</code>，为每一个数组元素执行迭代器并生成一个比较的标准，这个迭代器调用一个参数<code>value</code>。<br><strong>注</strong>：原始数组改变</p>
+<p>例子：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">var array1 = [&#123; &apos;x&apos;: 1 &#125;, &#123; &apos;x&apos;: 2 &#125;, &#123; &apos;x&apos;: 3 &#125;, &#123; &apos;x&apos;: 1 &#125;];</div><div class="line"> </div><div class="line">_.pullAllBy(array1, [&#123; &apos;x&apos;: 1 &#125;, &#123; &apos;x&apos;: 3 &#125;], &apos;x&apos;);</div><div class="line">console.log(array);</div><div class="line">// =&gt; [&#123; &apos;x&apos;: 2 &#125;]</div><div class="line"></div><div class="line">var array2 = [&#123; &apos;x&apos;: 1 &#125;, &#123; &apos;x&apos;: 2 &#125;, &#123; &apos;x&apos;: 3 &#125;, &#123; &apos;x&apos;: 1 &#125;, &#123; &apos;y&apos;: 4&#125;];</div><div class="line"> </div><div class="line">_.pullAllBy(array, [&#123; &apos;x&apos;: 1 &#125;], &apos;y&apos;);</div><div class="line">console.log(array);</div><div class="line">// =&gt; [&#123; &apos;y&apos;: 4 &#125;]</div></pre></td></tr></table></figure></p>
+<h3 id="pullAllWith"><a href="#pullAllWith" class="headerlink" title="_.pullAllWith"></a><code>_.pullAllWith</code></h3><ul>
+<li><code>_.pullAllWith(array, values, [comoarator])</code></li>
+</ul>
+<p>这个跳过。。。</p>
+<h3 id="pullAt"><a href="#pullAt" class="headerlink" title="_.pullAt"></a><code>_.pullAt</code></h3><ul>
+<li><code>_.pullAt(array, [indexes])</code></li>
+</ul>
+<p>移除相应<code>index</code>的元素，返回被移除元素的数组。<br><strong>注</strong>：原始数组改变</p>
+<p>例子：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">var array = [&apos;a&apos;, &apos;b&apos;, &apos;c&apos;, &apos;d&apos;];</div><div class="line">var pulled = _.pullAt(array, [1, 3]);</div><div class="line"> </div><div class="line">console.log(array);</div><div class="line">// =&gt; [&apos;a&apos;, &apos;c&apos;]</div><div class="line"> </div><div class="line">console.log(pulled);</div><div class="line">// =&gt; [&apos;b&apos;, &apos;d&apos;]</div></pre></td></tr></table></figure></p>
+<h3 id="remove"><a href="#remove" class="headerlink" title="_.remove"></a><code>_.remove</code></h3><ul>
+<li><code>_.remove(array, [predicate=_.identity])</code></li>
+</ul>
+<p>移除所有<code>predicate</code>返回<strong>真</strong>的数组元素，并返回被移除的数组元素。<code>predicate</code>调用三个参数<code>value, index, array</code>。</p>
+<p>例子：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">var array = [1, 2, 3, 4];</div><div class="line">var evens = _.remove(array, function(n) &#123;</div><div class="line">  return n % 2 == 0;</div><div class="line">&#125;);</div><div class="line"> </div><div class="line">console.log(array);</div><div class="line">// =&gt; [1, 3]</div><div class="line"> </div><div class="line">console.log(evens);</div><div class="line">// =&gt; [2, 4]</div></pre></td></tr></table></figure></p>
+<h3 id="reverse"><a href="#reverse" class="headerlink" title="_.reverse"></a><code>_.reverse</code></h3><ul>
+<li><code>_.reverse(array)</code></li>
+</ul>
+<p>这个就比较简单了，是一个反序排列的方法，也会对原始方法进行更改</p>
+<p>例子：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">var array = [1, 2, 3];</div><div class="line"> </div><div class="line">_.reverse(array);</div><div class="line">// =&gt; [3, 2, 1]</div><div class="line"> </div><div class="line">console.log(array);</div><div class="line">// =&gt; [3, 2, 1]</div></pre></td></tr></table></figure></p>
+<h3 id="slice"><a href="#slice" class="headerlink" title="_.slice"></a><code>_.slice</code></h3><ul>
+<li><code>_.slice(array, [start=0], [end=array.length])</code></li>
+</ul>
+<p>对数组进行分割。</p>
+<p>例子：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">var array = [1, 2, 3];</div><div class="line"> </div><div class="line">_.slice(array, 1, 2);</div><div class="line">// =&gt; [2]</div></pre></td></tr></table></figure></p>
+<h3 id="sortedIndex"><a href="#sortedIndex" class="headerlink" title="_.sortedIndex"></a><code>_.sortedIndex</code></h3><ul>
+<li><code>_.sortedIndex(array, value)</code><br>向一个有序数组中插入一个<code>value</code>，将返回这个值插入之后的有序位置。（使用二分查找）</li>
+</ul>
+<p>例子：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">_.sortedIndex([30, 50], 40);</div><div class="line">// =&gt; 1</div><div class="line"></div><div class="line">_.sortedIndex([30, 50], 30);</div><div class="line">// =&gt; 0</div></pre></td></tr></table></figure></p>
+<h3 id="sortedIndexBy"><a href="#sortedIndexBy" class="headerlink" title="_.sortedIndexBy"></a><code>_.sortedIndexBy</code></h3><ul>
+<li><code>_.sortedIndexBy(array, value, [iteratee=_.identity])</code></li>
+</ul>
+<p>凡是带<code>By</code>的方法方法，都是这种结构的函数。<br><code>_.sortIndexBy</code>比<code>_.sortIndex</code>方法多一个参数，接收一个迭代器<code>iteratee</code>去计算排序，这个<code>iteratee</code>调用一个参数<code>value</code>。</p>
+<p>例子：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">var objects = [&#123; &apos;x&apos;: 4 &#125;, &#123; &apos;x&apos;: 5 &#125;];</div><div class="line"> </div><div class="line">_.sortedIndexBy(objects, &#123; &apos;x&apos;: 4 &#125;, function(o) &#123; return o.x; &#125;);</div><div class="line">// =&gt; 0</div><div class="line"> </div><div class="line">// The `_.property` iteratee shorthand.</div><div class="line">_.sortedIndexBy(objects, &#123; &apos;x&apos;: 4 &#125;, &apos;x&apos;);</div><div class="line">// =&gt; 0</div></pre></td></tr></table></figure></p>
+<h3 id="sortedIndexOf"><a href="#sortedIndexOf" class="headerlink" title="_.sortedIndexOf"></a><code>_.sortedIndexOf</code></h3><ul>
+<li><code>_.sortedIndexOf(array, value)</code></li>
+</ul>
+<p>这个方法很像<code>_.indexOf</code>，<code>_.sortedIndexOf</code>是对一个有序数组进行二分查找。</p>
+<p>例子：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">_.sortedIndexOf([4, 5, 5, 5, 6], 5);</div><div class="line">// =&gt; 1</div></pre></td></tr></table></figure></p>
+<h3 id="sortedLastIndex"><a href="#sortedLastIndex" class="headerlink" title="_.sortedLastIndex"></a><code>_.sortedLastIndex</code></h3><ul>
+<li><code>_.sortedLastIndex(array, value)</code></li>
+</ul>
+<p>这个方法很像<code>_.sortedIndex</code>，这个方法在保持有序的前提下会把<code>value</code>插进最大的那个位置。</p>
+<p>例子：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">_.sortedLastIndex([4, 5, 5, 5, 6], 5);</div><div class="line">// =&gt; 4</div></pre></td></tr></table></figure></p>
+<h3 id="sortedLastIndexBy"><a href="#sortedLastIndexBy" class="headerlink" title="_.sortedLastIndexBy"></a><code>_.sortedLastIndexBy</code></h3><ul>
+<li><code>_.sortedLastIndexBy(array, value, [iteratee=_.identity])</code></li>
+</ul>
+<p>这个方法很像<code>_.sortedLastIndex</code>，只不过多了一个参数<code>iteratee</code>,这个迭代器为每个元素值计算他们的排序，这个迭代器调用一个参数<code>value</code>。返回应该被插入后的数组下标。</p>
+<p>例子：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">var objects = [&#123; &apos;x&apos;: 4 &#125;, &#123; &apos;x&apos;: 5 &#125;];</div><div class="line"> </div><div class="line">_.sortedLastIndexBy(objects, &#123; &apos;x&apos;: 4 &#125;, function(o) &#123; return o.x; &#125;);</div><div class="line">// =&gt; 1</div><div class="line"> </div><div class="line">// The `_.property` iteratee shorthand.</div><div class="line">_.sortedLastIndexBy(objects, &#123; &apos;x&apos;: 4 &#125;, &apos;x&apos;);</div><div class="line">// =&gt; 1</div></pre></td></tr></table></figure></p>
+<h3 id="sortedLastIndexOf"><a href="#sortedLastIndexOf" class="headerlink" title="_.sortedLastIndexOf"></a><code>_.sortedLastIndexOf</code></h3><ul>
+<li><code>_.sortedLastIndexOf(array, value)</code></li>
+</ul>
+<p>这个方法很像<code>_.lastIndexOf</code>，只不过它对一个有序数组进行二分查找。</p>
+<p>例子：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">_.sortedLastIndexOf([4, 5, 5, 5, 6], 5);</div><div class="line">// =&gt; 3</div></pre></td></tr></table></figure></p>
+<h3 id="sortedUniq"><a href="#sortedUniq" class="headerlink" title="_.sortedUniq"></a><code>_.sortedUniq</code></h3><ul>
+<li><code>_.sortedUniq(array)</code></li>
+</ul>
+<p>这个方法很像<code>_.uniq</code>，这个方法是为了有序数组设计且优化的，返回一个去重的数组。</p>
+<p>例子：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">_.sortedUniq([1, 1, 2]);</div><div class="line">// =&gt; [1, 2]</div></pre></td></tr></table></figure></p>
+<h3 id="sortedUniqBy"><a href="#sortedUniqBy" class="headerlink" title="_.sortedUniqBy"></a><code>_.sortedUniqBy</code></h3><ul>
+<li><code>_.sortedUniqBy(array, [iteratee])</code></li>
+</ul>
+<p>这个方法很像<code>_.uniqBy</code>，它返回经过<code>iteratee</code>计算之后，去除重复值，只返回重复值的第一个原值和不重复值组成的有序数组。</p>
+<p>例子：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">_.sortedUniqBy([1.1, 1.2, 2.3, 2.4], Math.floor);</div><div class="line">// =&gt; [1.1, 2.3]</div></pre></td></tr></table></figure></p>
+<h3 id="take"><a href="#take" class="headerlink" title="_.take"></a><code>_.take</code></h3><ul>
+<li><code>_.take(array, [n=1])</code></li>
+</ul>
+<p>创建一个分割后的数组，从<code>array</code>数组的开始到第<code>n</code>个元素。</p>
+<p>例子：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">_.take([1, 2, 3]);</div><div class="line">// =&gt; [1]</div><div class="line"> </div><div class="line">_.take([1, 2, 3], 2);</div><div class="line">// =&gt; [1, 2]</div><div class="line"> </div><div class="line">_.take([1, 2, 3], 5);</div><div class="line">// =&gt; [1, 2, 3]</div><div class="line"> </div><div class="line">_.take([1, 2, 3], 0);</div><div class="line">// =&gt; []</div></pre></td></tr></table></figure></p>
+<h3 id="takeRight"><a href="#takeRight" class="headerlink" title="_.takeRight"></a><code>_.takeRight</code></h3><ul>
+<li><code>_.takeRight(array, [n=1])</code></li>
+</ul>
+<p>创建一个分割后的数组，从<code>array</code>数组的结尾开始，分割<code>n</code>个元素出来。</p>
+<p>例子：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">_.takeRight([1, 2, 3]);</div><div class="line">// =&gt; [3]</div><div class="line"> </div><div class="line">_.takeRight([1, 2, 3], 2);</div><div class="line">// =&gt; [2, 3]</div><div class="line"> </div><div class="line">_.takeRight([1, 2, 3], 5);</div><div class="line">// =&gt; [1, 2, 3]</div><div class="line"> </div><div class="line">_.takeRight([1, 2, 3], 0);</div><div class="line">// =&gt; []</div></pre></td></tr></table></figure></p>
+<h3 id="takeRightWhile"><a href="#takeRightWhile" class="headerlink" title="_.takeRightWhile"></a><code>_.takeRightWhile</code></h3><ul>
+<li><code>_.takeRightWhile(array, [predicate=_.identity])</code></li>
+</ul>
+<p>同样是从<code>array</code>结尾开始分割数组，不过是通过<code>predicate</code>控制，直到返回<strong>falsey</strong>停止。<code>predicate</code>调用三个参数<code>value, index, array</code></p>
+<p>例子：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">var users = [</div><div class="line">  &#123; &apos;user&apos;: &apos;barney&apos;,  &apos;active&apos;: true &#125;,</div><div class="line">  &#123; &apos;user&apos;: &apos;fred&apos;,    &apos;active&apos;: false &#125;,</div><div class="line">  &#123; &apos;user&apos;: &apos;pebbles&apos;, &apos;active&apos;: false &#125;</div><div class="line">];</div><div class="line"> </div><div class="line">_.takeRightWhile(users, function(o) &#123; return !o.active; &#125;);</div><div class="line">// =&gt; objects for [&apos;fred&apos;, &apos;pebbles&apos;]</div><div class="line"> </div><div class="line">// The `_.matches` iteratee shorthand.</div><div class="line">_.takeRightWhile(users, &#123; &apos;user&apos;: &apos;pebbles&apos;, &apos;active&apos;: false &#125;);</div><div class="line">// =&gt; objects for [&apos;pebbles&apos;]</div><div class="line"> </div><div class="line">// The `_.matchesProperty` iteratee shorthand.</div><div class="line">_.takeRightWhile(users, [&apos;active&apos;, false]);</div><div class="line">// =&gt; objects for [&apos;fred&apos;, &apos;pebbles&apos;]</div><div class="line"> </div><div class="line">// The `_.property` iteratee shorthand.</div><div class="line">_.takeRightWhile(users, &apos;active&apos;);</div><div class="line">// =&gt; []</div></pre></td></tr></table></figure></p>
+<h3 id="takeWhile"><a href="#takeWhile" class="headerlink" title="_.takeWhile"></a><code>_.takeWhile</code></h3><ul>
+<li><code>_.takeWhile(array, [predivate=_.identity])</code></li>
+</ul>
+<p>是从<code>array</code>开头开始分割数组，不过是通过<code>predicate</code>控制，直到返回<strong>falsey</strong>停止。<code>predicate</code>调用三个参数<code>value, index, array</code></p>
+<p>例子：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">var users = [</div><div class="line">  &#123; &apos;user&apos;: &apos;barney&apos;,  &apos;active&apos;: false &#125;,</div><div class="line">  &#123; &apos;user&apos;: &apos;fred&apos;,    &apos;active&apos;: false&#125;,</div><div class="line">  &#123; &apos;user&apos;: &apos;pebbles&apos;, &apos;active&apos;: true &#125;</div><div class="line">];</div><div class="line"> </div><div class="line">_.takeWhile(users, function(o) &#123; return !o.active; &#125;);</div><div class="line">// =&gt; objects for [&apos;barney&apos;, &apos;fred&apos;]</div><div class="line"> </div><div class="line">// The `_.matches` iteratee shorthand.</div><div class="line">_.takeWhile(users, &#123; &apos;user&apos;: &apos;barney&apos;, &apos;active&apos;: false &#125;);</div><div class="line">// =&gt; objects for [&apos;barney&apos;]</div><div class="line"> </div><div class="line">// The `_.matchesProperty` iteratee shorthand.</div><div class="line">_.takeWhile(users, [&apos;active&apos;, false]);</div><div class="line">// =&gt; objects for [&apos;barney&apos;, &apos;fred&apos;]</div><div class="line"> </div><div class="line">// The `_.property` iteratee shorthand.</div><div class="line">_.takeWhile(users, &apos;active&apos;);</div><div class="line">// =&gt; []</div></pre></td></tr></table></figure></p>
+<h3 id="union"><a href="#union" class="headerlink" title="_.union"></a><code>_.union</code></h3><ul>
+<li><code>_.union([arrays])</code></li>
+</ul>
+<p>创建一个没有重复值的数组，组合所有被传入的数组元素。</p>
+<p>例子：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">_.union([2], [1, 2]);</div><div class="line">// =&gt; [2, 1]</div></pre></td></tr></table></figure></p>
+<h3 id="unionBy"><a href="#unionBy" class="headerlink" title="_.unionBy"></a><code>_.unionBy</code></h3><ul>
+<li><code>_.unionBy([arrays], [iteratee=_.identity])</code></li>
+</ul>
+<p>通过<code>iteratee</code>对每个元素值进行执行，生成一个唯一性的标准，并选择第一个出现的值，作为要返回的值，去除重复的元素。<code>iteratee</code>调用一个参数<code>value</code>。</p>
+<p>例子：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">_.unionBy([2.1], [1.2, 2.3], Math.floor);</div><div class="line">// =&gt; [2.1, 1.2]</div><div class="line"> </div><div class="line">// The `_.property` iteratee shorthand.</div><div class="line">_.unionBy([&#123; &apos;x&apos;: 1 &#125;], [&#123; &apos;x&apos;: 2 &#125;, &#123; &apos;x&apos;: 1 &#125;], &apos;x&apos;);</div><div class="line">// =&gt; [&#123; &apos;x&apos;: 1 &#125;, &#123; &apos;x&apos;: 2 &#125;]</div></pre></td></tr></table></figure></p>
+<h3 id="unionWith"><a href="#unionWith" class="headerlink" title="_.unionWith"></a><code>_.unionWith</code></h3><ul>
+<li><code>_.unionWith([arrays], [comparator])</code></li>
+</ul>
+<p>这个没太看懂。。。</p>
+<p>例子：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">var objects = [&#123; &apos;x&apos;: 1, &apos;y&apos;: 2 &#125;, &#123; &apos;x&apos;: 2, &apos;y&apos;: 1 &#125;];</div><div class="line">var others = [&#123; &apos;x&apos;: 1, &apos;y&apos;: 1 &#125;, &#123; &apos;x&apos;: 1, &apos;y&apos;: 2 &#125;];</div><div class="line"> </div><div class="line">_.unionWith(objects, others, _.isEqual);</div><div class="line">// =&gt; [&#123; &apos;x&apos;: 1, &apos;y&apos;: 2 &#125;, &#123; &apos;x&apos;: 2, &apos;y&apos;: 1 &#125;, &#123; &apos;x&apos;: 1, &apos;y&apos;: 1 &#125;]</div></pre></td></tr></table></figure></p>
+<h3 id="uniq"><a href="#uniq" class="headerlink" title="_.uniq"></a><code>_.uniq</code></h3><ul>
+<li><code>_.uniq(array)</code></li>
+</ul>
+<p>数组去重。</p>
+<p>例子：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">_.uniq([2, 1, 2]);</div><div class="line">// =&gt; [2, 1]</div></pre></td></tr></table></figure></p>
+<h3 id="uniqBy"><a href="#uniqBy" class="headerlink" title="_.uniqBy"></a><code>_.uniqBy</code></h3><ul>
+<li><code>_.uniqBy(array, [iteratee=_.identity])</code></li>
+</ul>
+<p>这个方法是有条件的数组去重，通过<code>iteratee</code>迭代器生成一个唯一性的标准。<code>iteratee</code>调用一个参数<code>value</code>.</p>
+<p>例子：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">_.uniqBy([2.1, 1.2, 2.3], Math.floor);</div><div class="line">// =&gt; [2.1, 1.2]</div><div class="line"> </div><div class="line">// The `_.property` iteratee shorthand.</div><div class="line">_.uniqBy([&#123; &apos;x&apos;: 1 &#125;, &#123; &apos;x&apos;: 2 &#125;, &#123; &apos;x&apos;: 1 &#125;], &apos;x&apos;);</div><div class="line">// =&gt; [&#123; &apos;x&apos;: 1 &#125;, &#123; &apos;x&apos;: 2 &#125;]</div></pre></td></tr></table></figure></p>
+<h3 id="uniqWith"><a href="#uniqWith" class="headerlink" title="_.uniqWith"></a><code>_.uniqWith</code></h3><ul>
+<li><code>_.uniqWith(array, [comparator])</code></li>
+</ul>
+<p>没太分清<code>_.uniqWith</code>和<code>_.uniqBy</code>之间有什么区别。<code>_.uniqWith</code>传入的是一个比较器。<code>comparator</code>调用两个参数<code>arrVal, othVal</code>。</p>
+<p>例子：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">var objects = [&#123; &apos;x&apos;: 1, &apos;y&apos;: 2 &#125;, &#123; &apos;x&apos;: 2, &apos;y&apos;: 1 &#125;, &#123; &apos;x&apos;: 1, &apos;y&apos;: 2 &#125;];</div><div class="line"> </div><div class="line">_.uniqWith(objects, _.isEqual);</div><div class="line">// =&gt; [&#123; &apos;x&apos;: 1, &apos;y&apos;: 2 &#125;, &#123; &apos;x&apos;: 2, &apos;y&apos;: 1 &#125;]</div></pre></td></tr></table></figure></p>
+<h3 id="without"><a href="#without" class="headerlink" title="_.without"></a><code>_.without</code></h3><ul>
+<li><code>_.without(array, [values])</code></li>
+</ul>
+<p>创建一个新的数组，去除所有传入的<code>values</code>。</p>
+<p>例子：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">_.without([2, 1, 2, 3], 1, 2);</div><div class="line">// =&gt; [3]</div></pre></td></tr></table></figure></p>
+<h3 id="xor"><a href="#xor" class="headerlink" title="_.xor"></a><code>_.xor</code></h3><ul>
+<li><code>_.xor([arrays])</code></li>
+</ul>
+<p><strong>xor</strong>就是异或，相同为0，不同为1，1为<code>true</code>，应该被返回。<br>创建一个唯一值的数组，返回被给数组之间对称差（没有交集的部分）的元素。结果值的顺序由它们在数组中出现的顺序确定。</p>
+<p>例子：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">_.xor([2, 1, 4], [2, 3, 5]);</div><div class="line">// =&gt; [1, 4, 3, 5]</div><div class="line"></div><div class="line">_.xor([2, 2, 3], [4, 4, 5, 6]);</div><div class="line">// =&gt; [2, 3, 4, 5, 6]</div></pre></td></tr></table></figure></p>
+<h3 id="xorBy"><a href="#xorBy" class="headerlink" title="_.xorBy"></a><code>_.xorBy</code></h3><ul>
+<li><code>_.xorBy([arrays], [iteratee=_.identity])</code></li>
+</ul>
+<p>有条件的<code>_.xor</code>方法，和所有<code>_.xxBy</code>方法一样，接收一个<code>iteratee</code>方法生成一个标准，<code>iteratee</code>接受一个参数<code>value</code>。</p>
+<p>例子：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">_.xorBy([2.1, 1.2], [2.3, 3.4], Math.floor);</div><div class="line">// =&gt; [1.2, 3.4]</div><div class="line"> </div><div class="line">// The `_.property` iteratee shorthand.</div><div class="line">_.xorBy([&#123; &apos;x&apos;: 1 &#125;], [&#123; &apos;x&apos;: 2 &#125;, &#123; &apos;x&apos;: 1 &#125;], &apos;x&apos;);</div><div class="line">// =&gt; [&#123; &apos;x&apos;: 2 &#125;]</div></pre></td></tr></table></figure></p>
+<h3 id="xorWith"><a href="#xorWith" class="headerlink" title="_.xorWith"></a><code>_.xorWith</code></h3><ul>
+<li><code>_.xorWith([arrays], [comparator])</code></li>
+</ul>
+<p>这个方法类似于<code>_.xor</code>，除了它接受比较器<code>comparator</code>，它被调用来比较数组的元素。结果值的顺序由它们在数组中出现的顺序确定。<code>comparator</code>调用两个参数<code>arrVal，othVal</code>。</p>
+<p>例子：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">var objects = [&#123; &apos;x&apos;: 1, &apos;y&apos;: 2 &#125;, &#123; &apos;x&apos;: 2, &apos;y&apos;: 1 &#125;];</div><div class="line">var others = [&#123; &apos;x&apos;: 1, &apos;y&apos;: 1 &#125;, &#123; &apos;x&apos;: 1, &apos;y&apos;: 2 &#125;];</div><div class="line"> </div><div class="line">_.xorWith(objects, others, _.isEqual);</div><div class="line">// =&gt; [&#123; &apos;x&apos;: 2, &apos;y&apos;: 1 &#125;, &#123; &apos;x&apos;: 1, &apos;y&apos;: 1 &#125;]</div></pre></td></tr></table></figure></p>
+<h3 id="zip"><a href="#zip" class="headerlink" title="_.zip"></a><code>_.zip</code></h3><ul>
+<li><code>_.zip([arrays])</code></li>
+</ul>
+<p>创建一个元素组数组，把每个传入数组，第一个元素组合到一起，第二个元素组合在一起，以此类推。</p>
+<p>例子：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">_.zip([&apos;a&apos;, &apos;b&apos;], [1, 2], [true, false]);</div><div class="line">// =&gt; [[&apos;a&apos;, 1, true], [&apos;b&apos;, 2, false]]</div><div class="line"></div><div class="line">_.zip([&apos;a&apos;, &apos;b&apos;], [1], [true, false]);</div><div class="line">// =&gt; [[&apos;a&apos;, 1, true], [&apos;b&apos;, undefined, false]]</div></pre></td></tr></table></figure></p>
+<h3 id="unzip"><a href="#unzip" class="headerlink" title="_.unzip"></a><code>_.unzip</code></h3><ul>
+<li><code>_.unzip(array)</code></li>
+</ul>
+<p>就是把<code>_.zip</code>函数打包好的，或是元素组数组，对其进行解包。</p>
+<p>例子：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">var zipped = _.zip([&apos;a&apos;, &apos;b&apos;], [1, 2], [true, false]);</div><div class="line">// =&gt; [[&apos;a&apos;, 1, true], [&apos;b&apos;, 2, false]]</div><div class="line"> </div><div class="line">_.unzip(zipped);</div><div class="line">// =&gt; [[&apos;a&apos;, &apos;b&apos;], [1, 2], [true, false]]</div></pre></td></tr></table></figure></p>
+<h3 id="zipObject"><a href="#zipObject" class="headerlink" title="_.zipObject"></a><code>_.zipObject</code></h3><ul>
+<li><code>_.zipObject([props=[]], [values=[]])</code></li>
+</ul>
+<p>这个方法很像<code>_.fromPairs</code>，<code>_.zipObject</code>接受两个数组，一个属性数组和一个相应的对应值数组。</p>
+<p>例子：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">_.zipObject([&apos;a&apos;, &apos;b&apos;], [1, 2]);</div><div class="line">// =&gt; &#123; &apos;a&apos;: 1, &apos;b&apos;: 2 &#125;</div><div class="line"></div><div class="line">_.zipObject([&apos;a&apos;, &apos;b&apos;], [1]);</div><div class="line">// =&gt; &#123; &apos;a&apos;: 1, &apos;b&apos;: undefined &#125;</div></pre></td></tr></table></figure></p>
+<h3 id="zipObjectDeep"><a href="#zipObjectDeep" class="headerlink" title="_.zipObjectDeep"></a><code>_.zipObjectDeep</code></h3><ul>
+<li>`_.zipObjectDeep([props=[]], [values=[]])</li>
+</ul>
+<p>这个方法像<code>_.zipObject</code>方法一样，不过它支持属性路径<code>property paths</code></p>
+<p>例子：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">_.zipObjectDeep([&apos;a.b[0].c&apos;, &apos;a.b[1].d&apos;], [1, 2]);</div><div class="line">// =&gt; &#123; &apos;a&apos;: &#123; &apos;b&apos;: [&#123; &apos;c&apos;: 1 &#125;, &#123; &apos;d&apos;: 2 &#125;] &#125; &#125;</div></pre></td></tr></table></figure></p>
+<h3 id="zipWith"><a href="#zipWith" class="headerlink" title="_.zipWith"></a><code>_.zipWith</code></h3><ul>
+<li><code>_.zipWith([arrays], [iteratee=_.identity])</code></li>
+</ul>
+<p>这个方法像类似<code>_.zip</code>，接受一个迭代器<code>iteratee</code>去指定怎么如何组合分组值。这个迭代器为每个组的元素调用<code>...group</code>，还是看例子比较直观。</p>
+<p>例子：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">_.zipWith([1, 2], [10, 20], [100, 200], function(a, b, c) &#123;</div><div class="line">  return a + b + c;</div><div class="line">&#125;);</div><div class="line">// =&gt; [111, 222]</div></pre></td></tr></table></figure></p>
+<h3 id="unzipWith"><a href="#unzipWith" class="headerlink" title="_.unzipWith"></a><code>_.unzipWith</code></h3><ul>
+<li><code>_.unzipWith(array, [iteratee=_.identity])</code></li>
+</ul>
+<p>这个方法很像<code>_.unzip</code>，它接受一个迭代器<code>iteratee</code>去指定怎样重组组合值。<code>iteratee</code>调用一个参数<code>...group</code>。</p>
+<p>例子：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">var zipped = _.zip([1, 2], [10, 20], [100, 200]);</div><div class="line">// =&gt; [[1, 10, 100], [2, 20, 200]]</div><div class="line"> </div><div class="line">_.unzipWith(zipped, _.add);</div><div class="line">// =&gt; [3, 30, 300]</div></pre></td></tr></table></figure></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Lodash/" rel="tag">#Lodash</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/10/27/JavaScript对于cookie的读、写操作/" rel="next" title="JavaScript对于cookie的读、写操作">
+                <i class="fa fa-chevron-left"></i> JavaScript对于cookie的读、写操作
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/11/08/Lodash API学习--数组/"
+           data-title="Lodash API学习--数组篇" data-url="http://yoursite.com/2016/11/08/Lodash API学习--数组/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.png"
+               alt="Yeaseon" />
+          <p class="site-author-name" itemprop="name">Yeaseon</p>
+          <p class="site-description motion-element" itemprop="description">做一个有信仰的人。如果没有，那么就让你成为自己的信仰！</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">4</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">标签</span>
+              
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/YeaseonZhang" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/yeaseon" target="_blank" title="Weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  Weibo
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#chunk"><span class="nav-number">1.</span> <span class="nav-text">_.chunk</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#compact"><span class="nav-number">2.</span> <span class="nav-text">_.compact</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#concat"><span class="nav-number">3.</span> <span class="nav-text">_.concat</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#difference"><span class="nav-number">4.</span> <span class="nav-text">_.difference</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#differenceBy"><span class="nav-number">5.</span> <span class="nav-text">_.differenceBy</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#differenceWith"><span class="nav-number">6.</span> <span class="nav-text">_.differenceWith</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#drop"><span class="nav-number">7.</span> <span class="nav-text">_.drop</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#dropRight"><span class="nav-number">8.</span> <span class="nav-text">_.dropRight</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#dropRightWhile"><span class="nav-number">9.</span> <span class="nav-text">_.dropRightWhile</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#dropWhile"><span class="nav-number">10.</span> <span class="nav-text">_.dropWhile</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#fill"><span class="nav-number">11.</span> <span class="nav-text">_.fill</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#findIndex"><span class="nav-number">12.</span> <span class="nav-text">_.findIndex</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#findLastIndex"><span class="nav-number">13.</span> <span class="nav-text">_.findLastIndex</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#flatten"><span class="nav-number">14.</span> <span class="nav-text">_.flatten</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#flattenDeep"><span class="nav-number">15.</span> <span class="nav-text">_.flattenDeep</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#flattenDepth"><span class="nav-number">16.</span> <span class="nav-text">_.flattenDepth</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#fromPairs"><span class="nav-number">17.</span> <span class="nav-text">_.fromPairs</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#head"><span class="nav-number">18.</span> <span class="nav-text">_.head</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#last"><span class="nav-number">19.</span> <span class="nav-text">_.last</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#nth"><span class="nav-number">20.</span> <span class="nav-text">_.nth</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#tail"><span class="nav-number">21.</span> <span class="nav-text">_.tail</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#indexOf"><span class="nav-number">22.</span> <span class="nav-text">_.indexOf</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#lastIndexOf"><span class="nav-number">23.</span> <span class="nav-text">_.lastIndexOf</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#initial"><span class="nav-number">24.</span> <span class="nav-text">_.initial</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#intersection"><span class="nav-number">25.</span> <span class="nav-text">_.intersection</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#intersectionBy"><span class="nav-number">26.</span> <span class="nav-text">_.intersectionBy</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#intersectionWith"><span class="nav-number">27.</span> <span class="nav-text">_.intersectionWith</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#join"><span class="nav-number">28.</span> <span class="nav-text">_.join</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#pull"><span class="nav-number">29.</span> <span class="nav-text">_.pull</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#pullAll"><span class="nav-number">30.</span> <span class="nav-text">_.pullAll</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#pullAllBy"><span class="nav-number">31.</span> <span class="nav-text">_.pullAllBy</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#pullAllWith"><span class="nav-number">32.</span> <span class="nav-text">_.pullAllWith</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#pullAt"><span class="nav-number">33.</span> <span class="nav-text">_.pullAt</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#remove"><span class="nav-number">34.</span> <span class="nav-text">_.remove</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#reverse"><span class="nav-number">35.</span> <span class="nav-text">_.reverse</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#slice"><span class="nav-number">36.</span> <span class="nav-text">_.slice</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#sortedIndex"><span class="nav-number">37.</span> <span class="nav-text">_.sortedIndex</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#sortedIndexBy"><span class="nav-number">38.</span> <span class="nav-text">_.sortedIndexBy</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#sortedIndexOf"><span class="nav-number">39.</span> <span class="nav-text">_.sortedIndexOf</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#sortedLastIndex"><span class="nav-number">40.</span> <span class="nav-text">_.sortedLastIndex</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#sortedLastIndexBy"><span class="nav-number">41.</span> <span class="nav-text">_.sortedLastIndexBy</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#sortedLastIndexOf"><span class="nav-number">42.</span> <span class="nav-text">_.sortedLastIndexOf</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#sortedUniq"><span class="nav-number">43.</span> <span class="nav-text">_.sortedUniq</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#sortedUniqBy"><span class="nav-number">44.</span> <span class="nav-text">_.sortedUniqBy</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#take"><span class="nav-number">45.</span> <span class="nav-text">_.take</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#takeRight"><span class="nav-number">46.</span> <span class="nav-text">_.takeRight</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#takeRightWhile"><span class="nav-number">47.</span> <span class="nav-text">_.takeRightWhile</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#takeWhile"><span class="nav-number">48.</span> <span class="nav-text">_.takeWhile</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#union"><span class="nav-number">49.</span> <span class="nav-text">_.union</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#unionBy"><span class="nav-number">50.</span> <span class="nav-text">_.unionBy</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#unionWith"><span class="nav-number">51.</span> <span class="nav-text">_.unionWith</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#uniq"><span class="nav-number">52.</span> <span class="nav-text">_.uniq</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#uniqBy"><span class="nav-number">53.</span> <span class="nav-text">_.uniqBy</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#uniqWith"><span class="nav-number">54.</span> <span class="nav-text">_.uniqWith</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#without"><span class="nav-number">55.</span> <span class="nav-text">_.without</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#xor"><span class="nav-number">56.</span> <span class="nav-text">_.xor</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#xorBy"><span class="nav-number">57.</span> <span class="nav-text">_.xorBy</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#xorWith"><span class="nav-number">58.</span> <span class="nav-text">_.xorWith</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#zip"><span class="nav-number">59.</span> <span class="nav-text">_.zip</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#unzip"><span class="nav-number">60.</span> <span class="nav-text">_.unzip</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#zipObject"><span class="nav-number">61.</span> <span class="nav-text">_.zipObject</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#zipObjectDeep"><span class="nav-number">62.</span> <span class="nav-text">_.zipObjectDeep</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#zipWith"><span class="nav-number">63.</span> <span class="nav-text">_.zipWith</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#unzipWith"><span class="nav-number">64.</span> <span class="nav-text">_.unzipWith</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Yeaseon</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"yeaseonzhang-github"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+      
+      <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+      <script src="/js/src/hook-duoshuo.js"></script>
+    
+  
+
+
+
+
+
+  
+  
+  
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("WRhU6WJqX6Fl91VYiTKraW5C-gzGzoHsz", "Wnpzp3uupeQuANib4F7Ew7dv");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+</body>
+</html>
