@@ -262,10 +262,10 @@ mathjax:
 baidu_analytics: a6c706d9802419456e07ac9edc18dbb1
 
 # Duoshuo ShortName
-duoshuo_shortname: yeaseonzhang-github
+#duoshuo_shortname: yeaseonzhang-github
 
 # Disqus
-#disqus_shortname:
+disqus_shortname: https-yeaseonzhang-github-io
 
 # Hypercomments
 #hypercomments_id:
@@ -389,7 +389,12 @@ algolia_search:
     hits_empty: "We didn't find any results for the search: ${query}"
     hits_stats: "${hits} results found in ${time} ms"
 
-
+# Local Search
+search:
+  path: search.xml
+  field: post
+  format: html
+  limit: 10000
 
 #! ---------------------------------------------------------------
 #! DO NOT EDIT THE FOLLOWING SETTINGS
