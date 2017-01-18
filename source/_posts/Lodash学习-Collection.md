@@ -126,7 +126,7 @@ _.findLast([1, 2, 3, 4], function(n) {
 ### `_flatMap`
 + `_.flatMap(collection, [iteratee=_.identity])`
 
-`collection`全部元素迭代执行`iteratee`，将得到的元素组合成一个**flattened**数组（我理解的就是一维数组），`iteratee`调用三个参数`value, index|key, collection`。
+`collection`全部元素迭代执行`iteratee`，将得到的元素组合成一个**flattened**数组（我理解的就是变成N-1维数组），`iteratee`调用三个参数`value, index|key, collection`。
 
 例子：
 ```
@@ -138,3 +138,38 @@ _.flatMap([1, 2], duplicate);
 // => [1, 1, 2, 2]
 ```
 解释一下，`[1, 2]`调用`duplicate`得到`[[1, 1], [2, 2]]`，通过`_.flatMap`使其扁平化`[1, 1, 2, 2]`。
+
+### `_.flatMapDeep`
++ `_.flatMapDeep(collection, [iteratee=_.identity])`
+
+这个方法是`_.flatMap`的升级版，会把多维数组变成一维数组。
+
+例子：
+```
+function duplicate(n) {
+  return [[[n, n]]];
+}
+ 
+_.flatMapDeep([1, 2], duplicate);
+// => [1, 1, 2, 2]
+```
+
+### `_.flatMapDepth`
++ `_.flatMapDepth(collection, [iteratee=_.identity], [depth=1])`
+
+这个是可以指定降维次数`_.flatMapDeep`的版本。`depth`降维次数默认为1。
+
+例子：
+```
+function duplicate(n) {
+  return [[[n, n]]];
+}
+ 
+_.flatMapDepth([1, 2], duplicate, 2);
+// => [[1, 1], [2, 2]]
+```
+
+### `_.forEach`
++ `_.forEach(collection, [iteratee=_.identity])`
+
+
