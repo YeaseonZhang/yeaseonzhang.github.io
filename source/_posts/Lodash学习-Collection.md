@@ -172,4 +172,132 @@ _.flatMapDepth([1, 2], duplicate, 2);
 ### `_.forEach`
 + `_.forEach(collection, [iteratee=_.identity])`
 
+对`collection`每个元素执行`iteratee`方法，`iteratee`可以调用三个参数`value, index|key, collection`，当`collection`是数组时第二个参数为`index`，当`collection`是对象时第二个参数为`key`。
+`iteratee`函数可以通过显式返回`false`提前退出迭代。
+
+返回值：返回`collection`本身
+
+例子：
+```
+_.forEach([1, 2], function(value) {
+  console.log(value);
+});
+// => Logs `1` then `2`.
+ 
+_.forEach({ 'a': 1, 'b': 2 }, function(value, key) {
+  console.log(key);
+});
+// => Logs 'a' then 'b' (iteration order is not guaranteed).
+```
+
+### `_.forEachRight`
++ `_.forEachRight(collection, [iteratee=_.identity])`
+
+和`_.forEach`方法的区别，`collection`元素从右到左执行`iteratee`。
+
+例子：
+```
+_.forEachRight([1, 2], function(value) {
+  console.log(value);
+});
+// => Logs `2` then `1`.
+```
+
+### `_.groupBy`
++ `_.groupBy(collection, [iteratee=_.identity])`
+
+对`collection`元素执行`iteratee`方法，得到`key`，`value`就是该元素。`iteratee`方法调用一个参数`value`。
+
+返回值：返回`key-value`组成的新对象
+
+例子：
+```
+_.groupBy([6.1, 4.2, 6.3], Math.floor);
+// => { '4': [4.2], '6': [6.1, 6.3] }
+ 
+// The `_.property` iteratee shorthand.
+_.groupBy(['one', 'two', 'three'], 'length');
+// => { '3': ['one', 'two'], '5': ['three'] }
+```
+
+### `_.includes`
++ `_.incluede(collection, value, [fromIndex=0])`
+
+检查`value`是否在`collection`中，`fromIndex`指定检查的位置，默认是`0`。存在返回`true`，不存在返回`false`。
+
+例子：
+```
+_.includes([1, 2, 3], 1);
+// => true
+ 
+_.includes([1, 2, 3], 1, 2);
+// => false
+ 
+_.includes({ 'a': 1, 'b': 2 }, 1);
+// => true
+ 
+_.includes('abcd', 'bc');
+// => true
+```
+
+### `_.invokeMap`
++ `_.invokeMap(collection, path, [args])`
+
+为`collection`每个元素调用`path`方法，返回调用后的结果组成的新数组。`args`参数将会提供给被调用的方法。
+
+例子：
+```
+_.invokeMap([[5, 1, 7], [3, 2, 1]], 'sort');
+// => [[1, 5, 7], [1, 2, 3]]
+ 
+_.invokeMap([123, 456], String.prototype.split, '');
+// => [['1', '2', '3'], ['4', '5', '6']]
+```
+
+### `_.keyBy`
++ `_.keyBy(collection, [iteratee=_.identity])`
+
+返回一个`key-value`对象，`key`是`collection`每个元素执行`iteratee`后的结果，对应的`value`是最后一个生成该`key`的`collection`值。`iteratee`调用一个参数`value`。
+
+例子:
+```
+var array = [
+  { 'dir': 'left', 'code': 97 },
+  { 'dir': 'right', 'code': 100 },
+  { 'dir': 'right', 'code': 99}
+];
+ 
+_.keyBy(array, 'dir');
+// => { 'left': { 'dir': 'left', 'code': 97 }, 'right': { 'dir': 'right', 'code': 99 } }
+```
+
+### `_.map`
++ `_.map(collection, [iteratee=_.identity])`
+
+这个就比较简单了，为`collection`的每个元素执行`iteratee`方法，得到的结果映射成一个新的数组。
+
+例子：
+```
+function square(n) {
+  return n * n;
+}
+ 
+_.map([4, 8], square);
+// => [16, 64]
+ 
+_.map({ 'a': 4, 'b': 8 }, square);
+// => [16, 64] (iteration order is not guaranteed)
+ 
+var users = [
+  { 'user': 'barney' },
+  { 'user': 'fred' }
+];
+ 
+// The `_.property` iteratee shorthand.
+_.map(users, 'user');
+// => ['barney', 'fred']
+```
+
+### `_.orderBy`
++ `_.orderBy(collection, [iteratees=[_.identity], [orders])`
 
