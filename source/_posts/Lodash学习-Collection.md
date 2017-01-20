@@ -301,3 +301,215 @@ _.map(users, 'user');
 ### `_.orderBy`
 + `_.orderBy(collection, [iteratees=[_.identity], [orders])`
 
+这个方法很像`_.sortBy`，不过`_.orderBy`允许指定排序方式`iteratees`。`orders`默认是`asc`（升序），也可以指定为`desc`，返回一个新的有序的数组。
+
+例子：
+```
+var users = [
+  { 'user': 'fred',   'age': 48 },
+  { 'user': 'barney', 'age': 34 },
+  { 'user': 'fred',   'age': 40 },
+  { 'user': 'barney', 'age': 36 }
+];
+ 
+// Sort by `user` in ascending order and by `age` in descending order.
+_.orderBy(users, ['user', 'age'], ['asc', 'desc']);
+// => objects for [['barney', 36], ['barney', 34], ['fred', 48], ['fred', 40]]
+```
+这个例子，排序关键字有两个`user`和`age`，两个`for`循环，排序完成一个，在做另一个排序。
+
+
+### `_.partition`
++ `_.partition(collection, [predicate=_.identity])`
+
+将`collection`分成两组，一组是执行`predicate`返回`true`，另一组是返回`false`。返回的结果应该是一个二维数组。
+
+例子：
+```
+var users = [
+  { 'user': 'barney',  'age': 36, 'active': false },
+  { 'user': 'fred',    'age': 40, 'active': true },
+  { 'user': 'pebbles', 'age': 1,  'active': false }
+];
+ 
+_.partition(users, function(o) { return o.active; });
+// => objects for [['fred'], ['barney', 'pebbles']]
+ 
+// The `_.matches` iteratee shorthand.
+_.partition(users, { 'age': 1, 'active': false });
+// => objects for [['pebbles'], ['barney', 'fred']]
+ 
+// The `_.matchesProperty` iteratee shorthand.
+_.partition(users, ['active', false]);
+// => objects for [['barney', 'pebbles'], ['fred']]
+ 
+// The `_.property` iteratee shorthand.
+_.partition(users, 'active');
+// => objects for [['fred'], ['barney', 'pebbles']]
+```
+
+### `_.reduce`
++ `_.reduce(collection, [iteratee=_.identity], [accumulator])`
+
+该方法作为一个累加器，把数组中的每个值(从左到右)执行`iteratee`方法开始缩减，最终变成一个值。如果`accumulator`没有给出，`collection`的第一个元素被当做初始值。
+`iteratee`调用四个参数`accumulator, value， index|key, collection`。
+
+例子：
+```
+_.reduce([1, 2], function(sum, n) {
+  return sum + n;
+}, 0);
+// => 3
+ 
+_.reduce({ 'a': 1, 'b': 2, 'c': 1 }, function(result, value, key) {
+  (result[value] || (result[value] = [])).push(key);
+  return result;
+}, {});
+// => { '1': ['a', 'c'], '2': ['b'] } (iteration order is not guaranteed)
+```
+
+### `_.reduceRight`
++ `_.reduceRight(collection, [iteratee=_.identity], [accumulator])`
+
+这个方法与`_.reduce()`方法不同的是从右到左计算。
+
+例子：
+```
+var array = [[0, 1], [2, 3], [4, 5]];
+ 
+_.reduceRight(array, function(flattened, other) {
+  return flattened.concat(other);
+}, []);
+// => [4, 5, 2, 3, 0, 1]
+```
+
+### `_.reject`
++ `_.reject(collection, [predicate=_.identity])`
+
+这个方法与`_.filter`相反，返回`collection`执行`predicate`返回`false`条件的元素组成的新数组。
+
+例子：
+```
+var users = [
+  { 'user': 'barney', 'age': 36, 'active': false },
+  { 'user': 'fred',   'age': 40, 'active': true }
+];
+ 
+_.reject(users, function(o) { return !o.active; });
+// => objects for ['fred']
+ 
+// The `_.matches` iteratee shorthand.
+_.reject(users, { 'age': 40, 'active': true });
+// => objects for ['barney']
+ 
+// The `_.matchesProperty` iteratee shorthand.
+_.reject(users, ['active', false]);
+// => objects for ['fred']
+ 
+// The `_.property` iteratee shorthand.
+_.reject(users, 'active');
+// => objects for ['barney']
+```
+
+### `_.sample`
++ `_.sample(collection)`
+
+返回`collection`中随机的一个元素。
+
+例子：
+```
+_.sample([1, 2, 3, 4]);
+// => 2
+```
+
+### `_.sampleSize`
++ `_.sampleSize(collection, [n=1])`
+
+返回`collection`中随机的`n`个数，默认`n=1`。
+
+例子：
+```
+_.sampleSize([1, 2, 3], 2);
+// => [3, 1]
+ 
+_.sampleSize([1, 2, 3], 4);
+// => [2, 3, 1]
+```
+
+### `_.shuffle`
++ `_.shuffle(collection)`
+
+把`collection`元素的顺序随机打乱，返回打乱后的`collection`。
+
+例子：
+```
+_.shuffle([1, 2, 3, 4]);
+// => [4, 1, 3, 2]
+```
+
+### `_.size`
++ `_.size(collection)`
+
+返回`collection`的`length`,`collection`可以是`Array|Object|string`。
+
+例子：
+```
+_.size([1, 2, 3]);
+// => 3
+ 
+_.size({ 'a': 1, 'b': 2 });
+// => 2
+ 
+_.size('pebbles');
+// => 7
+```
+
+### `_.some`
++ `_.some(collection, [predicate=_.identity])`
+
+对`collection`元素执行`predicate`，返回布尔值,迭代过程遇到返回`false`就停止。`predicate`调用三个参数`value, index|key, collection`。
+
+例子：
+```
+_.some([null, 0, 'yes', false], Boolean);
+// => true
+ 
+var users = [
+  { 'user': 'barney', 'active': true },
+  { 'user': 'fred',   'active': false }
+];
+ 
+// The `_.matches` iteratee shorthand.
+_.some(users, { 'user': 'barney', 'active': false });
+// => false
+ 
+// The `_.matchesProperty` iteratee shorthand.
+_.some(users, ['active', false]);
+// => true
+ 
+// The `_.property` iteratee shorthand.
+_.some(users, 'active');
+// => true
+```
+
+### `_.sortBy`
++ `_.sortBy(collection, [iteratee=[_.identity]])`
+
+按照`iteratee`规则对`collection`进行排序。
+
+例子:
+```
+var users = [
+  { 'user': 'fred',   'age': 48 },
+  { 'user': 'barney', 'age': 36 },
+  { 'user': 'fred',   'age': 40 },
+  { 'user': 'barney', 'age': 34 }
+];
+ 
+_.sortBy(users, [function(o) { return o.user; }]);
+// => objects for [['barney', 36], ['barney', 34], ['fred', 48], ['fred', 40]]
+ 
+_.sortBy(users, ['user', 'age']);
+// => objects for [['barney', 34], ['barney', 36], ['fred', 40], ['fred', 48]]
+```
+
