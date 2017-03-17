@@ -50,8 +50,7 @@ const store = new Vuex.Store({
 
 以上就是一个最简单的Vuex，每一个Vuex应用就是一个store，在store中包含组件中的共享**状态**`state`和改变状态的**方法**（暂且称作方法）`mutations`。
 
-需要注意的是只能通过`mutations`改变store的`state`的状态，不能通过`store.state.count = 5;`直接更改，`state`相当于对外的只读属性。
-
+需要注意的是只能通过`mutations`改变store的`state`的状态，不能通过`store.state.count = 5;`直接更改（其实可以更改，不建议这么做，不通过`mutations`改变`state`，状态不会被同步）。
 使用`store.commit`方法触发`mutations`改变`state`:
 ```
 store.commit('increment');
