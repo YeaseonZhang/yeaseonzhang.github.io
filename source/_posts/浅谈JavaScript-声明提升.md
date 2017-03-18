@@ -49,8 +49,8 @@ so，`var a = 2`，js会将其看成两个声明`var a; a = 2;`
 foo();
 
 function foo() {
-	console.log(a); // undefined
-	var a = 2;
+  console.log(a); // undefined
+  var a = 2;
 }
 ```
 这个就很好理解了吧，那么你回答下一个
@@ -58,8 +58,8 @@ function foo() {
 foo();
 
 var foo = function bar() {
-	console.log(a);
-	var a = 2;
+  console.log(a);
+  var a = 2;
 }
 ```
 先别说你的答案，估计你也猜错了，不是`undefined`也不是`2`；
@@ -72,8 +72,8 @@ foo();	// TypeError;
 bar();	// ReferenceError;
 
 var foo = function bar() {
-	console.log(a);
-	var a = 2;
+  console.log(a);
+  var a = 2;
 }
 ```
 其实经过提升之后，代码变成了：
@@ -84,10 +84,10 @@ foo();	// TypeError;
 bar();	// ReferenceError;
 
 foo = function () {
-	var bar = function () {
-		console.log(a);
-		var a = 2;
-	}
+  var bar = function () {
+    console.log(a);
+    var a = 2;
+  }
 }
 ```
 
@@ -98,11 +98,11 @@ foo();	// 1
 var foo;
 
 function foo () {
-	console.log(1);
+  console.log(1);
 }
 
 foo = function () {
-	console.log(2);
+  console.log(2);
 }
 ```
 输出的是1，而不是2。
@@ -113,12 +113,12 @@ function foo () {...}
 这两个都是声明，但是在声明中函数会首先被提升(`var foo`同时被忽略了)。也就变成了：
 ```
 function foo() {
-	console.log(1);
+  console.log(1);
 }
 foo();	// 1
 
 foo = function () {
-	console.log(2);
+  console.log(2);
 }
 ```
 
@@ -127,15 +127,15 @@ foo = function () {
 foo();	// 3
 
 function foo() {
-	console.log(1);
+  console.log(1);
 }
 
 foo = function () {
-	console.log(2);
+  console.log(2);
 }
 
 function foo() {
-	console.log(3);
+  console.log(3);
 }
 ```
 

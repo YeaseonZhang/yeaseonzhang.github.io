@@ -25,27 +25,27 @@ tags: jQuery Plugin
 #### 将校验规则写到JS文件中
 ```
 $('#yourForm').validate({
-	rules: {
-		key1: {
-			validateMethod1: true,
-			validateMethod2: false,
-			...
-		},
-		key2: "validateMethod3"
-	},
-	messages: {
-		key1: {
-			validateMethod1: "Tips1",
-			validateMethod2: "Tips2"
-		},
-		key2: "Tips3"
-	}
+  rules: {
+    key1: {
+      validateMethod1: true,
+      validateMethod2: false,
+      ...
+    },
+    key2: "validateMethod3"
+  },
+  messages: {
+    key1: {
+      validateMethod1: "Tips1",
+      validateMethod2: "Tips2"
+    },
+    key2: "Tips3"
+  }
 })
 ```
 以上就是最基本的一个表单验证的雏形了，也很容易看懂。不过还是稍微说一下，为`<form id="yourForm"></form>`绑定一个表单验证。
 ```
 $('#yourForm').validate({
-	// do something you want
+  // do something you want
 })
 ```
 和其他`jQuery`插件一样，在上面函数内部自定义你的配置。
@@ -73,22 +73,22 @@ $('#yourForm').validate({
 除了`rules`、`messages`还有其他一些常用的配置项。
 ```
 $('#addBookmarkForm').validate({
-    rules: {
-        //
-    },
-    messages: {
-        //
-    },
+  rules: {
+    //
+  },
+  messages: {
+    //
+  },
 
-    errorClass: 'modalError',
-    errorElement: 'div',
-    errorPlacement: function (error, element) {
-        error.insertAfter(element.parent());
-    },
+  errorClass: 'modalError',
+  errorElement: 'div',
+  errorPlacement: function (error, element) {
+    error.insertAfter(element.parent());
+  },
 
-    submitHandler: function () {
-        // Your method
-    }
+  submitHandler: function () {
+    // Your method
+  }
 })
 ```
 + `errorClass`:  错误信息的类名。
@@ -106,37 +106,37 @@ $('#addBookmarkForm').validate({
 ```
 validateMethod: function () {
   var regEx1 = new RegExp(/[&\(\\\"\'\%\)]/);
-   var regEx2 = new RegExp(/^(http|https):\/\/.{1,250}/);
-   var regEx3 = new RegExp(/^\/\/\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}\/.{1,255}$/);
-   var regEx4 = new RegExp(/^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/);
+  var regEx2 = new RegExp(/^(http|https):\/\/.{1,250}/);
+  var regEx3 = new RegExp(/^\/\/\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}\/.{1,255}$/);
+  var regEx4 = new RegExp(/^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/);
 
-   jQuery.validator.addMethod('bookmarkRule1', function (value, element, parans) {
-       return this.optional( element ) || !regEx1.test(value);
-   }, 'URL should not include char & ( ) \\ % \" \' ');
+  jQuery.validator.addMethod('bookmarkRule1', function (value, element, parans) {
+    return this.optional( element ) || !regEx1.test(value);
+  }, 'URL should not include char & ( ) \\ % \" \' ');
 
-   jQuery.validator.addMethod('bookmarkRule2', function (value, element, parans) {
-       if ($('#type').val() == '0') {
-           return this.optional( element ) || regEx2.test(value);
-       } else {
-           return true;
-       }
-   }, 'Please input correct Web URL!');  
+  jQuery.validator.addMethod('bookmarkRule2', function (value, element, parans) {
+    if ($('#type').val() == '0') {
+      return this.optional( element ) || regEx2.test(value);
+    } else {
+      return true;
+    }
+  }, 'Please input correct Web URL!');
 
-   jQuery.validator.addMethod('bookmarkRule3', function (value, element, parans) {
-       if ($('#type').val() == '1') {
-           return this.optional( element ) || regEx3.test(value);
-       } else {
-           return true;
-       }
-   }, 'Please input correct File URL!');  
+  jQuery.validator.addMethod('bookmarkRule3', function (value, element, parans) {
+    if ($('#type').val() == '1') {
+      return this.optional( element ) || regEx3.test(value);
+    } else {
+      return true;
+    }
+  }, 'Please input correct File URL!');
 
-   jQuery.validator.addMethod('bookmarkRule4', function (value, element, parans) {
-       if ($('#type').val() == '2') {
-           return this.optional( element ) || regEx4.test(value);
-       } else {
-           return true;
-       }
-   }, 'Please input correct Desktop!');
+  jQuery.validator.addMethod('bookmarkRule4', function (value, element, parans) {
+    if ($('#type').val() == '2') {
+      return this.optional( element ) || regEx4.test(value);
+    } else {
+      return true;
+    }
+  }, 'Please input correct Desktop!');
 }
 ```
 我相信你根据**API**，就能写出自己需要的验证规则。
