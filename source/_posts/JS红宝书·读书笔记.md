@@ -108,8 +108,8 @@ var num4 = num1 + num2;		// 21
 
 var num5 = 2;
 var num6 = 20;
-var num7 = num1-- + num2;	// 22
-var num8 = num1 + num2;		// 21
+var num7 = num5-- + num6;	// 22
+var num8 = num5 + num6;		// 21
 ```
 
 + 一元加操作符用于强制类型转换，隐式`Number()`效果
