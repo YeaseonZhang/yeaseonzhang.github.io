@@ -252,7 +252,7 @@ CSS3新增的**box-sizing**属性，强制转换盒子模型。
 #### 围住浮动元素的三种方法
 
 + 为父元素添加`overflow:hidden`
-+ 同时浮动父元素
++ 同时浮动父元素`float: left/right`
 + 添加非浮动的清除元素或者给父元素添加`clearfix`类
 
 ```
@@ -464,5 +464,106 @@ CSS通过`line-height`属性实现了印刷行业中常说的加铅条，铅条�
 ### 布局的基本概念
 
 多栏布局有三种基本的实现方法：固定宽度、流动、弹性。
+
+### 三栏-中栏流动布局
+
+{% asset_img threecol.png 三栏布局 %}
+
+```
+<div id="main_wrapper">
+  <header>
+
+  </header>
+  <div id="threecolwrap">
+    <div id="twocolwrap">
+      <nav>
+
+      </nav>
+      <article>
+
+      </article>
+    </div>
+    <aside>
+
+    </aside>
+  </div>
+  <footer>
+
+  </footer>
+</div>
+
+// sass
+* {
+  margin: 0;
+  padding: 0;
+}
+body {
+  font: 1em helvetica, arial, sans-serif;
+}
+
+div#main_wrapper {
+  min-width: 600px;
+  max-width: 1100px;
+  margin: 0 auto;
+  header {
+    padding: 5px 10px;
+    background: #3f7ccf;
+  }
+  div#threecolwrap {
+    float: left;
+    width: 100%;
+    div#twocolwrap {
+      float: left;
+      width: 100%;
+      margin-right: -210px;
+      nav {
+        float: left;
+        width: 150px;
+        background: #f00;
+        padding: 20px 0;
+        & > * {
+          margin: 0 10px;
+        }
+      }
+      article {
+        width: auto;
+        margin-left: 150px;
+        margin-right: 210px;
+        background: #eee;
+        padding: 20px 0;
+        & > * {
+          margin: 0 20px;
+        }
+      }
+    }
+    aside {
+      float: left;
+      width: 210px;
+      background: #ffed53;
+      padding: 20px 0;
+      & > * {
+        margin: 0 10px;
+      }
+    }
+  }
+  footer {
+    clear: both;
+    width: 100%;
+    text-align: center;
+    background: #000;
+  }
+}
+```
+
+## 界面组件
+
+### 弹出层
+
+#### 堆叠上下文和 z-index
+
+`z-index`值较大的元素，在堆叠层次中位于`z-index`值较小的元素上方。`z-index`属性值可以是0到任意大的数值，默认值是`auto`即为0。
+
+不过`z-index`只对脱离了普通流的元素才有效，也就是`position`为`absolute`、`relative`或者`fixed`定位才可以。
+
 
 > 持续更新中。。。
