@@ -1,8 +1,10 @@
 ---
 title: CSS设计指南·读书笔记
-date: 2017-04-28 13:30:08
+date: 2017-05-14 13:30:08
 tags: CSS 笔记
 ---
+
+{% asset_img stylin_with_css.jpg CSS设计指南 %}
 
 前端开发中，JS很重要，但CSS也不能轻视，我们来一场CSS学习之旅。
 
@@ -565,5 +567,85 @@ div#main_wrapper {
 
 不过`z-index`只对脱离了普通流的元素才有效，也就是`position`为`absolute`、`relative`或者`fixed`定位才可以。
 
+## CSS3实战
 
-> 持续更新中。。。
+### 页眉
+
++ 盒阴影 `box-shadow`
+
+`box-shadow: 4px 4px 5px 8px #aaa inset;`
+
+`box-shadow`属性的这几个值分别代表：水平偏移量、垂直偏移量、模糊量、扩展量、颜色和阴影位置（默认边框外部，即`outset`）。
+
++ 水平居中
+
+**注**：不能给`display: inline-block`元素设定外边距为`auto`，所以无法通过`margin: 0 auto`实现居中。只能通过为父元素添加`text-align: center`实现居中。
+
+个人理解`display: inline-block`元素就是行内元素，不能像块状元素那样定位。
+
++ 垂直居中
+
+如果想要在一个固定高度的元素垂直居中一行文本，可以把这一行文本的`line-height`设定为该元素的高度。
+```
+text-align: center; /* 水平居中 */
+line-height: xx px; /* 垂直居中： 行高=容器高度 */
+```
+
+如果垂直居中其他元素，比如图片，可以将容器的`display: table-row`，再设定(只对单元格有效)`vertical-align: middle`。
+```
+display: table-cell; /* 使用表格的行为 */
+vertical-align: middle; /* 垂直居中 */
+text-align: center; /* 水平居中 */
+```
+
+### 专题区
+
++ 文本阴影 `text-shadow`
+
+`text-shadow: 4px 4px 5px #aaa;`
+
+`text-shadow` 这几值的含义按顺序分别是：水平偏移量、垂直偏移量、模糊量和颜色。与盒阴影不同的是，文本阴影没有扩展量。
+
+### 图书区
+
+#### CSS3变换
+`transform`属性能够调用函数，调用不同的变换函数可以实现不同的形式的变换，而通过传入的参数可以控制变换的结果。
+
+`transform: 函数名()`
++ `scale`：用于放大或者缩小元素
++ `rotate`：根据指定的度数旋转元素
++ `skew`：让元素在X轴和Y轴方向倾斜
++ `translate`：根据指定的距离沿X轴和Y轴平移对象
+
+## 响应式设计
+
+### 媒体查询
+
+媒体类型
++ all：匹配所有设备
++ handled：匹配手持设备
++ print：匹配分页媒体或打印预览模式下的屏幕
++ screen：匹配彩色计算机屏幕
+
+媒体特性
++ `min-device-width` 和 `max-device-width`：匹配设备屏幕的尺寸
++ `min-width` 和 `max-width`：匹配视口的宽度，例如浏览器窗口宽度
++ `orientation`：匹配设备是横屏还是竖屏。
+
++ `<link>`标签的`media`属性
+通过在`<link>`标签的`media`属性中指定条件，有选择的加载样式表。
+```
+<link rel="stylesheet" media="print" href="css/print_styles.css" />
+<link rel="stylesheet" media="screen and (max-width:568px)" href="css/ipone_styles.css" />
+```
+
+## 附录
+
+### 条件注释
+
+小于等于**IE8**加载
+```
+<!--[if lte IE 8]> <!-- IE 条件注释 -->
+<link src="ie_only.css" rel="stylesheet" />
+<![endif]-->
+```
