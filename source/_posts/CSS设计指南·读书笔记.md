@@ -143,6 +143,7 @@ ol.results li:first-child {
 `e:nth-child(n)`
 
 > n 表示一个数值（也可以是 odd 或 even)
+
 ```
 li:nth-child(3) {...}
 ```
@@ -634,6 +635,7 @@ text-align: center; /* 水平居中 */
 
 + `<link>`标签的`media`属性
 通过在`<link>`标签的`media`属性中指定条件，有选择的加载样式表。
+
 ```
 <link rel="stylesheet" media="print" href="css/print_styles.css" />
 <link rel="stylesheet" media="screen and (max-width:568px)" href="css/ipone_styles.css" />
