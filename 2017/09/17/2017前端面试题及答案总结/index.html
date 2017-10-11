@@ -1,0 +1,1159 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="面试," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="YeaseonZhang" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="“金三银四，金九银十”，用来形容求职最好的几个月。但是随着行业的饱和，初中级前端er就业形势不容乐观。 行业状态不可控，我们能做的当然只是让自己变得更加具有竞争力。 今年自己也用了几个月的时间来准备笔记面试，巩固基础知识。特此将自己在这个过程总结的题目分享出来，希望对于求职和准备求职的同学有所帮助。">
+<meta name="keywords" content="面试">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2017前端面试题及答案总结">
+<meta property="og:url" content="https://yeaseonzhang.github.io/2017/09/17/2017前端面试题及答案总结/index.html">
+<meta property="og:site_name" content="YeaseonZhang">
+<meta property="og:description" content="“金三银四，金九银十”，用来形容求职最好的几个月。但是随着行业的饱和，初中级前端er就业形势不容乐观。 行业状态不可控，我们能做的当然只是让自己变得更加具有竞争力。 今年自己也用了几个月的时间来准备笔记面试，巩固基础知识。特此将自己在这个过程总结的题目分享出来，希望对于求职和准备求职的同学有所帮助。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2017-09-25T15:10:53.071Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="2017前端面试题及答案总结">
+<meta name="twitter:description" content="“金三银四，金九银十”，用来形容求职最好的几个月。但是随着行业的饱和，初中级前端er就业形势不容乐观。 行业状态不可控，我们能做的当然只是让自己变得更加具有竞争力。 今年自己也用了几个月的时间来准备笔记面试，巩固基础知识。特此将自己在这个过程总结的题目分享出来，希望对于求职和准备求职的同学有所帮助。">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '6345335535917073000',
+      author: 'Yeaseon'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://yeaseonzhang.github.io/2017/09/17/2017前端面试题及答案总结/"/>
+
+
+
+
+
+  <title> 2017前端面试题及答案总结 | YeaseonZhang </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?a6c706d9802419456e07ac9edc18dbb1";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">YeaseonZhang</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="https://yeaseonzhang.github.io/2017/09/17/2017前端面试题及答案总结/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="Yeaseon">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.png">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="YeaseonZhang">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="YeaseonZhang" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                2017前端面试题及答案总结
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-09-17T21:42:57+08:00">
+                2017-09-17
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <a href="/2017/09/17/2017前端面试题及答案总结/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2017/09/17/2017前端面试题及答案总结/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+             <span id="/2017/09/17/2017前端面试题及答案总结/" class="leancloud_visitors" data-flag-title="2017前端面试题及答案总结">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>“金三银四，金九银十”，用来形容求职最好的几个月。但是随着行业的饱和，初中级前端er就业形势不容乐观。</p>
+<p>行业状态不可控，我们能做的当然只是让自己变得更加具有竞争力。</p>
+<p>今年自己也用了几个月的时间来准备笔记面试，巩固基础知识。特此将自己在这个过程总结的题目分享出来，希望对于求职和准备求职的同学有所帮助。</p>
+<a id="more"></a>
+<h2 id="CSS"><a href="#CSS" class="headerlink" title="CSS"></a>CSS</h2><h3 id="列举不同的清除浮动的技巧"><a href="#列举不同的清除浮动的技巧" class="headerlink" title="列举不同的清除浮动的技巧"></a>列举不同的清除浮动的技巧</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line">/* 1.添加新元素 */</div><div class="line">&lt;div class=&quot;outer&quot;&gt;</div><div class="line">  &lt;div class=&quot;div1&quot;&gt;&lt;/div&gt;</div><div class="line">  &lt;div class=&quot;div2&quot;&gt;&lt;/div&gt;</div><div class="line">  &lt;div class=&quot;div3&quot;&gt;&lt;/div&gt;</div><div class="line">  &lt;div class=&quot;clearfix&quot;&gt;&lt;/div&gt;</div><div class="line">&lt;/div&gt;</div><div class="line">.clearfix &#123;</div><div class="line">  clear: both;</div><div class="line">&#125;</div><div class="line"></div><div class="line">/* 2.为父元素增加样式 */</div><div class="line">.clearfix &#123;</div><div class="line">  overflow: auto;</div><div class="line">  zoom: 1; // 处理兼容性</div><div class="line">&#125;</div><div class="line"></div><div class="line">/* 3.:after 伪元素方法 (作用于父元素) */</div><div class="line">.outer &#123;</div><div class="line">  zoom: 1;</div><div class="line">  &amp;:after &#123;</div><div class="line">    display: block;</div><div class="line">    height: 0;</div><div class="line">    clear: both;</div><div class="line">    content: &apos;.&apos;;</div><div class="line">    visibillity: hidden;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="一像素边框"><a href="#一像素边框" class="headerlink" title="一像素边框"></a>一像素边框</h3><p>使用<code>sass</code>语法。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div></pre></td><td class="code"><pre><div class="line">/* 定义 */</div><div class="line">@mixin border-1px ($color) &#123;</div><div class="line">    position: relative;</div><div class="line">    &amp;:after &#123;</div><div class="line">        display: block;</div><div class="line">        position: absolute;</div><div class="line">        left: 0;</div><div class="line">        bottom: 0;</div><div class="line">        width: 100%;</div><div class="line">        border-top: 1px solid $color;</div><div class="line">        context: &apos;&apos;;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">@media (-webkit-min-device-pixel-radio: 1.5), (min-device-pixel-radio: 1.5) &#123;</div><div class="line">    border-1px &#123;</div><div class="line">        &amp;:after &#123;</div><div class="line">            -webkit-transform: scaleY(0.7);</div><div class="line">            transform: scaleY(0.7);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">@media (-webkit-min-device-pixel-radio: 2), (min-device-pixel-radio: 2) &#123;</div><div class="line">    border-1px &#123;</div><div class="line">        &amp;:after &#123;</div><div class="line">            -webkit-transform: scaleY(0.5);</div><div class="line">            transform: scaleY(0.5);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">/* 使用方式 */</div><div class="line">@inclue border-1px(rgba(7, 17, 27, .1));</div></pre></td></tr></table></figure>
+<h3 id="形成BFC-Block-Formatting-Context-的几种方式"><a href="#形成BFC-Block-Formatting-Context-的几种方式" class="headerlink" title="形成BFC(Block Formatting Context)的几种方式"></a>形成<strong>BFC</strong>(Block Formatting Context)的几种方式</h3><p>BFC全称”Block Formatting Context”, 中文为“块级格式化上下文”。BFC元素特性表现原则就是，内部子元素再怎么翻江倒海，翻云覆雨都不会影响外部的元素。</p>
+<ul>
+<li><code>float</code>为 <code>left|right</code></li>
+<li><code>overflow</code>为 <code>hidden|auto|scroll</code></li>
+<li><code>display</code>为 <code>table-cell|table-caption|inline-block</code></li>
+<li><code>position</code>为 <code>absolute|fixed</code></li>
+</ul>
+<h3 id="布局"><a href="#布局" class="headerlink" title="布局"></a>布局</h3><ul>
+<li><p><a href="https://yeaseonzhang.github.io/2017/07/05/CSS布局/"><strong>圣杯布局</strong>和<strong>双飞翼布局</strong></a></p>
+</li>
+<li><p>左定宽右自适应宽度，并且等高布局(最小高度200px)</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line">/* HTML */</div><div class="line">&lt;div class=&quot;container&quot;&gt;</div><div class="line">  &lt;div class=&quot;left&quot;&gt;Left silder&lt;/div&gt;</div><div class="line">  &lt;div class=&quot;content&quot;&gt;Main content&lt;/div&gt;</div><div class="line">&lt;/div&gt;</div><div class="line"></div><div class="line">/* CSS */</div><div class="line">.container &#123;</div><div class="line">  overflow: hidden;</div><div class="line">&#125;</div><div class="line"></div><div class="line">.left &#123;</div><div class="line">  float: left；</div><div class="line">  width: 200px;</div><div class="line">  margin-bottom: -9999px;</div><div class="line">  padding-bottom: 9999px;</div><div class="line">  background-color: #eee;</div><div class="line">&#125;</div><div class="line"></div><div class="line">.content &#123;</div><div class="line">  margin-left: 200px;</div><div class="line">  margin-bottom: -9999px;</div><div class="line">  padding-bottom: 9999px;</div><div class="line">  background-color: #ccc;</div><div class="line">&#125;</div><div class="line"></div><div class="line">.left, .content &#123;</div><div class="line">  min-height: 200px;</div><div class="line">  height: auto !important;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="JS"><a href="#JS" class="headerlink" title="JS"></a>JS</h2><h3 id="async与defer区别"><a href="#async与defer区别" class="headerlink" title="async与defer区别"></a><code>async</code>与<code>defer</code>区别</h3><p>异步(async) 脚本将在其加载完成后立即执行，而 延迟(defer) 脚本将等待 HTML 解析完成后，并按加载顺序执行。</p>
+<h3 id="location-replace-与location-assign-区别"><a href="#location-replace-与location-assign-区别" class="headerlink" title="location.replace()与location.assign()区别"></a><code>location.replace()</code>与<code>location.assign()</code>区别</h3><p><code>location.replace()</code>的url不会出现在history中</p>
+<h3 id="new操作符"><a href="#new操作符" class="headerlink" title="new操作符"></a><code>new</code>操作符</h3><ul>
+<li>创建一个空对象，并且<code>this</code>变量引用该对象，同时还继承了 该函数的原型</li>
+<li>属性和方法被加入到<code>this</code>引用的对象中</li>
+<li>新创建的对象由<code>this</code>所引用，并且最后隐式的返回<code>this</code></li>
+</ul>
+<h3 id="AMD-CMD-CommonJS"><a href="#AMD-CMD-CommonJS" class="headerlink" title="AMD CMD CommonJS"></a>AMD CMD CommonJS</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">/* AMD是RequireJS对模块化的定义</div><div class="line"> * CMD是seaJS对模块化的定义</div><div class="line"> * CommonJS是Node对模块化的规范</div><div class="line"> **/</div><div class="line"></div><div class="line">/* AMD 依赖关系前置 */</div><div class="line">define([&apos;./a&apos;, &apos;./b&apos;], function (a, b) &#123;</div><div class="line">    a.something();</div><div class="line">    b.something();</div><div class="line">&#125;)</div><div class="line"></div><div class="line">/* CMD 按需加载，依赖就近 */</div><div class="line">define(function (require, exports, module) &#123;</div><div class="line">    var a = require(&apos;./a&apos;);</div><div class="line">    a.something();</div><div class="line"></div><div class="line">    var b = require(&apos;./b&apos;);</div><div class="line">    b.something();</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<h4 id="DOM-操作"><a href="#DOM-操作" class="headerlink" title="DOM 操作"></a>DOM 操作</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">// 创建节点</div><div class="line">createDocumentFragment()</div><div class="line">createElement()</div><div class="line">createTextNode()</div><div class="line"></div><div class="line">// 添加 移除 替换 插入</div><div class="line">appendChild()</div><div class="line">removeChild()</div><div class="line">replaceChild()</div><div class="line">insertBefore()</div><div class="line"></div><div class="line">// 查找</div><div class="line">getElementsByTagName()</div><div class="line">getElementsByName()</div><div class="line">getElementsByClassName()</div><div class="line">getElementById()</div><div class="line">querySelector()</div><div class="line">querySelectorAll()</div></pre></td></tr></table></figure>
+<h3 id="JS设置css样式的几种方式"><a href="#JS设置css样式的几种方式" class="headerlink" title="JS设置css样式的几种方式"></a>JS设置css样式的几种方式</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">/* 1.直接设置style属性 */</div><div class="line">element.style.height = &apos;100px&apos;;</div><div class="line"></div><div class="line">/* 2.直接设置属性 */</div><div class="line">element.setAttribute(&apos;height&apos;, &apos;100px&apos;);</div><div class="line"></div><div class="line">/* 3.使用setAttribute设置style属性 */</div><div class="line">element.setAttribute(&apos;style&apos;, &apos;height: 100px !important&apos;);</div><div class="line"></div><div class="line">/* 4.使用setProperty设置属性，通过第三个参数设置important */</div><div class="line">element.style.setProperty(&apos;height&apos;, &apos;300px&apos;, &apos;important&apos;);</div><div class="line"></div><div class="line">/* 5.设置cssText */</div><div class="line">element.style.cssText += &apos;height: 100px !important&apos;;</div></pre></td></tr></table></figure>
+<h3 id="阻止默认行为"><a href="#阻止默认行为" class="headerlink" title="阻止默认行为"></a>阻止默认行为</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">function stopDefault( e ) &#123;</div><div class="line">    // 阻止默认浏览器动作(W3C)</div><div class="line">    if ( e &amp;&amp; e.preventDefault ) &#123;</div><div class="line">        e.preventDefault();</div><div class="line">    &#125; else &#123;</div><div class="line">        // IE中阻止函数器默认动作的方式</div><div class="line">        window.event.returnValue = false;</div><div class="line">    &#125;</div><div class="line">    return false;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="阻止冒泡"><a href="#阻止冒泡" class="headerlink" title="阻止冒泡"></a>阻止冒泡</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">function stopBubble(e) &#123;</div><div class="line">    // 如果提供了事件对象，则这是一个非IE浏览器</div><div class="line">    if ( e &amp;&amp; e.stopPropagation ) &#123;</div><div class="line">        // 因此它支持W3C的stopPropagation()方法</div><div class="line">        e.stopPropagation();</div><div class="line">    &#125; else &#123;</div><div class="line">        // 否则，我们需要使用IE的方式来取消事件冒泡</div><div class="line">        window.event.cancelBubble = true;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="Ajax交互过程"><a href="#Ajax交互过程" class="headerlink" title="Ajax交互过程"></a>Ajax交互过程</h3><ul>
+<li>创建XMLHttpRequest对象,也就是创建一个异步调用对象.</li>
+<li>创建一个新的HTTP请求,并指定该HTTP请求的方法、URL及验证信息.</li>
+<li>设置响应HTTP请求状态变化的函数.</li>
+<li>发送HTTP请求.</li>
+<li>获取异步调用返回的数据.</li>
+<li>使用JavaScript和DOM实现局部刷新.</li>
+</ul>
+<h3 id="考察知识点最广的JS面试题"><a href="#考察知识点最广的JS面试题" class="headerlink" title="考察知识点最广的JS面试题"></a>考察知识点最广的JS面试题</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">function Foo() &#123;</div><div class="line">    getName = function () &#123; alert(1); &#125;</div><div class="line">    return this;</div><div class="line">&#125;</div><div class="line">Foo.getName = function () &#123; alert(2); &#125;</div><div class="line">Foo.prototype.getName = function () &#123; alert(3); &#125;</div><div class="line">var getName = function () &#123; alert(4); &#125;</div><div class="line">function getName () &#123; alert(5); &#125;</div><div class="line"></div><div class="line">/* 写出输出 */</div><div class="line">Foo.getName();</div><div class="line">getName();</div><div class="line">Foo().getName();</div><div class="line">getName();</div><div class="line">new Foo.getName();</div><div class="line">new Foo().getName();</div><div class="line">new new Foo().getName();</div></pre></td></tr></table></figure>
+<p>具体讲解参见<a href="http://www.cnblogs.com/xxcanghai/p/5189353.html" target="_blank" rel="external">一道常被人轻视的前端JS面试题</a></p>
+<h3 id="JS数组深浅拷贝"><a href="#JS数组深浅拷贝" class="headerlink" title="JS数组深浅拷贝"></a>JS数组深浅拷贝</h3><ul>
+<li><code>slice</code>实现</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">var arr = [&apos;old&apos;, 1, true, null, undefined];</div><div class="line"></div><div class="line">var new_arr = arr.slice();</div><div class="line"></div><div class="line">new_arr[0] = &apos;new&apos;;</div><div class="line"></div><div class="line">console.log(arr) // [&quot;old&quot;, 1, true, null, undefined]</div><div class="line">console.log(new_arr) // [&quot;new&quot;, 1, true, null, undefined]</div></pre></td></tr></table></figure>
+<ul>
+<li><code>concat</code>实现</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">var arr = [&apos;old&apos;, 1, true, null, undefined];</div><div class="line"></div><div class="line">var new_arr = arr.concat();</div><div class="line"></div><div class="line">new_arr[0] = &apos;new&apos;;</div><div class="line"></div><div class="line">console.log(arr) // [&quot;old&quot;, 1, true, null, undefined]</div><div class="line">console.log(new_arr) // [&quot;new&quot;, 1, true, null, undefined]</div></pre></td></tr></table></figure>
+<p>以上两种方法只是浅拷贝，如果数组元素是基本类型，就会拷贝一份新的；但是如果数组元素是对象或者数组，就只会拷贝引用（类似指针），修改其中一个就会影响另外一个。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">var arr = [&apos;old&apos;, 1, true, [&apos;old1&apos;, &apos;old2&apos;], &#123;old: 1&#125;];</div><div class="line"></div><div class="line">var new_arr = arr.concat();</div><div class="line"></div><div class="line">new_arr[0] = &apos;new&apos;;</div><div class="line">new_arr[3][0] = &apos;new1&apos;;</div><div class="line"></div><div class="line">console.log(arr) // [&quot;old&quot;, 1, true, [&apos;new1&apos;, &apos;old2&apos;], &#123;old: 1&#125;]</div><div class="line">console.log(new_arr) // [&quot;new&quot;, 1, true, [&apos;new1&apos;, &apos;old2&apos;], &#123;old: 1&#125;]</div></pre></td></tr></table></figure>
+<ul>
+<li><code>JSON.stringify</code>实现数组深拷贝</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">var arr = [&apos;old&apos;, 1, true, [&apos;old1&apos;, &apos;old2&apos;], &#123;old: 1&#125;];</div><div class="line"></div><div class="line">var new_arr = JSON.parse(JSON.stringify(arr));</div><div class="line"></div><div class="line">new_arr[0] = &apos;new&apos;;</div><div class="line">new_arr[3][0] = &apos;new1&apos;;</div><div class="line"></div><div class="line">console.log(arr) // [&quot;old&quot;, 1, true, [&apos;old1&apos;, &apos;old2&apos;], &#123;old: 1&#125;]</div><div class="line">console.log(new_arr) // [&quot;new&quot;, 1, true, [&apos;new1&apos;, &apos;old2&apos;], &#123;old: 1&#125;]</div></pre></td></tr></table></figure>
+<p>简单粗暴，但是问题是不能拷贝函数，不推荐。</p>
+<p>然后我们来手动实现深浅拷贝。</p>
+<ul>
+<li>浅拷贝</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">var shallowCopy = function (obj) &#123;</div><div class="line">	// 判断是否是数组或者对象</div><div class="line">    if (typeof obj !== &apos;object&apos;) &#123;</div><div class="line">        return</div><div class="line">    &#125;</div><div class="line">    var newObj = obj instanceof Array ? [] : &#123;&#125;;</div><div class="line">    for (var key in obj) &#123;</div><div class="line">        if (obj.hasOwnProperty(key)) &#123;</div><div class="line">            newObj[key] = obj[key];</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    return newObj;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>深拷贝</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">var deepCopy = function (obj) &#123;</div><div class="line">    if (typeof obj !== &apos;object&apos;) &#123;</div><div class="line">        return</div><div class="line">    &#125;</div><div class="line">    var newObj = obj instanceof Array ? [] : &#123;&#125;;</div><div class="line">    for (var key in obj) &#123;</div><div class="line">        if (obj.hasOwnProperty(key)) &#123;</div><div class="line">            newObj[key] = typeof obj[key] === &apos;object&apos; ? deepCopy(obj[key]) : obj[key];</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    return newObj</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="数组去重"><a href="#数组去重" class="headerlink" title="数组去重"></a>数组去重</h3><ul>
+<li><code>filter</code> + <code>indexOf</code></li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">function unique (arr) &#123;</div><div class="line">    var res = arr.filter(function (item, index, array) &#123;</div><div class="line">        return array.indexOf(item) === index;</div><div class="line">    &#125;)</div><div class="line">    return res;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li><code>filter</code> + <code>sort</code></li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">function unique (arr) &#123;</div><div class="line">    return arr.concat().sort().filter(function (item, index, array) &#123;</div><div class="line">        return !index || item !== array[index - 1];</div><div class="line">    &#125;)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li><code>ES6</code></li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">function uniqu3 (arr) &#123;</div><div class="line">    return [... new Set(arr)];</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="找出数组中的最大值"><a href="#找出数组中的最大值" class="headerlink" title="找出数组中的最大值"></a>找出数组中的最大值</h3><ul>
+<li><code>reduce</code></li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">var arr = [6, 4, 1, 8, 2, 11, 3];</div><div class="line"></div><div class="line">function max (prev, next) &#123;</div><div class="line">    return Math.max(prev, next)</div><div class="line">&#125;</div><div class="line"></div><div class="line">console.log(arr.reduce(max));</div></pre></td></tr></table></figure>
+<ul>
+<li><code>apply</code></li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">var arr = [6, 4, 1, 8, 2, 11, 3];</div><div class="line"></div><div class="line">console.log(Math.max.apply(null, arr));</div></pre></td></tr></table></figure>
+<ul>
+<li><code>ES6</code></li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">var arr = [6, 4, 1, 8, 2, 11, 3];</div><div class="line"></div><div class="line">function max (arr) &#123;</div><div class="line">    return Math.max(...arr);</div><div class="line">&#125;</div><div class="line"></div><div class="line">console.log(max(arr));</div></pre></td></tr></table></figure>
+<h3 id="打乱数组的方法"><a href="#打乱数组的方法" class="headerlink" title="打乱数组的方法"></a>打乱数组的方法</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">var arr = [];</div><div class="line">for (var i = 0; i &lt; 100; i++) &#123;</div><div class="line">	arr[i] = i;</div><div class="line">&#125;</div><div class="line"></div><div class="line">arr.sort(function () &#123;</div><div class="line">	return 0.5 - Math.random();</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<h3 id="数组扁平化"><a href="#数组扁平化" class="headerlink" title="数组扁平化"></a>数组扁平化</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">var arr = [1, [2, [3, 4]]];</div><div class="line"></div><div class="line">function flatten(arr) &#123;</div><div class="line"></div><div class="line">    while (arr.some(item =&gt; Array.isArray(item))) &#123;</div><div class="line">        arr = [].concat(...arr);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    return arr;</div><div class="line">&#125;</div><div class="line"></div><div class="line">console.log(flatten(arr))</div></pre></td></tr></table></figure>
+<h3 id="排序"><a href="#排序" class="headerlink" title="排序"></a>排序</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div></pre></td><td class="code"><pre><div class="line">// 冒泡</div><div class="line">function bubbleSort2(arr) &#123;</div><div class="line">    var len = arr.length;</div><div class="line">    for (var i = 0; i &lt;= len - 1; i++) &#123;</div><div class="line">        for (var j = 0; j &lt;= len - i; j++) &#123;</div><div class="line">            if (arr[j + 1] &lt; arr[j]) &#123;</div><div class="line">                var temp;</div><div class="line">                temp = arr[j];</div><div class="line">                arr[j] = arr[j + 1];</div><div class="line">                arr[j + 1] = temp;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    return arr;</div><div class="line">&#125;</div><div class="line"></div><div class="line">// 快速排序</div><div class="line">function quickSort(arr) &#123;</div><div class="line">    if(arr.length == 0) &#123;</div><div class="line">        return [];    // 返回空数组</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    var cIndex = Math.floor(arr.length / 2);</div><div class="line">    var c = arr.splice(cIndex, 1);</div><div class="line">    var l = [];</div><div class="line">    var r = [];</div><div class="line"></div><div class="line">    for (var i = 0; i &lt; arr.length; i++) &#123;</div><div class="line">        if(arr[i] &lt; c) &#123;</div><div class="line">            l.push(arr[i]);</div><div class="line">        &#125; else &#123;</div><div class="line">            r.push(arr[i]);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    return quickSort(l).concat(c, quickSort(r));</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="数字格式化-1234567890-gt-1-234-567-890"><a href="#数字格式化-1234567890-gt-1-234-567-890" class="headerlink" title="数字格式化 1234567890 -&gt; 1,234,567,890"></a>数字格式化 <code>1234567890 -&gt; 1,234,567,890</code></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">function formatNum (num) &#123;</div><div class="line">    return num.replace(/\B(?=(\d&#123;3&#125;)+(?!\d))/g, &apos;,&apos;);</div><div class="line">&#125;</div><div class="line">var num = &apos;1234567890&apos;;</div><div class="line">var res = formatNum(num);</div><div class="line">console.log(res);</div></pre></td></tr></table></figure>
+<h3 id="打乱数组的方法-1"><a href="#打乱数组的方法-1" class="headerlink" title="打乱数组的方法"></a>打乱数组的方法</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">var arr = [];</div><div class="line">for (var i = 0; i &lt; 100; i++) &#123;</div><div class="line">    arr[i] = i;</div><div class="line">&#125;</div><div class="line"></div><div class="line">arr.sort(function () &#123;</div><div class="line">    return 0.5 - Math.random();</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<h3 id="尾调用优化"><a href="#尾调用优化" class="headerlink" title="尾调用优化"></a>尾调用优化</h3><p>即只保存内层函数的调用帧(只有开启严格模式，才会生效),只有不再用到外层函数的内部变量，内层函数的调用帧才会取代外层函数的调用帧，否则无法进行“尾调用优化。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">function factorial(n) &#123;</div><div class="line">	if (n === 1) return 1;</div><div class="line">	return n * factorial(n-1);</div><div class="line">&#125;</div><div class="line">factorial(5)</div><div class="line"></div><div class="line">/* 优化尾递归 */</div><div class="line">function factorial(n, total) &#123;</div><div class="line">	if (n === 1) return total;</div><div class="line">	return factorial(n - 1, n * total);</div><div class="line">&#125;</div><div class="line">factorial(5, 1)</div></pre></td></tr></table></figure></p>
+<h3 id="柯里化"><a href="#柯里化" class="headerlink" title="柯里化"></a>柯里化</h3><p>实现<code>add(1,2)</code>和<code>add(1)(2)</code>均输出<code>3</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line">function add () &#123;</div><div class="line">    let sum = 0;</div><div class="line">    Array.prototype.forEach.call(arguments, function (item, index)&#123;</div><div class="line">        if (typeof item !== &apos;number&apos;) &#123;</div><div class="line">            return false;</div><div class="line">        &#125; else &#123;</div><div class="line">            sum += item;</div><div class="line">        &#125;</div><div class="line">    &#125;)</div><div class="line">    var tmp = function () &#123;</div><div class="line">        Array.prototype.forEach.call(arguments, function (item, index)&#123;</div><div class="line">            if (typeof item !== &apos;number&apos;) &#123;</div><div class="line">                return false;</div><div class="line">            &#125; else &#123;</div><div class="line">               sum += item;</div><div class="line">            &#125;</div><div class="line">        &#125;)</div><div class="line">        return tmp;</div><div class="line">    &#125;</div><div class="line">    tmp.toString = function () &#123;</div><div class="line">        return sum</div><div class="line">    &#125;</div><div class="line">    return tmp;</div><div class="line">&#125;</div><div class="line">add(1, 2); // 3</div><div class="line">add(1)(2); // 3</div><div class="line">add(1, 2, 3)(1, 4)(2, 2)(1) // 16</div></pre></td></tr></table></figure></p>
+<h3 id="ES8-新特性"><a href="#ES8-新特性" class="headerlink" title="ES8 新特性"></a>ES8 新特性</h3><ul>
+<li>字符串填充</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">str.padStart(targetLength [, padString])</div><div class="line">str.padEnd(targetLength [, padString])</div></pre></td></tr></table></figure>
+<ul>
+<li><code>values</code>和<code>entries</code>函数</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Object.values(obj)</div><div class="line">Object.entries(obj)</div></pre></td></tr></table></figure>
+<ul>
+<li><code>getOwnPropertyDescriptors</code>函数</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Object.getOwnPropertyDescriptors(obj)</div></pre></td></tr></table></figure>
+<ul>
+<li>函数参数逗号结尾</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">function es8(var1, var2, var3,) &#123;&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>异步函数<br>由<code>async</code>关键词定义的函数声明了一个可以异步执行的函数，返回一个<code>AsyncFunction</code>类型的对象。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">fucntion fetchTextByPromise () &#123;</div><div class="line">	return new Promise(resolve =&gt; &#123;</div><div class="line">		setTimeout(() =&gt; &#123;</div><div class="line">			resolve(&apos;es8&apos;);</div><div class="line">		&#125;, 2000);</div><div class="line">	&#125;);</div><div class="line">&#125;</div><div class="line">async function sayHello () &#123;</div><div class="line">	const externalFetchedText = await fetchTextByPromise();</div><div class="line">	console.log(`Hello, $&#123;externalFetchedText&#125;`);</div><div class="line">&#125;</div><div class="line">sayHello();</div></pre></td></tr></table></figure>
+<h3 id="数据类型判断"><a href="#数据类型判断" class="headerlink" title="数据类型判断"></a>数据类型判断</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">var class2type = &#123;&#125;;</div><div class="line"></div><div class="line">&apos;Boolean Number String Function Array Date RegExp Object Error Null Undefined&apos;.split(&apos; &apos;).map((item, index) =&gt; &#123;</div><div class="line">    class2type[&apos;[object &apos; + item + &apos;]&apos;] = item.toLowerCase();</div><div class="line">&#125;)</div><div class="line"></div><div class="line">function type (obj) &#123;</div><div class="line">    return typeof obj === &apos;object&apos; || typeof obj === &apos;function&apos; ?</div><div class="line">        class2type[&#123;&#125;.toString.call(obj)] || &apos;object&apos; : typeof obj;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="防抖"><a href="#防抖" class="headerlink" title="防抖"></a>防抖</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line">/*</div><div class="line"> * func：需要调用的函数</div><div class="line"> * wait: 防抖时间</div><div class="line"> * immediate：布尔值，是否立即执行</div><div class="line"> **/</div><div class="line"></div><div class="line">var debounce = function (func, wait, immediate) &#123;</div><div class="line">  var timeout;</div><div class="line">  return function () &#123;</div><div class="line">    var context = this;</div><div class="line">    var args = arguments;</div><div class="line"></div><div class="line">    if (timeout) clearTimeout(timeout);</div><div class="line"></div><div class="line">    if (immediate) &#123;  // 是否立即执行func</div><div class="line">      var callNow = !timeout;</div><div class="line">      timeout = setTimeout(function () &#123;</div><div class="line">        timeout = null;</div><div class="line">      &#125;, wait)；</div><div class="line"></div><div class="line">      if (callNow) &#123;</div><div class="line">        func.apply(context, args);</div><div class="line">      &#125;</div><div class="line">    &#125; else &#123;</div><div class="line">      timeout = setTimeout(function () &#123;</div><div class="line">        func.apply(context, args);</div><div class="line">      &#125;, wait);</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="简单的字符串模板"><a href="#简单的字符串模板" class="headerlink" title="简单的字符串模板"></a>简单的字符串模板</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">var TemplateEngine = function(tpl, data) &#123;</div><div class="line">    var re = /&lt;%([^%&gt;]+)?%&gt;/g, match;</div><div class="line">    while(match = re.exec(tpl)) &#123;</div><div class="line">        tpl = tpl.replace(match[0], data[match[1]])</div><div class="line">    &#125;</div><div class="line">    return tpl;</div><div class="line">&#125;</div><div class="line"></div><div class="line">var template = &apos;&lt;p&gt;Hello, my name is &lt;%name%&gt;. I\&apos;m &lt;%age%&gt; years old.&lt;/p&gt;&apos;;</div><div class="line">console.log(TemplateEngine(template, &#123;</div><div class="line">    name: &quot;Yeaseon&quot;,</div><div class="line">    age: 24</div><div class="line">&#125;));</div><div class="line"></div><div class="line">// &apos;&lt;p&gt;Hello, my name is Yeaseon. I\&apos;m 24 years old.&lt;/p&gt;&apos;;</div></pre></td></tr></table></figure>
+<h3 id="apply、call和bind"><a href="#apply、call和bind" class="headerlink" title="apply、call和bind"></a><code>apply</code>、<code>call</code>和<code>bind</code></h3><ul>
+<li><code>apply</code>和<code>call</code></li>
+</ul>
+<p>在严格模式下，未指定环境对象而调用函数，则this 值不会转型为window。除非明确把函数添加到某个对象或者调用apply()或call()，否则this 值将是undefined。</p>
+<p>在非严格模式下，call、apply的第一个参数传递为null或undefined时，函数体内的this会指向默认的宿主对象，在浏览器中则是window。</p>
+<ul>
+<li><code>apply</code>、<code>call</code>和<code>bind</code>比较</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">var obj = &#123;</div><div class="line">	x: 81</div><div class="line">&#125;;</div><div class="line"></div><div class="line">var foo = &#123;</div><div class="line">	getX: function () &#123;</div><div class="line">		return this.x;</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">console.log(foo.getX.bind(obj)());</div><div class="line">console.log(foo.getX.apply(obj));</div><div class="line">console.log(foo.getX.call(obj));</div></pre></td></tr></table></figure>
+<p>很明显，<code>bind</code>方法后面多了一对括号。也就是说，当你希望改变上下文环境之后并且立即执行，而是回调执行的时候（多用于事件监听器函数），使用<code>bind()</code>方法，而<code>apply/call</code>则会立即执行函数。</p>
+<ul>
+<li>定义一个 log 方法，让它可以代理 console.log 方法。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">function log()&#123;</div><div class="line">  console.log.apply(console, arguments);</div><div class="line">&#125;;</div><div class="line">log(1);    //1</div><div class="line">log(1,2);    //1 2</div></pre></td></tr></table></figure>
+<ul>
+<li>给每一个 log 消息添加一个”(app)”的前辍，比如：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">log(&quot;hello world&quot;);    //(app)hello world</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">function log()&#123;</div><div class="line">  var args = Array.prototype.slice.call(arguments);</div><div class="line">  args.unshift(&apos;(app)&apos;);</div><div class="line">  console.log.apply(console, args);</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<ul>
+<li><code>apply</code>实现<code>bind</code></li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">function bind (fn, context) &#123;</div><div class="line">    return function () &#123;</div><div class="line">        return fn.apply(context, argument);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="创建对象"><a href="#创建对象" class="headerlink" title="创建对象"></a>创建对象</h3><ul>
+<li>工厂模式</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">function createPerson(name, age, job)&#123;</div><div class="line">	var o = new Object();</div><div class="line">	o.name = name;</div><div class="line">	o.age = age;</div><div class="line">	o.job = job;</div><div class="line">	o.sayName = function()&#123;</div><div class="line">		alert(this.name);</div><div class="line">	&#125;;</div><div class="line">	return o;</div><div class="line">&#125;</div><div class="line">var person1 = createPerson(&quot;Nicholas&quot;, 29, &quot;Software Engineer&quot;);</div><div class="line">var person2 = createPerson(&quot;Greg&quot;, 27, &quot;Doctor&quot;);</div></pre></td></tr></table></figure>
+<ul>
+<li>构造函数模式</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">function Person(name, age, job)&#123;</div><div class="line">	this.name = name;</div><div class="line">	this.age = age;</div><div class="line">	this.job = job;</div><div class="line">	this.sayName = function()&#123;</div><div class="line">		alert(this.name);</div><div class="line">	&#125;;</div><div class="line">&#125;</div><div class="line">var person1 = new Person(&quot;Nicholas&quot;, 29, &quot;Software Engineer&quot;);</div><div class="line">var person2 = new Person(&quot;Greg&quot;, 27, &quot;Doctor&quot;);</div></pre></td></tr></table></figure>
+<ul>
+<li>原型模式</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">function Person()&#123;</div><div class="line">&#125;</div><div class="line">Person.prototype.name = &quot;Nicholas&quot;;</div><div class="line">Person.prototype.age = 29;</div><div class="line">Person.prototype.job = &quot;Software Engineer&quot;;</div><div class="line">Person.prototype.sayName = function()&#123;</div><div class="line">	alert(this.name);</div><div class="line">&#125;;</div><div class="line">var person1 = new Person();</div><div class="line">person1.sayName(); //&quot;Nicholas&quot;</div></pre></td></tr></table></figure>
+<ul>
+<li>构造函数 + 原型模式</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">function Person(name, age, job)&#123;</div><div class="line">	this.name = name;</div><div class="line">	this.age = age;</div><div class="line">	this.job = job;</div><div class="line">	this.friends = [&quot;Shelby&quot;, &quot;Court&quot;];</div><div class="line">&#125;</div><div class="line">Person.prototype = &#123;</div><div class="line">	constructor : Person,</div><div class="line">	sayName : function()&#123;</div><div class="line">		alert(this.name);</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line">var person1 = new Person(&quot;Nicholas&quot;, 29, &quot;Software Engineer&quot;);</div><div class="line">var person2 = new Person(&quot;Greg&quot;, 27, &quot;Doctor&quot;);</div><div class="line">person1.friends.push(&quot;Van&quot;);</div><div class="line">alert(person1.friends); //&quot;Shelby,Count,Van&quot;</div><div class="line">alert(person2.friends); //&quot;Shelby,Count&quot;</div><div class="line">alert(person1.friends === person2.friends); //false</div><div class="line">alert(person1.sayName === person2.sayName); //true</div></pre></td></tr></table></figure>
+<h3 id="JS实现Jquery的extend-方法"><a href="#JS实现Jquery的extend-方法" class="headerlink" title="JS实现Jquery的extend()方法"></a>JS实现Jquery的<code>extend()</code>方法</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div></pre></td><td class="code"><pre><div class="line">function extend() &#123;</div><div class="line">    // 默认不进行深拷贝</div><div class="line">    var deep = false;</div><div class="line">    var name, options, src, copy, clone, copyIsArray;</div><div class="line">    var length = arguments.length;</div><div class="line">    // 记录要复制的对象的下标</div><div class="line">    var i = 1;</div><div class="line">    // 第一个参数不传布尔值的情况下，target 默认是第一个参数</div><div class="line">    var target = arguments[0] || &#123;&#125;;</div><div class="line">    // 如果第一个参数是布尔值，第二个参数是 target</div><div class="line">    if (typeof target == &apos;boolean&apos;) &#123;</div><div class="line">        deep = target;</div><div class="line">        target = arguments[i] || &#123;&#125;;</div><div class="line">        i++;</div><div class="line">    &#125;</div><div class="line">    // 如果target不是对象，我们是无法进行复制的，所以设为 &#123;&#125;</div><div class="line">    if (typeof target !== &quot;object&quot; &amp;&amp; !isFunction(target)) &#123;</div><div class="line">        target = &#123;&#125;;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    // 循环遍历要复制的对象们</div><div class="line">    for (; i &lt; length; i++) &#123;</div><div class="line">        // 获取当前对象</div><div class="line">        options = arguments[i];</div><div class="line">        // 要求不能为空 避免 extend(a,,b) 这种情况</div><div class="line">        if (options != null) &#123;</div><div class="line">            for (name in options) &#123;</div><div class="line">                // 目标属性值</div><div class="line">                src = target[name];</div><div class="line">                // 要复制的对象的属性值</div><div class="line">                copy = options[name];</div><div class="line"></div><div class="line">                // 解决循环引用</div><div class="line">                if (target === copy) &#123;</div><div class="line">                    continue;</div><div class="line">                &#125;</div><div class="line"></div><div class="line">                // 要递归的对象必须是 plainObject 或者数组</div><div class="line">                if (deep &amp;&amp; copy &amp;&amp; (isPlainObject(copy) ||</div><div class="line">                        (copyIsArray = Array.isArray(copy)))) &#123;</div><div class="line">                    // 要复制的对象属性值类型需要与目标属性值相同</div><div class="line">                    if (copyIsArray) &#123;</div><div class="line">                        copyIsArray = false;</div><div class="line">                        clone = src &amp;&amp; Array.isArray(src) ? src : [];</div><div class="line"></div><div class="line">                    &#125; else &#123;</div><div class="line">                        clone = src &amp;&amp; isPlainObject(src) ? src : &#123;&#125;;</div><div class="line">                    &#125;</div><div class="line"></div><div class="line">                    target[name] = extend(deep, clone, copy);</div><div class="line"></div><div class="line">                &#125; else if (copy !== undefined) &#123;</div><div class="line">                    target[name] = copy;</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    return target;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<h3 id="自定义事件（通过观察者模式）"><a href="#自定义事件（通过观察者模式）" class="headerlink" title="自定义事件（通过观察者模式）"></a>自定义事件（通过观察者模式）</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div></pre></td><td class="code"><pre><div class="line">function EventTarget () &#123;</div><div class="line">    this.handlers = &#123;&#125;;</div><div class="line">&#125;</div><div class="line"></div><div class="line">EventTarget.prototype = &#123;</div><div class="line">    constructor: EventTarget,</div><div class="line">    addHandler: function (type, handler) &#123;</div><div class="line">        if (typeof this.handlers[type] == &apos;undefined&apos;) &#123;</div><div class="line">            this.handlers[type] = [];</div><div class="line">        &#125;</div><div class="line">        this.handlers[type].push(handler)</div><div class="line">    &#125;,</div><div class="line">    fire: function (event) &#123;</div><div class="line">        if (!event.target) &#123;</div><div class="line">            event.target = this;</div><div class="line">        &#125;</div><div class="line">        if (this.handlers[event.type] instanceof Array) &#123;</div><div class="line">            var handlers = this.handlers[event.type];</div><div class="line">            for (var i = 0, len = handlers.length; i &lt; len; i++) &#123;</div><div class="line">                handlers[i](event);</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;,</div><div class="line">    removeHandler: function (type, handler) &#123;</div><div class="line">        if (this.handlers[type] instanceof Array) &#123;</div><div class="line">            var handlers = this.handlers[type];</div><div class="line">            for (var i = 0, len = handlers.length; i &lt; len; i++) &#123;</div><div class="line">                if (handlers[i] === handler) &#123;</div><div class="line">                    break;</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">            handlers.splice(i, 1);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="安全"><a href="#安全" class="headerlink" title="安全"></a>安全</h2><h3 id="跨域的几种方法"><a href="#跨域的几种方法" class="headerlink" title="跨域的几种方法"></a>跨域的几种方法</h3><ol>
+<li>主域相同的跨域</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">document.domain</div></pre></td></tr></table></figure>
+<ol>
+<li><p><code>window.postMessage</code></p>
+</li>
+<li><p><code>JSONP</code>跨域(只支持<code>GET</code>)</p>
+</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">function todo(data)&#123;</div><div class="line">  console.log(&apos;The author is: &apos;+ data.name);</div><div class="line">&#125;</div><div class="line"></div><div class="line">var script = document.createElement(&apos;script&apos;);</div><div class="line">/* 向服务器www.yeaseonzhang.com发出请求。注意，该请求的查询字符串有一个callback参数，用来指定回调函数的名字。 */</div><div class="line">script.src = &apos;http://www.yeaseonzhang.com/author?callback=todo&apos;;</div><div class="line">document.body.appendChild(script);</div><div class="line">/* 服务器收到这个请求以后，会将数据放在回调函数的参数位置返回。 */</div><div class="line">todo(&#123;&quot;name&quot;: &quot;fewjq&quot;&#125;);</div><div class="line">/* 由于&lt;script&gt;元素请求的脚本，直接作为代码运行。这时，只要浏览器定义了todo函数，该函数就会立即调用。作为参数的JSON数据被视为JavaScript对象。*/</div></pre></td></tr></table></figure>
+<ol>
+<li><code>websocket</code>跨域</li>
+</ol>
+<h3 id="XSS-和-CSRF"><a href="#XSS-和-CSRF" class="headerlink" title="XSS 和 CSRF"></a>XSS 和 CSRF</h3><ul>
+<li><a href="http://blog.csdn.net/ghsau/article/details/17027893" target="_blank" rel="external">XSS</a></li>
+<li><a href="http://www.cnblogs.com/hyddd/archive/2009/04/09/1432744.html" target="_blank" rel="external">CSRF</a></li>
+</ul>
+<h2 id="性能"><a href="#性能" class="headerlink" title="性能"></a>性能</h2><h3 id="CSS-优化"><a href="#CSS-优化" class="headerlink" title="CSS 优化"></a>CSS 优化</h3><ul>
+<li>正确的时机调用CSS</li>
+<li>使用媒体查询标记<code>&lt;link&gt;</code>，选择性加载</li>
+<li>减少css文件数量</li>
+<li>压缩css代码</li>
+</ul>
+<h3 id="渲染"><a href="#渲染" class="headerlink" title="渲染"></a>渲染</h3><ul>
+<li><a href="http://coolshell.cn/articles/9666.html" target="_blank" rel="external">浏览器渲染原理</a></li>
+</ul>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/面试/" rel="tag"># 面试</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/07/05/深入理解Flex属性/" rel="next" title="深入理解Flex属性">
+                <i class="fa fa-chevron-left"></i> 深入理解Flex属性
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/09/25/2017年书单/" rel="prev" title="2017年书单">
+                2017年书单 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.png"
+               alt="Yeaseon" />
+          <p class="site-author-name" itemprop="name">Yeaseon</p>
+          <p class="site-description motion-element" itemprop="description">做一个有信仰的人。如果没有，那么就让你成为自己的信仰！</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">20</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              
+                <span class="site-state-item-count">18</span>
+                <span class="site-state-item-name">标签</span>
+              
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/YeaseonZhang" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/yeaseonzhang" target="_blank" title="Weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  Weibo
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#CSS"><span class="nav-number">1.</span> <span class="nav-text">CSS</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#列举不同的清除浮动的技巧"><span class="nav-number">1.1.</span> <span class="nav-text">列举不同的清除浮动的技巧</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#一像素边框"><span class="nav-number">1.2.</span> <span class="nav-text">一像素边框</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#形成BFC-Block-Formatting-Context-的几种方式"><span class="nav-number">1.3.</span> <span class="nav-text">形成BFC(Block Formatting Context)的几种方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#布局"><span class="nav-number">1.4.</span> <span class="nav-text">布局</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JS"><span class="nav-number">2.</span> <span class="nav-text">JS</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#async与defer区别"><span class="nav-number">2.1.</span> <span class="nav-text">async与defer区别</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#location-replace-与location-assign-区别"><span class="nav-number">2.2.</span> <span class="nav-text">location.replace()与location.assign()区别</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#new操作符"><span class="nav-number">2.3.</span> <span class="nav-text">new操作符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#AMD-CMD-CommonJS"><span class="nav-number">2.4.</span> <span class="nav-text">AMD CMD CommonJS</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#DOM-操作"><span class="nav-number">2.4.1.</span> <span class="nav-text">DOM 操作</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JS设置css样式的几种方式"><span class="nav-number">2.5.</span> <span class="nav-text">JS设置css样式的几种方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#阻止默认行为"><span class="nav-number">2.6.</span> <span class="nav-text">阻止默认行为</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#阻止冒泡"><span class="nav-number">2.7.</span> <span class="nav-text">阻止冒泡</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Ajax交互过程"><span class="nav-number">2.8.</span> <span class="nav-text">Ajax交互过程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#考察知识点最广的JS面试题"><span class="nav-number">2.9.</span> <span class="nav-text">考察知识点最广的JS面试题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JS数组深浅拷贝"><span class="nav-number">2.10.</span> <span class="nav-text">JS数组深浅拷贝</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数组去重"><span class="nav-number">2.11.</span> <span class="nav-text">数组去重</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#找出数组中的最大值"><span class="nav-number">2.12.</span> <span class="nav-text">找出数组中的最大值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#打乱数组的方法"><span class="nav-number">2.13.</span> <span class="nav-text">打乱数组的方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数组扁平化"><span class="nav-number">2.14.</span> <span class="nav-text">数组扁平化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#排序"><span class="nav-number">2.15.</span> <span class="nav-text">排序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数字格式化-1234567890-gt-1-234-567-890"><span class="nav-number">2.16.</span> <span class="nav-text">数字格式化 1234567890 -> 1,234,567,890</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#打乱数组的方法-1"><span class="nav-number">2.17.</span> <span class="nav-text">打乱数组的方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#尾调用优化"><span class="nav-number">2.18.</span> <span class="nav-text">尾调用优化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#柯里化"><span class="nav-number">2.19.</span> <span class="nav-text">柯里化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ES8-新特性"><span class="nav-number">2.20.</span> <span class="nav-text">ES8 新特性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据类型判断"><span class="nav-number">2.21.</span> <span class="nav-text">数据类型判断</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#防抖"><span class="nav-number">2.22.</span> <span class="nav-text">防抖</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#简单的字符串模板"><span class="nav-number">2.23.</span> <span class="nav-text">简单的字符串模板</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#apply、call和bind"><span class="nav-number">2.24.</span> <span class="nav-text">apply、call和bind</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#创建对象"><span class="nav-number">2.25.</span> <span class="nav-text">创建对象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JS实现Jquery的extend-方法"><span class="nav-number">2.26.</span> <span class="nav-text">JS实现Jquery的extend()方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#自定义事件（通过观察者模式）"><span class="nav-number">2.27.</span> <span class="nav-text">自定义事件（通过观察者模式）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安全"><span class="nav-number">3.</span> <span class="nav-text">安全</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#跨域的几种方法"><span class="nav-number">3.1.</span> <span class="nav-text">跨域的几种方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#XSS-和-CSRF"><span class="nav-number">3.2.</span> <span class="nav-text">XSS 和 CSRF</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#性能"><span class="nav-number">4.</span> <span class="nav-text">性能</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#CSS-优化"><span class="nav-number">4.1.</span> <span class="nav-text">CSS 优化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#渲染"><span class="nav-number">4.2.</span> <span class="nav-text">渲染</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2016 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Yeaseon</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+<div class="busuanzi-count">
+
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">本站访客数<span class="busuanzi-value" id="busuanzi_value_site_uv"></span>人次</span>
+  
+
+  
+    <span class="site-pv">本站总访问量<span class="busuanzi-value" id="busuanzi_value_site_pv"></span>次</span>
+  
+  
+</div>
+
+
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+
+  
+
+    <script type="text/javascript">
+      var disqus_shortname = 'https-yeaseonzhang-github-io';
+      var disqus_identifier = '2017/09/17/2017前端面试题及答案总结/';
+
+      var disqus_title = "2017前端面试题及答案总结";
+
+
+      function run_disqus_script(disqus_script) {
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      }
+
+      run_disqus_script('count.js');
+
+      
+        var disqus_config = function () {
+            this.page.url = disqus_url;
+            this.page.identifier = disqus_identifier;
+            this.page.title = disqus_title;
+        };
+        run_disqus_script('embed.js');
+      
+
+    </script>
+  
+
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+      search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+      $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = $( "entry", xmlResponse ).map(function() {
+            return {
+              title: $( "title", this ).text(),
+              content: $("content",this).text(),
+              url: $( "url" , this).text()
+            };
+          }).get();
+          var $input = document.getElementById(search_id);
+          var $resultContent = document.getElementById(content_id);
+          $input.addEventListener('input', function(){
+            var matchcounts = 0;
+            var str='<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length > 1) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var content_index = [];
+                var data_title = data.title.trim().toLowerCase();
+                var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                var data_url = decodeURIComponent(data.url);
+                var index_title = -1;
+                var index_content = -1;
+                var first_occur = -1;
+                // only match artiles with not empty titles and contents
+                if(data_title != '') {
+                  keywords.forEach(function(keyword, i) {
+                    index_title = data_title.indexOf(keyword);
+                    index_content = data_content.indexOf(keyword);
+                    if( index_title >= 0 || index_content >= 0 ){
+                      isMatch = true;
+                      if (i == 0) {
+                        first_occur = index_content;
+                      }
+                    }
+
+                  });
+                }
+                // show search results
+                if (isMatch) {
+                  matchcounts += 1;
+                  str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                  var content = data.content.trim().replace(/<[^>]+>/g,"");
+                  if (first_occur >= 0) {
+                    // cut out 100 characters
+                    var start = first_occur - 20;
+                    var end = first_occur + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if(start == 0){
+                      end = 50;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    var match_content = content.substring(start, end);
+                    // highlight all keywords
+                    keywords.forEach(function(keyword){
+                      var regS = new RegExp(keyword, "gi");
+                      match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                    });
+
+                    str += "<p class=\"search-result\">" + match_content +"...</p>"
+                  }
+                  str += "</li>";
+                }
+              })};
+            str += "</ul>";
+            if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+            if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+            $resultContent.innerHTML = str;
+          });
+          proceedsearch();
+        }
+      });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+  
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("WRhU6WJqX6Fl91VYiTKraW5C-gzGzoHsz", "Wnpzp3uupeQuANib4F7Ew7dv");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+
+</body>
+</html>
