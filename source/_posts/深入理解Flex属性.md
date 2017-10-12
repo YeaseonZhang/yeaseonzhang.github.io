@@ -29,7 +29,7 @@ flex属性包含三个值：`flex-grow`、`flex-shrink`和`flex-basis`
 首先我们简单写一个flex布局的Demo
 > HTML
 
-```
+```html
 <div class="parent">
   <div class="child_1"></div>
   <div class="child_2"></div>
@@ -39,7 +39,7 @@ flex属性包含三个值：`flex-grow`、`flex-shrink`和`flex-basis`
 
 > CSS
 
-```
+```css
 .child_1,
 .child_2,
 .child_3 {
@@ -59,6 +59,10 @@ flex属性包含三个值：`flex-grow`、`flex-shrink`和`flex-basis`
   background-color: rgba(0, 0, 255, .5);
 }
 ```
+
+<p data-height="265" data-theme-id="0" data-slug-hash="yzqpeQ" data-default-tab="css,result" data-user="YeaseonZhang" data-embed-version="2" data-pen-title="Flex-1" class="codepen">See the Pen <a href="https://codepen.io/YeaseonZhang/pen/yzqpeQ/">Flex-1</a> by YeaseonZhang (<a href="https://codepen.io/YeaseonZhang">@YeaseonZhang</a>) on <a href="https://codepen.io">CodePen</a>.</p>
+<script async src="https://production-assets.codepen.io/assets/embed/ei.js"></script>
+
 设置父元素`display: flex`，其子元素就能使用flex布局，我们只是简单的为子元素使用了`flex: 1`就实现了三等分，而且会随着父元素的宽度变化而变化。这就是我们平时flex布局的简单用法，即各个子元素按照比例布局。
 
 `flex: 1`其实是`flex: 1 1 0%`的简写属性，即伸缩比例都是1。下面我们就分别理解下三个属性值对于布局的影响。
@@ -81,7 +85,7 @@ flex属性包含三个值：`flex-grow`、`flex-shrink`和`flex-basis`
 
 > CSS
 
-```
+```css
 .parent {
   display: flex;
   width: 600px;
@@ -108,6 +112,10 @@ flex属性包含三个值：`flex-grow`、`flex-shrink`和`flex-basis`
   background-color: rgba(0, 0, 255, .5);
 }
 ```
+
+<p data-height="265" data-theme-id="0" data-slug-hash="NaBXpz" data-default-tab="css,result" data-user="YeaseonZhang" data-embed-version="2" data-pen-title="Flex-2" class="codepen">See the Pen <a href="https://codepen.io/YeaseonZhang/pen/NaBXpz/">Flex-2</a> by YeaseonZhang (<a href="https://codepen.io/YeaseonZhang">@YeaseonZhang</a>) on <a href="https://codepen.io">CodePen</a>.</p>
+<script async src="https://production-assets.codepen.io/assets/embed/ei.js"></script>
+
 此时，各个元素的`flex-basis`和为`(150 + 100 + 150) = 400px`, 小于父元素的`600px`,我们就来分别计算每个子元素的宽度值。
 ```
 可用空间 = 父元素width - 子元素flex-basis总和 => 600 - (150 + 100 + 150) = 200
@@ -126,7 +134,7 @@ flex属性包含三个值：`flex-grow`、`flex-shrink`和`flex-basis`
 
 > CSS
 
-```
+```css
 .parent {
   display: flex;
   width: 600px;
@@ -154,6 +162,9 @@ flex属性包含三个值：`flex-grow`、`flex-shrink`和`flex-basis`
   background-color: rgba(0, 0, 255, .5);
 }
 ```
+
+<p data-height="265" data-theme-id="0" data-slug-hash="ZXjvyN" data-default-tab="css,result" data-user="YeaseonZhang" data-embed-version="2" data-pen-title="Flex-3" class="codepen">See the Pen <a href="https://codepen.io/YeaseonZhang/pen/ZXjvyN/">Flex-3</a> by YeaseonZhang (<a href="https://codepen.io/YeaseonZhang">@YeaseonZhang</a>) on <a href="https://codepen.io">CodePen</a>.</p>
+<script async src="https://production-assets.codepen.io/assets/embed/ei.js"></script>
 
 当然啦，我们可以按照`flex-grow`的计算方法套用。
 

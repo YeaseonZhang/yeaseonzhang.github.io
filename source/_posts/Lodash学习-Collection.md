@@ -16,10 +16,10 @@ tags: Lodash
 创建一个`key-value`的对象，`key`是通过将`collection`按照`iteratee`规则迭代得到的，对应的`value`则是，这个`key`值出现了N次，`value`就是N。也就是迎合了API的**count**的意思。
 
 例子：
-```
+```js
 _.countBy([6.1, 4.2, 6.3], Math.floor);
 // => { '4': 1, '6': 2 }
- 
+
 // The `_.property` iteratee shorthand.
 _.countBy(['one', 'two', 'three'], 'length');
 // => { '3': 2, '5': 1 }
@@ -32,23 +32,23 @@ _.countBy(['one', 'two', 'three'], 'length');
 如果`collection`全部元素满足`predicate`条件，返回`true`；否则只要出现不满足的，就返回`false`。`predicate`调用三个参数`value, index, array`。
 
 例子：
-```
+```js
 _.every([true, 1, null, 'yes'], Boolean);
 // => false
- 
+
 var users = [
   { 'user': 'barney', 'age': 36, 'active': false },
   { 'user': 'fred',   'age': 40, 'active': false }
 ];
- 
+
 // The `_.matches` iteratee shorthand.
 _.every(users, { 'user': 'barney', 'active': false });
 // => false
- 
+
 // The `_.matchesProperty` iteratee shorthand.
 _.every(users, ['active', false]);
 // => true
- 
+
 // The `_.property` iteratee shorthand.
 _.every(users, 'active');
 // => false
@@ -59,23 +59,23 @@ _.every(users, 'active');
 遍历`collection`全部元素，返回满足`predicate`条件的元素组成的新数组。`predicate`调用三个参数`value, index, array`。
 
 例子:
-```
+```js
 var users = [
   { 'user': 'barney', 'age': 36, 'active': true },
   { 'user': 'fred',   'age': 40, 'active': false }
 ];
- 
+
 _.filter(users, function(o) { return !o.active; });
 // => objects for ['fred']
- 
+
 // The `_.matches` iteratee shorthand.
 _.filter(users, { 'age': 36, 'active': true });
 // => objects for ['barney']
- 
+
 // The `_.matchesProperty` iteratee shorthand.
 _.filter(users, ['active', false]);
 // => objects for ['fred']
- 
+
 // The `_.property` iteratee shorthand.
 _.filter(users, 'active');
 // => objects for ['barney']
@@ -87,24 +87,24 @@ _.filter(users, 'active');
 与上面`_.filter`不同的是`_.find`只返回第一个匹配的元素，可以通过`fromIndex`指定查找位置，默认`fromIndex=0`。如果没有匹配的，返回`undefined`。
 
 例子：
-```
+```js
 var users = [
   { 'user': 'barney',  'age': 36, 'active': true },
   { 'user': 'fred',    'age': 40, 'active': false },
   { 'user': 'pebbles', 'age': 1,  'active': true }
 ];
- 
+
 _.find(users, function(o) { return o.age < 40; });
 // => object for 'barney'
- 
+
 // The `_.matches` iteratee shorthand.
 _.find(users, { 'age': 1, 'active': true });
 // => object for 'pebbles'
- 
+
 // The `_.matchesProperty` iteratee shorthand.
 _.find(users, ['active', false]);
 // => object for 'fred'
- 
+
 // The `_.property` iteratee shorthand.
 _.find(users, 'active');
 // => object for 'barney'
@@ -116,7 +116,7 @@ _.find(users, 'active');
 `_.findLast`与`_find`方法不同的是从右到左查找，`fromIndex`默认值`collection.length-1`。
 
 例子:
-```
+```js
 _.findLast([1, 2, 3, 4], function(n) {
   return n % 2 == 1;
 });
@@ -129,11 +129,11 @@ _.findLast([1, 2, 3, 4], function(n) {
 `collection`全部元素迭代执行`iteratee`，将得到的元素组合成一个**flattened**数组（我理解的就是变成N-1维数组），`iteratee`调用三个参数`value, index|key, collection`。
 
 例子：
-```
+```js
 function duplicate(n) {
   return [n, n];
 }
- 
+
 _.flatMap([1, 2], duplicate);
 // => [1, 1, 2, 2]
 ```
@@ -145,11 +145,11 @@ _.flatMap([1, 2], duplicate);
 这个方法是`_.flatMap`的升级版，会把多维数组变成一维数组。
 
 例子：
-```
+```js
 function duplicate(n) {
   return [[[n, n]]];
 }
- 
+
 _.flatMapDeep([1, 2], duplicate);
 // => [1, 1, 2, 2]
 ```
@@ -160,11 +160,11 @@ _.flatMapDeep([1, 2], duplicate);
 这个是可以指定降维次数`_.flatMapDeep`的版本。`depth`降维次数默认为1。
 
 例子：
-```
+```js
 function duplicate(n) {
   return [[[n, n]]];
 }
- 
+
 _.flatMapDepth([1, 2], duplicate, 2);
 // => [[1, 1], [2, 2]]
 ```
@@ -178,12 +178,12 @@ _.flatMapDepth([1, 2], duplicate, 2);
 返回值：返回`collection`本身
 
 例子：
-```
+```js
 _.forEach([1, 2], function(value) {
   console.log(value);
 });
 // => Logs `1` then `2`.
- 
+
 _.forEach({ 'a': 1, 'b': 2 }, function(value, key) {
   console.log(key);
 });
@@ -196,7 +196,7 @@ _.forEach({ 'a': 1, 'b': 2 }, function(value, key) {
 和`_.forEach`方法的区别，`collection`元素从右到左执行`iteratee`。
 
 例子：
-```
+```js
 _.forEachRight([1, 2], function(value) {
   console.log(value);
 });
@@ -211,10 +211,10 @@ _.forEachRight([1, 2], function(value) {
 返回值：返回`key-value`组成的新对象
 
 例子：
-```
+```js
 _.groupBy([6.1, 4.2, 6.3], Math.floor);
 // => { '4': [4.2], '6': [6.1, 6.3] }
- 
+
 // The `_.property` iteratee shorthand.
 _.groupBy(['one', 'two', 'three'], 'length');
 // => { '3': ['one', 'two'], '5': ['three'] }
@@ -226,16 +226,16 @@ _.groupBy(['one', 'two', 'three'], 'length');
 检查`value`是否在`collection`中，`fromIndex`指定检查的位置，默认是`0`。存在返回`true`，不存在返回`false`。
 
 例子：
-```
+```js
 _.includes([1, 2, 3], 1);
 // => true
- 
+
 _.includes([1, 2, 3], 1, 2);
 // => false
- 
+
 _.includes({ 'a': 1, 'b': 2 }, 1);
 // => true
- 
+
 _.includes('abcd', 'bc');
 // => true
 ```
@@ -246,10 +246,10 @@ _.includes('abcd', 'bc');
 为`collection`每个元素调用`path`方法，返回调用后的结果组成的新数组。`args`参数将会提供给被调用的方法。
 
 例子：
-```
+```js
 _.invokeMap([[5, 1, 7], [3, 2, 1]], 'sort');
 // => [[1, 5, 7], [1, 2, 3]]
- 
+
 _.invokeMap([123, 456], String.prototype.split, '');
 // => [['1', '2', '3'], ['4', '5', '6']]
 ```
@@ -260,13 +260,13 @@ _.invokeMap([123, 456], String.prototype.split, '');
 返回一个`key-value`对象，`key`是`collection`每个元素执行`iteratee`后的结果，对应的`value`是最后一个生成该`key`的`collection`值。`iteratee`调用一个参数`value`。
 
 例子:
-```
+```js
 var array = [
   { 'dir': 'left', 'code': 97 },
   { 'dir': 'right', 'code': 100 },
   { 'dir': 'right', 'code': 99}
 ];
- 
+
 _.keyBy(array, 'dir');
 // => { 'left': { 'dir': 'left', 'code': 97 }, 'right': { 'dir': 'right', 'code': 99 } }
 ```
@@ -277,22 +277,22 @@ _.keyBy(array, 'dir');
 这个就比较简单了，为`collection`的每个元素执行`iteratee`方法，得到的结果映射成一个新的数组。
 
 例子：
-```
+```js
 function square(n) {
   return n * n;
 }
- 
+
 _.map([4, 8], square);
 // => [16, 64]
- 
+
 _.map({ 'a': 4, 'b': 8 }, square);
 // => [16, 64] (iteration order is not guaranteed)
- 
+
 var users = [
   { 'user': 'barney' },
   { 'user': 'fred' }
 ];
- 
+
 // The `_.property` iteratee shorthand.
 _.map(users, 'user');
 // => ['barney', 'fred']
@@ -304,14 +304,14 @@ _.map(users, 'user');
 这个方法很像`_.sortBy`，不过`_.orderBy`允许指定排序方式`iteratees`。`orders`默认是`asc`（升序），也可以指定为`desc`，返回一个新的有序的数组。
 
 例子：
-```
+```js
 var users = [
   { 'user': 'fred',   'age': 48 },
   { 'user': 'barney', 'age': 34 },
   { 'user': 'fred',   'age': 40 },
   { 'user': 'barney', 'age': 36 }
 ];
- 
+
 // Sort by `user` in ascending order and by `age` in descending order.
 _.orderBy(users, ['user', 'age'], ['asc', 'desc']);
 // => objects for [['barney', 36], ['barney', 34], ['fred', 48], ['fred', 40]]
@@ -325,24 +325,24 @@ _.orderBy(users, ['user', 'age'], ['asc', 'desc']);
 将`collection`分成两组，一组是执行`predicate`返回`true`，另一组是返回`false`。返回的结果应该是一个二维数组。
 
 例子：
-```
+```js
 var users = [
   { 'user': 'barney',  'age': 36, 'active': false },
   { 'user': 'fred',    'age': 40, 'active': true },
   { 'user': 'pebbles', 'age': 1,  'active': false }
 ];
- 
+
 _.partition(users, function(o) { return o.active; });
 // => objects for [['fred'], ['barney', 'pebbles']]
- 
+
 // The `_.matches` iteratee shorthand.
 _.partition(users, { 'age': 1, 'active': false });
 // => objects for [['pebbles'], ['barney', 'fred']]
- 
+
 // The `_.matchesProperty` iteratee shorthand.
 _.partition(users, ['active', false]);
 // => objects for [['barney', 'pebbles'], ['fred']]
- 
+
 // The `_.property` iteratee shorthand.
 _.partition(users, 'active');
 // => objects for [['fred'], ['barney', 'pebbles']]
@@ -355,12 +355,12 @@ _.partition(users, 'active');
 `iteratee`调用四个参数`accumulator, value， index|key, collection`。
 
 例子：
-```
+```js
 _.reduce([1, 2], function(sum, n) {
   return sum + n;
 }, 0);
 // => 3
- 
+
 _.reduce({ 'a': 1, 'b': 2, 'c': 1 }, function(result, value, key) {
   (result[value] || (result[value] = [])).push(key);
   return result;
@@ -374,9 +374,9 @@ _.reduce({ 'a': 1, 'b': 2, 'c': 1 }, function(result, value, key) {
 这个方法与`_.reduce()`方法不同的是从右到左计算。
 
 例子：
-```
+```js
 var array = [[0, 1], [2, 3], [4, 5]];
- 
+
 _.reduceRight(array, function(flattened, other) {
   return flattened.concat(other);
 }, []);
@@ -389,23 +389,23 @@ _.reduceRight(array, function(flattened, other) {
 这个方法与`_.filter`相反，返回`collection`执行`predicate`返回`false`条件的元素组成的新数组。
 
 例子：
-```
+```js
 var users = [
   { 'user': 'barney', 'age': 36, 'active': false },
   { 'user': 'fred',   'age': 40, 'active': true }
 ];
- 
+
 _.reject(users, function(o) { return !o.active; });
 // => objects for ['fred']
- 
+
 // The `_.matches` iteratee shorthand.
 _.reject(users, { 'age': 40, 'active': true });
 // => objects for ['barney']
- 
+
 // The `_.matchesProperty` iteratee shorthand.
 _.reject(users, ['active', false]);
 // => objects for ['fred']
- 
+
 // The `_.property` iteratee shorthand.
 _.reject(users, 'active');
 // => objects for ['barney']
@@ -417,7 +417,7 @@ _.reject(users, 'active');
 返回`collection`中随机的一个元素。
 
 例子：
-```
+```js
 _.sample([1, 2, 3, 4]);
 // => 2
 ```
@@ -428,10 +428,10 @@ _.sample([1, 2, 3, 4]);
 返回`collection`中随机的`n`个数，默认`n=1`。
 
 例子：
-```
+```js
 _.sampleSize([1, 2, 3], 2);
 // => [3, 1]
- 
+
 _.sampleSize([1, 2, 3], 4);
 // => [2, 3, 1]
 ```
@@ -442,7 +442,7 @@ _.sampleSize([1, 2, 3], 4);
 把`collection`元素的顺序随机打乱，返回打乱后的`collection`。
 
 例子：
-```
+```js
 _.shuffle([1, 2, 3, 4]);
 // => [4, 1, 3, 2]
 ```
@@ -453,13 +453,13 @@ _.shuffle([1, 2, 3, 4]);
 返回`collection`的`length`,`collection`可以是`Array|Object|string`。
 
 例子：
-```
+```js
 _.size([1, 2, 3]);
 // => 3
- 
+
 _.size({ 'a': 1, 'b': 2 });
 // => 2
- 
+
 _.size('pebbles');
 // => 7
 ```
@@ -470,23 +470,23 @@ _.size('pebbles');
 对`collection`元素执行`predicate`，返回布尔值,迭代过程遇到返回`false`就停止。`predicate`调用三个参数`value, index|key, collection`。
 
 例子：
-```
+```js
 _.some([null, 0, 'yes', false], Boolean);
 // => true
- 
+
 var users = [
   { 'user': 'barney', 'active': true },
   { 'user': 'fred',   'active': false }
 ];
- 
+
 // The `_.matches` iteratee shorthand.
 _.some(users, { 'user': 'barney', 'active': false });
 // => false
- 
+
 // The `_.matchesProperty` iteratee shorthand.
 _.some(users, ['active', false]);
 // => true
- 
+
 // The `_.property` iteratee shorthand.
 _.some(users, 'active');
 // => true
@@ -498,17 +498,17 @@ _.some(users, 'active');
 按照`iteratee`规则对`collection`进行排序。
 
 例子:
-```
+```js
 var users = [
   { 'user': 'fred',   'age': 48 },
   { 'user': 'barney', 'age': 36 },
   { 'user': 'fred',   'age': 40 },
   { 'user': 'barney', 'age': 34 }
 ];
- 
+
 _.sortBy(users, [function(o) { return o.user; }]);
 // => objects for [['barney', 36], ['barney', 34], ['fred', 48], ['fred', 40]]
- 
+
 _.sortBy(users, ['user', 'age']);
 // => objects for [['barney', 34], ['barney', 36], ['fred', 40], ['fred', 48]]
 ```
