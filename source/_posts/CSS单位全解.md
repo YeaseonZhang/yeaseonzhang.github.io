@@ -1,6 +1,6 @@
 ---
 title: CSS单位全解
-date: 2017-11-13 21:33:07
+date: 2017-11-24 21:33:07
 tags: css
 ---
 
@@ -27,7 +27,14 @@ tags: css
 
 利用这个特性，我们常常使用`rem`单位进行移动端页面的布局。
 
+`rem`布局的本质是等比缩放，一般是基于宽度。
+
 {% asset_img rem.png rem浏览器兼容性 %}
+
+
+兼容性 | iOS | Android
+---------|----------|---------
+ rem | 4.1+ | 2.1+
 
 <p data-height="265" data-theme-id="0" data-slug-hash="YEQmjJ" data-default-tab="result" data-user="YeaseonZhang" data-embed-version="2" data-pen-title="rem" class="codepen">See the Pen <a href="https://codepen.io/YeaseonZhang/pen/YEQmjJ/">rem</a> by YeaseonZhang (<a href="https://codepen.io/YeaseonZhang">@YeaseonZhang</a>) on <a href="https://codepen.io">CodePen</a>.</p>
 <script async src="https://production-assets.codepen.io/assetsi/embed/ei.js"></script>
@@ -49,6 +56,8 @@ document.addEventListener('DOMContentLoaded', function (e) {
 }
 ```
 
+也有人建议将设计稿宽度划分成100份，每一份就是一个`rem`单位，那么`750px`宽度的设计稿，对应的`html`的`font-size = 1rem = 7.5px`，方便兼容`vh/vw`单位。但是不建议这么做，你知道什么吗？
+
 ## vh/vw
 
 `vh/vw`单位类似于百分比单位不同之处在于`vh/vw`单位的布局不依赖于父级的宽高，而是相对于视口的宽高。
@@ -56,10 +65,15 @@ document.addEventListener('DOMContentLoaded', function (e) {
 
 {% asset_img v-unit.png 视口单位兼容性 %}
 
-目前移动端对于视口单位基本全面支持。
+目前移动端高端机型对于视口单位基本全面支持。
+
+兼容性 | iOS | Android
+---------|----------|---------
+ vw | 6.1+ | 4.4+
 
 <p data-height="705" data-theme-id="0" data-slug-hash="JOvLOy" data-default-tab="result" data-user="YeaseonZhang" data-embed-version="2" data-pen-title="v-unit" class="codepen">See the Pen <a href="https://codepen.io/YeaseonZhang/pen/JOvLOy/">v-unit</a> by YeaseonZhang (<a href="https://codepen.io/YeaseonZhang">@YeaseonZhang</a>) on <a href="https://codepen.io">CodePen</a>.</p>
 <script async src="https://production-assets.codepen.io/assets/embed/ei.js"></script>
+
 
 **注**：不同浏览器在获取视口的方法不同
 IE9+、Firefox、Safari、Opera和Chrome均提供了4个属性`innerWidth`、`innerHeight`、`outerWidth`和`outerHeight`。
@@ -83,6 +97,17 @@ if (typeof pageWidth != 'number') {
   }
 }
 ```
+其实，`vw`还可以和`rem`方案结合，这样就不需要js计算来设置`html`字体大小。
+```css
+html {
+  font-size: 1vw
+}
+p {
+  width: 15rem;
+}
+```
+
+往往一份设计稿为了兼容大屏设备，我们会采取限制布局的最大宽度。大于这个宽度的话页面居中并且，两边会留白。这个时候`vw`单位就无法满足我们的需求了。
 
 ## vmin/vmax
 
@@ -122,7 +147,18 @@ if (typeof pageWidth != 'number') {
 <p data-height="265" data-theme-id="0" data-slug-hash="WXJJMR" data-default-tab="css,result" data-user="YeaseonZhang" data-embed-version="2" data-pen-title="ex" class="codepen">See the Pen <a href="https://codepen.io/YeaseonZhang/pen/WXJJMR/">ex</a> by YeaseonZhang (<a href="https://codepen.io/YeaseonZhang">@YeaseonZhang</a>) on <a href="https://codepen.io">CodePen</a>.</p>
 <script async src="https://production-assets.codepen.io/assets/embed/ei.js"></script>
 
+## 小结
+
++ `em`单位，还是老老实实作为字体/行高单位，如果用做布局使用，会牵一发而动全身，一个节点变化导致后代元素都需要重新计算
+
++ `rem`单位，需要结合`js`脚本动态设置`html`字体大小，如果用户禁用了js(少数情况)，这种时候我们可以选择`<noscript>开启JavaScript，获得更高的用户体验</noscript>`；第二个方案就是使用媒体查询，为主流尺寸的设备设置`html`字体大小
+
++ `vh/vw/vmin/vmax`单位，对于设备系统浏览器要求比较高，如果不考虑兼容低版本浏览器，可以选择使用。当你选择使用`vw/vh`单位的时候，配合`calc`计算属性会更精确完成布局，例如`width: calc(50vw - 40px)`
+
++ `ch/ex`单位，使用的频率不高。如果使用的是等宽字体，`ch`单位可以用来布局，但是中文字体和英文字体等宽肯定是不一样宽的，所以还是不要考虑用来布局了。`ex`单位的应用场景，基本上使用`em`单位都能完成，所以也是一个可用可不用的单位。
+
 ## 参考资料
 + [7 CSS Units You Might Not Know About](https://webdesign.tutsplus.com/articles/7-css-units-you-might-not-know-about--cms-22573)
 
 + [網頁樣式表 CSS提示以及技巧](https://www.w3.org/Style/Examples/007/units.zh_HK.html)
++ [Rem布局的原理解析](http://yanhaijing.com/css/2017/09/29/principle-of-rem-layout/)
