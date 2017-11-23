@@ -50,3 +50,79 @@ document.addEventListener('DOMContentLoaded', function (e) {
 ```
 
 ## vh/vw
+
+`vh/vw`单位类似于百分比单位不同之处在于`vh/vw`单位的布局不依赖于父级的宽高，而是相对于视口的宽高。
+`1vh`等于1%的视口高度，`1vw`等于1%的视口宽度。若视口宽度是`750px`，那么`1vw`就是`7.5px`。
+
+{% asset_img v-unit.png 视口单位兼容性 %}
+
+目前移动端对于视口单位基本全面支持。
+
+<p data-height="705" data-theme-id="0" data-slug-hash="JOvLOy" data-default-tab="result" data-user="YeaseonZhang" data-embed-version="2" data-pen-title="v-unit" class="codepen">See the Pen <a href="https://codepen.io/YeaseonZhang/pen/JOvLOy/">v-unit</a> by YeaseonZhang (<a href="https://codepen.io/YeaseonZhang">@YeaseonZhang</a>) on <a href="https://codepen.io">CodePen</a>.</p>
+<script async src="https://production-assets.codepen.io/assets/embed/ei.js"></script>
+
+**注**：不同浏览器在获取视口的方法不同
+IE9+、Firefox、Safari、Opera和Chrome均提供了4个属性`innerWidth`、`innerHeight`、`outerWidth`和`outerHeight`。
+
++ IE9+、Safari和Firefox中，`outerWidth`和`outerHeight`返回浏览器窗口本身的尺寸，而`innerWidth`和`innerHeight`则表示该容器中页面视图区的大小（减去边框宽度）
++ Chrome中，`inner*`和`outer*`返回相同的值，即视口大小而非浏览器窗口的大小。
++ 在IE、Firefox、Safari、Opera和Chrome中，都能通过`document.documentElement.clientWidth`和`document.documentElement.clientHeight`中保存了页面视口信息。
+
+获取页面视口大小
+```js
+var pageWidth = window.innerWidth,
+  pageHeight = window.innerHeight;
+
+if (typeof pageWidth != 'number') {
+  if (document.compatMode == 'CSS1Compat') { // 浏览器标准模式
+    pageWidth = document.documentElement.clientWidth;
+    pageHeight = document.documentElement.clientHeight;
+  } else {  // IE6 混杂模式
+    pageWidth = document.body.clientWidth;
+    pageHeight = document.doby.clientHeight;
+  }
+}
+```
+
+## vmin/vmax
+
+`vmin`是指`vh`和`vw`中较小的那一个的大小，当然`vmax`就是`vh`和`vw`中较大的那一个。
+
+例如，浏览器视口宽`1100px`、高`700px`，那么`1vmin = 7px; 1vmax = 11px`；如果浏览器视口宽`800px`，高`1080px`，那么`1vmin = 8px; 1vmax = 10.8px`
+
+很有意思的是，使用这个单位的时候我们并不关心宽高，而是按照大小来区分，所以在移动端中的应用会比较多。
+
+```css
+.box {
+  height: 100vmin;
+  width: 100vmin;
+}
+```
+{% asset_img vmin.png %}
+
+```css
+.box {
+  height: 100vmax;
+  width: 100vmax;
+}
+```
+{% asset_img vmax.png %}
+
+## ch 和 ex
+
+`ch`和`ex`单位都是基于当前字体的特定单位。
+
+`ch`单位，被定义为当前字体`0`字符的宽度。所以如果你使用的是等宽字体，那么你就可以直接定义一个盒子能够容纳多少个字符。
+
+<p data-height="265" data-theme-id="0" data-slug-hash="EbLLPQ" data-default-tab="result" data-user="YeaseonZhang" data-embed-version="2" data-pen-title="ch" class="codepen">See the Pen <a href="https://codepen.io/YeaseonZhang/pen/EbLLPQ/">ch</a> by YeaseonZhang (<a href="https://codepen.io/YeaseonZhang">@YeaseonZhang</a>) on <a href="https://codepen.io">CodePen</a>.</p>
+<script async src="https://production-assets.codepen.io/assets/embed/ei.js"></script>
+
+`ex`单位，被定义为当前字体`x`字符高度。这个单位通常用于排版微调，确保精确控制。
+
+<p data-height="265" data-theme-id="0" data-slug-hash="WXJJMR" data-default-tab="css,result" data-user="YeaseonZhang" data-embed-version="2" data-pen-title="ex" class="codepen">See the Pen <a href="https://codepen.io/YeaseonZhang/pen/WXJJMR/">ex</a> by YeaseonZhang (<a href="https://codepen.io/YeaseonZhang">@YeaseonZhang</a>) on <a href="https://codepen.io">CodePen</a>.</p>
+<script async src="https://production-assets.codepen.io/assets/embed/ei.js"></script>
+
+## 参考资料
++ [7 CSS Units You Might Not Know About](https://webdesign.tutsplus.com/articles/7-css-units-you-might-not-know-about--cms-22573)
+
++ [網頁樣式表 CSS提示以及技巧](https://www.w3.org/Style/Examples/007/units.zh_HK.html)
