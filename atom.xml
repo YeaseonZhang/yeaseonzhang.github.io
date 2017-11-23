@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://yeaseonzhang.github.io/"/>
-  <updated>2017-10-12T14:37:42.118Z</updated>
+  <updated>2017-11-23T16:47:07.962Z</updated>
   <id>https://yeaseonzhang.github.io/</id>
   
   <author>
@@ -14,6 +14,126 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>CSS单位全解</title>
+    <link href="https://yeaseonzhang.github.io/2017/11/24/CSS%E5%8D%95%E4%BD%8D%E5%85%A8%E8%A7%A3/"/>
+    <id>https://yeaseonzhang.github.io/2017/11/24/CSS单位全解/</id>
+    <published>2017-11-24T13:33:07.000Z</published>
+    <updated>2017-11-23T16:47:07.962Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="对于css单位的认识"><a href="#对于css单位的认识" class="headerlink" title="对于css单位的认识"></a>对于css单位的认识</h2><p>对于网页布局的单位，只知道<code>px</code>是仅仅不够的，还需要知道其他几个比较常见的单位，特别是css3推出的一些新的度量单位。</p>
+<a id="more"></a>
+<h2 id="em"><a href="#em" class="headerlink" title="em"></a>em</h2><p><code>em</code>是一种相对单位，它相对于父元素的字体大小。</p>
+<p><code>em</code>常用于存在缩放需求时使用，比如在多行文本段落中，如果行高设置为<code>line-height: 18px</code>，如果文字的大小因为缩放发生改变，行高值是不会随之改变的，一直都是<code>18px</code>，如果将行高设置成一种相对值<code>line-height: 1.2em</code>，那么此时的行高值就会随着字体的大小改变而变化。</p>
+<p>因为<code>em</code>是相对于父元素的字体大小，所以该单位存在明显的嵌套层级关系，浏览器默认的字体大小是<code>16px</code>，因此<code>1em = 16px</code>，需要注意的是<strong>chrome</strong>浏览器能够显示的最小字体是<code>12px</code>，当字体大小设置小于<code>12px</code>字体将按照<code>12px</code>显示。</p>
+<p></p><p data-height="265" data-theme-id="0" data-slug-hash="MOowbV" data-default-tab="jjresult" data-user="YeaseonZhang" data-embed-version="2" data-pen-title="em" class="codepen">See the Pen <a href="https://codepen.io/YeaseonZhang/pen/MOowbV/" target="_blank" rel="external">em</a> by YeaseonZhang (<a href="https://codepen.io/YeaseonZhang" target="_blank" rel="external">@YeaseonZhang</a>) on <a href="https://codepen.io" target="_blank" rel="external">CodePen</a>.</p><p></p>
+<script async src="https://production-assets.codepen.io/assets/embed/ei.js"></script>
+
+<h2 id="rem"><a href="#rem" class="headerlink" title="rem"></a>rem</h2><p><code>rem</code>(<strong>root em</strong>)是一种相对单位，和<code>em</code>不同点是<code>rem</code>相对于根元素<code>html</code>的字体大小。</p>
+<p>利用这个特性，我们常常使用<code>rem</code>单位进行移动端页面的布局。</p>
+<p><code>rem</code>布局的本质是等比缩放，一般是基于宽度。</p>
+<img src="/2017/11/24/CSS单位全解/rem.png" alt="rem浏览器兼容性" title="rem浏览器兼容性">
+<table>
+<thead>
+<tr>
+<th>兼容性</th>
+<th>iOS</th>
+<th>Android</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td> rem</td>
+<td>4.1+</td>
+<td>2.1+</td>
+</tr>
+</tbody>
+</table>
+<p></p><p data-height="265" data-theme-id="0" data-slug-hash="YEQmjJ" data-default-tab="result" data-user="YeaseonZhang" data-embed-version="2" data-pen-title="rem" class="codepen">See the Pen <a href="https://codepen.io/YeaseonZhang/pen/YEQmjJ/" target="_blank" rel="external">rem</a> by YeaseonZhang (<a href="https://codepen.io/YeaseonZhang" target="_blank" rel="external">@YeaseonZhang</a>) on <a href="https://codepen.io" target="_blank" rel="external">CodePen</a>.</p><p></p>
+<script async src="https://production-assets.codepen.io/assetsi/embed/ei.js"></script>
+
+<p>现在移动端设计稿的尺寸大多为以iPhone6为基准的<code>750px</code>，首先将页面划分为100份，每一份的宽度为<code>npx</code>, 设置<code>1rem = 10n</code>，所以以<code>750px</code>为基准的话，每份就是<code>7.5px</code>，<code>1rem</code>就对应<code>75px</code>。但这仅仅只能适配宽度为<code>750px</code>的设备，所以通过加载页面时动态计算设备的尺寸来，修改<code>html</code>的<code>font-size</code>值，就能实现页面缩放适配。</p>
+<p>最简单设置rem基准值的方法。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">document</span>.addEventListener(<span class="string">'DOMContentLoaded'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">e</span>) </span>&#123;</div><div class="line">  <span class="keyword">var</span> rem = <span class="built_in">window</span>.innerWidth / <span class="number">10</span> + <span class="string">'px'</span>;</div><div class="line">  <span class="built_in">document</span>.getElementsByTagName(<span class="string">'html'</span>)[<span class="number">0</span>].style.fontSize = rem;</div><div class="line">&#125;)</div></pre></td></tr></table></figure></p>
+<p>使用<strong>scss</strong>将<code>px</code>转换为<code>rem</code>值<br><figure class="highlight scss"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">@function px2rem (<span class="variable">$px</span>) &#123;</div><div class="line">  <span class="variable">$rem</span>: <span class="number">75px</span>;</div><div class="line">  @return (<span class="variable">$px</span> / <span class="variable">$rem</span>) + rem;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>也有人建议将设计稿宽度划分成100份，每一份就是一个<code>rem</code>单位，那么<code>750px</code>宽度的设计稿，对应的<code>html</code>的<code>font-size = 1rem = 7.5px</code>，方便兼容<code>vh/vw</code>单位。但是不建议这么做，你知道什么吗？</p>
+<h2 id="vh-vw"><a href="#vh-vw" class="headerlink" title="vh/vw"></a>vh/vw</h2><p><code>vh/vw</code>单位类似于百分比单位不同之处在于<code>vh/vw</code>单位的布局不依赖于父级的宽高，而是相对于视口的宽高。<br><code>1vh</code>等于1%的视口高度，<code>1vw</code>等于1%的视口宽度。若视口宽度是<code>750px</code>，那么<code>1vw</code>就是<code>7.5px</code>。</p>
+<img src="/2017/11/24/CSS单位全解/v-unit.png" alt="视口单位兼容性" title="视口单位兼容性">
+<p>目前移动端高端机型对于视口单位基本全面支持。</p>
+<table>
+<thead>
+<tr>
+<th>兼容性</th>
+<th>iOS</th>
+<th>Android</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td> vw</td>
+<td>6.1+</td>
+<td>4.4+</td>
+</tr>
+</tbody>
+</table>
+<p></p><p data-height="705" data-theme-id="0" data-slug-hash="JOvLOy" data-default-tab="result" data-user="YeaseonZhang" data-embed-version="2" data-pen-title="v-unit" class="codepen">See the Pen <a href="https://codepen.io/YeaseonZhang/pen/JOvLOy/" target="_blank" rel="external">v-unit</a> by YeaseonZhang (<a href="https://codepen.io/YeaseonZhang" target="_blank" rel="external">@YeaseonZhang</a>) on <a href="https://codepen.io" target="_blank" rel="external">CodePen</a>.</p><p></p>
+<script async src="https://production-assets.codepen.io/assets/embed/ei.js"></script>
+
+
+<p><strong>注</strong>：不同浏览器在获取视口的方法不同<br>IE9+、Firefox、Safari、Opera和Chrome均提供了4个属性<code>innerWidth</code>、<code>innerHeight</code>、<code>outerWidth</code>和<code>outerHeight</code>。</p>
+<ul>
+<li>IE9+、Safari和Firefox中，<code>outerWidth</code>和<code>outerHeight</code>返回浏览器窗口本身的尺寸，而<code>innerWidth</code>和<code>innerHeight</code>则表示该容器中页面视图区的大小（减去边框宽度）</li>
+<li>Chrome中，<code>inner*</code>和<code>outer*</code>返回相同的值，即视口大小而非浏览器窗口的大小。</li>
+<li>在IE、Firefox、Safari、Opera和Chrome中，都能通过<code>document.documentElement.clientWidth</code>和<code>document.documentElement.clientHeight</code>中保存了页面视口信息。</li>
+</ul>
+<p>获取页面视口大小<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> pageWidth = <span class="built_in">window</span>.innerWidth,</div><div class="line">  pageHeight = <span class="built_in">window</span>.innerHeight;</div><div class="line"></div><div class="line"><span class="keyword">if</span> (<span class="keyword">typeof</span> pageWidth != <span class="string">'number'</span>) &#123;</div><div class="line">  <span class="keyword">if</span> (<span class="built_in">document</span>.compatMode == <span class="string">'CSS1Compat'</span>) &#123; <span class="comment">// 浏览器标准模式</span></div><div class="line">    pageWidth = <span class="built_in">document</span>.documentElement.clientWidth;</div><div class="line">    pageHeight = <span class="built_in">document</span>.documentElement.clientHeight;</div><div class="line">  &#125; <span class="keyword">else</span> &#123;  <span class="comment">// IE6 混杂模式</span></div><div class="line">    pageWidth = <span class="built_in">document</span>.body.clientWidth;</div><div class="line">    pageHeight = <span class="built_in">document</span>.doby.clientHeight;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>其实，<code>vw</code>还可以和<code>rem</code>方案结合，这样就不需要js计算来设置<code>html</code>字体大小。<br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">html</span> &#123;</div><div class="line">  <span class="attribute">font-size</span>: <span class="number">1vw</span></div><div class="line">&#125;</div><div class="line"><span class="selector-tag">p</span> &#123;</div><div class="line">  <span class="attribute">width</span>: <span class="number">15rem</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>往往一份设计稿为了兼容大屏设备，我们会采取限制布局的最大宽度。大于这个宽度的话页面居中并且，两边会留白。这个时候<code>vw</code>单位就无法满足我们的需求了。</p>
+<h2 id="vmin-vmax"><a href="#vmin-vmax" class="headerlink" title="vmin/vmax"></a>vmin/vmax</h2><p><code>vmin</code>是指<code>vh</code>和<code>vw</code>中较小的那一个的大小，当然<code>vmax</code>就是<code>vh</code>和<code>vw</code>中较大的那一个。</p>
+<p>例如，浏览器视口宽<code>1100px</code>、高<code>700px</code>，那么<code>1vmin = 7px; 1vmax = 11px</code>；如果浏览器视口宽<code>800px</code>，高<code>1080px</code>，那么<code>1vmin = 8px; 1vmax = 10.8px</code></p>
+<p>很有意思的是，使用这个单位的时候我们并不关心宽高，而是按照大小来区分，所以在移动端中的应用会比较多。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.box</span> &#123;</div><div class="line">  <span class="attribute">height</span>: <span class="number">100vmin</span>;</div><div class="line">  <span class="attribute">width</span>: <span class="number">100vmin</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<img src="/2017/11/24/CSS单位全解/vmin.png" alt="vmin.png" title="">
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.box</span> &#123;</div><div class="line">  <span class="attribute">height</span>: <span class="number">100vmax</span>;</div><div class="line">  <span class="attribute">width</span>: <span class="number">100vmax</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<img src="/2017/11/24/CSS单位全解/vmax.png" alt="vmax.png" title="">
+<h2 id="ch-和-ex"><a href="#ch-和-ex" class="headerlink" title="ch 和 ex"></a>ch 和 ex</h2><p><code>ch</code>和<code>ex</code>单位都是基于当前字体的特定单位。</p>
+<p><code>ch</code>单位，被定义为当前字体<code>0</code>字符的宽度。所以如果你使用的是等宽字体，那么你就可以直接定义一个盒子能够容纳多少个字符。</p>
+<p></p><p data-height="265" data-theme-id="0" data-slug-hash="EbLLPQ" data-default-tab="result" data-user="YeaseonZhang" data-embed-version="2" data-pen-title="ch" class="codepen">See the Pen <a href="https://codepen.io/YeaseonZhang/pen/EbLLPQ/" target="_blank" rel="external">ch</a> by YeaseonZhang (<a href="https://codepen.io/YeaseonZhang" target="_blank" rel="external">@YeaseonZhang</a>) on <a href="https://codepen.io" target="_blank" rel="external">CodePen</a>.</p><p></p>
+<script async src="https://production-assets.codepen.io/assets/embed/ei.js"></script>
+
+<p><code>ex</code>单位，被定义为当前字体<code>x</code>字符高度。这个单位通常用于排版微调，确保精确控制。</p>
+<p></p><p data-height="265" data-theme-id="0" data-slug-hash="WXJJMR" data-default-tab="css,result" data-user="YeaseonZhang" data-embed-version="2" data-pen-title="ex" class="codepen">See the Pen <a href="https://codepen.io/YeaseonZhang/pen/WXJJMR/" target="_blank" rel="external">ex</a> by YeaseonZhang (<a href="https://codepen.io/YeaseonZhang" target="_blank" rel="external">@YeaseonZhang</a>) on <a href="https://codepen.io" target="_blank" rel="external">CodePen</a>.</p><p></p>
+<script async src="https://production-assets.codepen.io/assets/embed/ei.js"></script>
+
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><ul>
+<li><p><code>em</code>单位，还是老老实实作为字体/行高单位，如果用做布局使用，会牵一发而动全身，一个节点变化导致后代元素都需要重新计算</p>
+</li>
+<li><p><code>rem</code>单位，需要结合<code>js</code>脚本动态设置<code>html</code>字体大小，如果用户禁用了js(少数情况)，这种时候我们可以选择<code>&lt;noscript&gt;开启JavaScript，获得更高的用户体验&lt;/noscript&gt;</code>；第二个方案就是使用媒体查询，为主流尺寸的设备设置<code>html</code>字体大小</p>
+</li>
+<li><p><code>vh/vw/vmin/vmax</code>单位，对于设备系统浏览器要求比较高，如果不考虑兼容低版本浏览器，可以选择使用。当你选择使用<code>vw/vh</code>单位的时候，配合<code>calc</code>计算属性会更精确完成布局，例如<code>width: calc(50vw - 40px)</code></p>
+</li>
+<li><p><code>ch/ex</code>单位，使用的频率不高。如果使用的是等宽字体，<code>ch</code>单位可以用来布局，但是中文字体和英文字体等宽肯定是不一样宽的，所以还是不要考虑用来布局了。<code>ex</code>单位的应用场景，基本上使用<code>em</code>单位都能完成，所以也是一个可用可不用的单位。</p>
+</li>
+</ul>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ul>
+<li><p><a href="https://webdesign.tutsplus.com/articles/7-css-units-you-might-not-know-about--cms-22573" target="_blank" rel="external">7 CSS Units You Might Not Know About</a></p>
+</li>
+<li><p><a href="https://www.w3.org/Style/Examples/007/units.zh_HK.html" target="_blank" rel="external">網頁樣式表 CSS提示以及技巧</a></p>
+</li>
+<li><a href="http://yanhaijing.com/css/2017/09/29/principle-of-rem-layout/" target="_blank" rel="external">Rem布局的原理解析</a></li>
+</ul>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;对于css单位的认识&quot;&gt;&lt;a href=&quot;#对于css单位的认识&quot; class=&quot;headerlink&quot; title=&quot;对于css单位的认识&quot;&gt;&lt;/a&gt;对于css单位的认识&lt;/h2&gt;&lt;p&gt;对于网页布局的单位，只知道&lt;code&gt;px&lt;/code&gt;是仅仅不够的，还需要知道其他几个比较常见的单位，特别是css3推出的一些新的度量单位。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="css" scheme="https://yeaseonzhang.github.io/tags/css/"/>
+    
+  </entry>
   
   <entry>
     <title>前端跨域常用方法</title>
@@ -2179,7 +2299,7 @@
     <link href="https://yeaseonzhang.github.io/2017/02/28/%E6%B5%85%E8%B0%88JavaScript-%E5%A3%B0%E6%98%8E%E6%8F%90%E5%8D%87/"/>
     <id>https://yeaseonzhang.github.io/2017/02/28/浅谈JavaScript-声明提升/</id>
     <published>2017-02-28T12:06:37.000Z</published>
-    <updated>2017-03-18T16:05:20.353Z</updated>
+    <updated>2017-10-12T15:31:47.962Z</updated>
     
     <content type="html"><![CDATA[<p><strong>JavaScript</strong>是一种动态语言，不同于<strong>C</strong>、<strong>Java</strong>等静态语言先编译后执行，</p>
 <p>所以代码中的执行顺序并不像你看到的那样执行，有个词你需要知道<strong>声明提升</strong>，</p>
@@ -3066,39 +3186,6 @@
     
     
       <category term="翻译" scheme="https://yeaseonzhang.github.io/tags/%E7%BF%BB%E8%AF%91/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>2016-10-23,写于1024之前...</title>
-    <link href="https://yeaseonzhang.github.io/2016/10/23/2016-10-23-%E5%86%99%E4%BA%8E1024%E4%B9%8B%E5%89%8D/"/>
-    <id>https://yeaseonzhang.github.io/2016/10/23/2016-10-23-写于1024之前/</id>
-    <published>2016-10-23T14:52:50.000Z</published>
-    <updated>2016-10-26T12:22:50.736Z</updated>
-    
-    <content type="html"><![CDATA[<p>其实一直有打算自己搭建一个博客的，但是犹豫种种的借口以及毕业之后拖延症病发，所以迟迟没有动手去做这件事。<br>最近，越来越觉得不应该这样下去啦。<br>就像五月天的歌词：<strong>我知道潮落之后一定有潮起，有什么了不起</strong>，现在“潮落”，也应该开始“潮起”了。</p>
-<a id="more"></a>
-<h3 id="搭建博客的目的"><a href="#搭建博客的目的" class="headerlink" title="搭建博客的目的"></a>搭建博客的目的</h3><ol>
-<li>现在能够写作/发帖的网站实在太多了，既然不能做到兼顾，那还不如自己精心运营一个自己的博客</li>
-<li>将自己每天的所学所得，有一个分享的“部落”。而不是向之前一样，用<strong>马克飞象</strong>同步到自己的<strong>印象笔记</strong>中</li>
-<li>作为一个web前端开发人员，能够将自己日常所学新技巧，可以<strong>“捣鼓”</strong>到自己的博客上</li>
-<li><strong>Just for fun!!!</strong></li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Hello world, again !</div></pre></td></tr></table></figure>
-<p>明天<strong>10-24</strong>, 祝所有的程序猿“No-Bug-Day”。<br>最近，会把自己在“简书”，“博客园”上面放的文章迁移过来。</p>
-<blockquote>
-<p>Night-night，Yeaseon.</p>
-</blockquote>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;其实一直有打算自己搭建一个博客的，但是犹豫种种的借口以及毕业之后拖延症病发，所以迟迟没有动手去做这件事。&lt;br&gt;最近，越来越觉得不应该这样下去啦。&lt;br&gt;就像五月天的歌词：&lt;strong&gt;我知道潮落之后一定有潮起，有什么了不起&lt;/strong&gt;，现在“潮落”，也应该开始“潮起”了。&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="随笔" scheme="https://yeaseonzhang.github.io/tags/%E9%9A%8F%E7%AC%94/"/>
     
   </entry>
   
