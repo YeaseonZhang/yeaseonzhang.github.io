@@ -118,7 +118,7 @@ p3.catch((err) => {
 
 > 先输出
 
-```
+```javascript
 Promise {[[PromiseStatus]]: "resolved", [[PromiseValue]]: 1}
 Promise {[[PromiseStatus]]: "pending", [[PromiseValue]]: undefined}
 Promise {[[PromiseStatus]]: "pending", [[PromiseValue]]: undefined}
@@ -137,7 +137,7 @@ p3-catch 3
 
 > 最后会输出:
 
-```
+```javascript
 p2-setTimeout: Promise {[[PromiseStatus]]: "resolved", [[PromiseValue]]: 2}
 p3-setTimeout: Promise {[[PromiseStatus]]: "rejected", [[PromiseValue]]: 3}
 ```
@@ -215,7 +215,7 @@ p.then((value) => {
 2
 undefined
 resolve
-reject:  reject
+reject: reject
 ```
 
 ## Promise中的异常处理
@@ -275,7 +275,7 @@ p2 then then then value:  1
 
 `Promise.resolve()`语法：
 
-```
+```javascript
 Promise.resolve(value);
 ```
 
@@ -349,7 +349,7 @@ Promise {[[PromiseStatus]]: "pending", [[PromiseValue]]: undefined}
 
 **注**：把基本数据类型转换为对应的引用类型的操作称为装箱，把引用类型转换为基本的数据类型称为拆箱。
 
-## resolve & reject 的区别
+## resolve() & reject() 的区别
 
 ```JavaScript
 const p1 = new Promise((resolve, reject) => {
@@ -395,4 +395,84 @@ p3.then((value) => {
 p3-reject: Promise {[[PromiseStatus]]: "resolved", [[PromiseValue]]: "resolve"}
 p1-resolve: resolve
 p2-reject: reject
+```
+
+## all() & race() & then() 区别
+
+`Promise.all()`语法：
+
+```javascript
+Promise.all(iterable);
+```
+
+`Promise.race()`语法：
+
+```javascript
+Promise.race(iterable)
+```
+
++ `iterable`: 可迭代对象，例如一个数组。
+
+```javascript
+let timerPromisefy = (delay) => {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve(delay);
+    }, delay);
+  });
+}
+
+let timerPromisefyReject = (delay) => {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      reject(delay);
+    }, delay);
+  });
+}
+
+console.time('Promise all');
+Promise.all([
+  timerPromisefy(1),
+  timerPromisefy(7),
+  timerPromisefy(10),
+  timerPromisefy(9)
+]).then((value) => {
+  console.timeEnd('Promise all');
+});
+
+console.time('Promise then');
+timerPromisefy(1).then(() => {
+  return timerPromisefy(7)
+}).then(() => {
+  return timerPromisefy(10)
+}).then(() => {
+  return timerPromisefy(9)
+}).then(() => {
+  console.timeEnd('Promise then')
+});
+
+console.time('Promise race');
+Promise.race([
+  timerPromisefy(1),
+  timerPromisefy(7),
+  timerPromisefy(10),
+  timerPromisefy(9)
+]).then(value => {
+  console.timeEnd('Promise race');
+});
+```
+
+`Promise.all()`方法返回一个`Promise`，当`iterable`参数中的 *promise* 并行执行，当所有 *promise* 都已经 *resolve* 了，返回 *resolved* 状态。当传递的 *promise* 包含一个 *reject* ,则返回 *rejected* 状态。
+如果`Promise.all()`返回 *resolved* , 那么执行时间取决于执行最最慢的那个 *promise*；如果`Promise.all()`返回 *rejected* , 执行时间取决于第一个返回 *rejected* 的执行时间。
+
+`Promise.race()`方法返回一个`Promise`，当`iterable`参数中只要有一个 *promise* 状态被判定了，那么就返回该状态。
+所以`Promise.race()`的执行时间取决于执行最快的那个 *promise*。
+
+`Promise.then()`方法的执行时间，是每个链式调用总时间之和。
+
+> 输出
+```
+Promise race: 2.3232421875ms
+Promise all: 3.675048828125ms
+Promise then: 31.32373046875ms
 ```
