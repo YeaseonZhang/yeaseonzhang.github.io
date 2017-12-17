@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://yeaseonzhang.github.io/"/>
-  <updated>2017-12-11T13:40:23.383Z</updated>
+  <updated>2017-12-17T09:12:49.578Z</updated>
   <id>https://yeaseonzhang.github.io/</id>
   
   <author>
@@ -14,6 +14,164 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>高效JavaScript 68诫</title>
+    <link href="https://yeaseonzhang.github.io/2017/12/17/%E9%AB%98%E6%95%88JavaScript-68%E8%AF%AB/"/>
+    <id>https://yeaseonzhang.github.io/2017/12/17/高效JavaScript-68诫/</id>
+    <published>2017-12-17T09:07:09.000Z</published>
+    <updated>2017-12-17T09:12:49.578Z</updated>
+    
+    <content type="html"><![CDATA[<p>将《编写高质量JavaScript代码的68个有效方法》书中提到的68个方法分享给大家。</p>
+<h3 id="让自己习惯JavaScript"><a href="#让自己习惯JavaScript" class="headerlink" title="让自己习惯JavaScript"></a>让自己习惯<code>JavaScript</code></h3><ol>
+<li>了解你使用的JavaScript版本</li>
+<li>理解JavaScript的浮点数</li>
+<li>当心隐式的强制转换</li>
+<li>原始类型优于封装对象</li>
+<li>避免对混合类型使用<code>==</code>运算符</li>
+<li>了解分号插入的局限</li>
+<li>视字符串为16位的代码单元序列</li>
+</ol>
+<a id="more"></a>
+<h3 id="变量作用域"><a href="#变量作用域" class="headerlink" title="变量作用域"></a>变量作用域</h3><ol>
+<li>尽量少用全局对象</li>
+<li>始终声明局部变量</li>
+<li>避免使用<code>with</code></li>
+<li>熟练掌握闭包</li>
+<li>理解变量声明提升</li>
+<li>使用立即调用的函数表达式创建局部函数</li>
+<li>当心命名函数表达式笨拙的作用域</li>
+<li>当心局部块函数声明笨拙的作用域</li>
+<li>避免使用<code>eval</code>创建局部变量</li>
+<li>间接调用<code>eval</code>函数优于直接调用</li>
+</ol>
+<h3 id="使用函数"><a href="#使用函数" class="headerlink" title="使用函数"></a>使用函数</h3><ol>
+<li>理解函数调用、方法调用及构造函数</li>
+<li>熟练掌握高阶函数</li>
+<li>使用<code>call</code>方法自定义接收者来调用函数</li>
+<li>使用<code>apply</code>方法通过不同数量的参数调用函数</li>
+<li>使用<code>arguments</code>创建可变参数的函数</li>
+<li>永远不要修改<code>arguments</code>对象</li>
+<li>使用变量保存<code>arguments</code>的引用</li>
+<li>使用<code>bind</code>方法提取具有确定接收者的方法</li>
+<li>使用<code>bind</code>方法实现函数柯里化</li>
+<li>使用闭包而不是字符串来封装代码</li>
+<li>不要信赖函数对象的<code>toString</code>方法</li>
+<li>避免使用非标准的栈检查属性</li>
+</ol>
+<h3 id="对象和原型"><a href="#对象和原型" class="headerlink" title="对象和原型"></a>对象和原型</h3><ol>
+<li>理解<code>prototype</code>、<code>getPrototypeOf</code>和<code>__proto__</code>之间的不同</li>
+<li>使用<code>Object.getPrototypeOf</code>函数而不要使用<code>__proto__</code>属性</li>
+<li>始终不要修改<code>__proto__</code>属性</li>
+<li>使构造函数与<code>new</code>操作符无关</li>
+<li>在原型中存储方法</li>
+<li>使用闭包存储私有数据</li>
+<li>只将实例状态存储在实例对象中</li>
+<li>认识到<code>this</code>变量的隐式绑定问题</li>
+<li>在子类的构造函数中调用父类的构造函数</li>
+<li>不要重用父类的属性名</li>
+<li>避免继承标准类</li>
+<li>将原型视为实现细节</li>
+<li>避免使用轻率的<strong>猴子补丁</strong>(monkey-patching)</li>
+</ol>
+<h3 id="数组和字典"><a href="#数组和字典" class="headerlink" title="数组和字典"></a>数组和字典</h3><ol>
+<li>使用<code>Object</code>的直接实例构造轻量级的字典</li>
+<li>使用<code>null</code>原型以防止原型污染</li>
+<li>使用数组而不要使用字典存储有序集合</li>
+<li>使用<code>hasOwnProperty</code>方法以避免原型污染</li>
+<li>使用数组而不要使用字典来存储有序集合</li>
+<li>绝不要在<code>Object.prototype</code>中增加可枚举的属性</li>
+<li>避免在枚举期间修改对象</li>
+<li>数组迭代要优先使用<code>for</code>循环而不是<code>for...in</code>循环</li>
+<li>迭代方法由于循环</li>
+<li>在类数组对象上复用通用的数组方法</li>
+<li>数组字面量优于数组构造函数</li>
+</ol>
+<h3 id="库和API设计"><a href="#库和API设计" class="headerlink" title="库和API设计"></a>库和API设计</h3><ol>
+<li>保持一致的约定</li>
+<li>将<code>undefined</code>看做“没有值”</li>
+<li>接收关键字参数的选项对象</li>
+<li>避免不必要的状态</li>
+<li>使用结构类型设计灵活的接口</li>
+<li>区分数组对象和类数组对象</li>
+<li>避免过度的强制转换</li>
+<li>支持方法链</li>
+</ol>
+<h3 id="并发"><a href="#并发" class="headerlink" title="并发"></a>并发</h3><ol>
+<li>不要阻塞I/O事件队列</li>
+<li>在异步序列中使用嵌套或命名的回调函数</li>
+<li>当心丢弃错误</li>
+<li>对异步循环使用递归</li>
+<li>不要在计算时阻塞事件队列</li>
+<li>使用计数器来执行并行操作</li>
+<li>绝不要同步的调用异步的回调函数</li>
+<li>使用<code>promise</code>模式清洁异步逻辑</li>
+</ol>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;将《编写高质量JavaScript代码的68个有效方法》书中提到的68个方法分享给大家。&lt;/p&gt;
+&lt;h3 id=&quot;让自己习惯JavaScript&quot;&gt;&lt;a href=&quot;#让自己习惯JavaScript&quot; class=&quot;headerlink&quot; title=&quot;让自己习惯JavaScript&quot;&gt;&lt;/a&gt;让自己习惯&lt;code&gt;JavaScript&lt;/code&gt;&lt;/h3&gt;&lt;ol&gt;
+&lt;li&gt;了解你使用的JavaScript版本&lt;/li&gt;
+&lt;li&gt;理解JavaScript的浮点数&lt;/li&gt;
+&lt;li&gt;当心隐式的强制转换&lt;/li&gt;
+&lt;li&gt;原始类型优于封装对象&lt;/li&gt;
+&lt;li&gt;避免对混合类型使用&lt;code&gt;==&lt;/code&gt;运算符&lt;/li&gt;
+&lt;li&gt;了解分号插入的局限&lt;/li&gt;
+&lt;li&gt;视字符串为16位的代码单元序列&lt;/li&gt;
+&lt;/ol&gt;
+    
+    </summary>
+    
+    
+      <category term="JavaScript" scheme="https://yeaseonzhang.github.io/tags/JavaScript/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>2017年书单</title>
+    <link href="https://yeaseonzhang.github.io/2017/12/17/2017%E5%B9%B4%E4%B9%A6%E5%8D%95/"/>
+    <id>https://yeaseonzhang.github.io/2017/12/17/2017年书单/</id>
+    <published>2017-12-17T08:42:16.000Z</published>
+    <updated>2017-12-17T08:43:02.115Z</updated>
+    
+    <content type="html"><![CDATA[<img src="/2017/12/17/2017年书单/library.jpg" alt="營業據點" title="營業據點">
+<h1 id="2017年书单（15-12）"><a href="#2017年书单（15-12）" class="headerlink" title="2017年书单（15/12）"></a>2017年书单（15/12）</h1><p>去年计划读12本书，很显然没有完成任务。2017年继续“12本书计划”。</p>
+<p>“人丑就该多读书”其实只是前半句，后半句是“不丑多读书也没坏处”。</p>
+<a id="more"></a>
+<ol>
+<li>《你不知道的JavaScript·上卷》 于 #2017.3.16# 读完</li>
+<li>《万物简史》 于 #2017.3.17# 读完</li>
+<li>《我脑袋里的怪东西》 于 #2017.4.12# 读完</li>
+<li>《JavaScript高级程序设计》 于 #2017.4.26# 读完</li>
+<li>《你不知道的JavaScript·中卷》 于 #2017.4.29# 读完</li>
+<li>《二手时间》 于 #2017.5.11# 读完</li>
+<li>《CSS设计指南》 于 #2017.5.14# 读完</li>
+<li>《JavaScript语言精粹》 于 #2017.5.26# 读完</li>
+<li>《拖延心理学》 于 #2017.6.1# 读完</li>
+<li>《CSS揭秘》 于 #2017.6.25# 读完</li>
+<li>《极简宇宙史》 于 #2017.6.26# 读完</li>
+<li>《巨人的陨落》 于 #2017.7.22# 读完</li>
+<li>《Node即学即用》 于 #2017.8.28# 读完</li>
+<li>《灰犀牛》 于 #2017.9.25# 读完</li>
+<li>《编写高质量JavaScript代码的68个有效方法》 于 #2017.12.17# 读完</li>
+</ol>
+<p>持续更新…</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;img src=&quot;/2017/12/17/2017年书单/library.jpg&quot; alt=&quot;營業據點&quot; title=&quot;營業據點&quot;&gt;
+&lt;h1 id=&quot;2017年书单（15-12）&quot;&gt;&lt;a href=&quot;#2017年书单（15-12）&quot; class=&quot;headerlink&quot; title=&quot;2017年书单（15/12）&quot;&gt;&lt;/a&gt;2017年书单（15/12）&lt;/h1&gt;&lt;p&gt;去年计划读12本书，很显然没有完成任务。2017年继续“12本书计划”。&lt;/p&gt;
+&lt;p&gt;“人丑就该多读书”其实只是前半句，后半句是“不丑多读书也没坏处”。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="阅读" scheme="https://yeaseonzhang.github.io/tags/%E9%98%85%E8%AF%BB/"/>
+    
+  </entry>
   
   <entry>
     <title>Promise深入理解</title>
@@ -374,49 +532,6 @@
     
     
       <category term="web安全" scheme="https://yeaseonzhang.github.io/tags/web%E5%AE%89%E5%85%A8/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>2017年书单</title>
-    <link href="https://yeaseonzhang.github.io/2017/09/25/2017%E5%B9%B4%E4%B9%A6%E5%8D%95/"/>
-    <id>https://yeaseonzhang.github.io/2017/09/25/2017年书单/</id>
-    <published>2017-09-25T11:04:16.000Z</published>
-    <updated>2017-10-11T14:21:10.661Z</updated>
-    
-    <content type="html"><![CDATA[<img src="/2017/09/25/2017年书单/library.jpg" alt="營業據點" title="營業據點">
-<h1 id="2017年书单（14-12）"><a href="#2017年书单（14-12）" class="headerlink" title="2017年书单（14/12）"></a>2017年书单（14/12）</h1><p>去年计划读12本书，很显然没有完成任务。2017年继续“12本书计划”。</p>
-<p>“人丑就该多读书”其实只是前半句，后半句是“不丑多读书也没坏处”。</p>
-<a id="more"></a>
-<ol>
-<li>《你不知道的JavaScript·上卷》 于 #2017.3.16# 读完</li>
-<li>《万物简史》 于 #2017.3.17# 读完</li>
-<li>《我脑袋里的怪东西》 于 #2017.4.12# 读完</li>
-<li>《JavaScript高级程序设计》 于 #2017.4.26# 读完</li>
-<li>《你不知道的JavaScript·中卷》 于 #2017.4.29# 读完</li>
-<li>《二手时间》 于 #2017.5.11# 读完</li>
-<li>《CSS设计指南》 于 #2017.5.14# 读完</li>
-<li>《JavaScript语言精粹》 于 #2017.5.26# 读完</li>
-<li>《拖延心理学》 于 #2017.6.1# 读完</li>
-<li>《CSS揭秘》 于 #2017.6.25# 读完</li>
-<li>《极简宇宙史》 于 #2017.6.26# 读完</li>
-<li>《巨人的陨落》 于 #2017.7.22# 读完</li>
-<li>《Node即学即用》 于 #2017.8.28# 读完</li>
-<li>《灰犀牛》 于 #2017.9.25# 读完</li>
-</ol>
-<p>持续更新…</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;img src=&quot;/2017/09/25/2017年书单/library.jpg&quot; alt=&quot;營業據點&quot; title=&quot;營業據點&quot;&gt;
-&lt;h1 id=&quot;2017年书单（14-12）&quot;&gt;&lt;a href=&quot;#2017年书单（14-12）&quot; class=&quot;headerlink&quot; title=&quot;2017年书单（14/12）&quot;&gt;&lt;/a&gt;2017年书单（14/12）&lt;/h1&gt;&lt;p&gt;去年计划读12本书，很显然没有完成任务。2017年继续“12本书计划”。&lt;/p&gt;
-&lt;p&gt;“人丑就该多读书”其实只是前半句，后半句是“不丑多读书也没坏处”。&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="阅读" scheme="https://yeaseonzhang.github.io/tags/%E9%98%85%E8%AF%BB/"/>
     
   </entry>
   
@@ -3130,53 +3245,6 @@
     
     
       <category term="lodash" scheme="https://yeaseonzhang.github.io/tags/lodash/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>JavaScript对于cookie的读、写操作</title>
-    <link href="https://yeaseonzhang.github.io/2016/10/27/JavaScript%E5%AF%B9%E4%BA%8Ecookie%E7%9A%84%E8%AF%BB%E3%80%81%E5%86%99%E6%93%8D%E4%BD%9C/"/>
-    <id>https://yeaseonzhang.github.io/2016/10/27/JavaScript对于cookie的读、写操作/</id>
-    <published>2016-10-27T08:58:52.000Z</published>
-    <updated>2016-10-30T03:34:45.581Z</updated>
-    
-    <content type="html"><![CDATA[<p>前端开发中，不可避免的总要接触<code>session</code>、<code>cookie</code>这些网络数据打交道进行一些操作。<br>所以说作为一个前端er,<br>如果不会操作<code>cookie</code>，怎么好意思呐。<br>接下来，我们就来讲讲对于<code>cookie</code>的读写…</p>
-<a id="more"></a>
-<h2 id="cookie的操作"><a href="#cookie的操作" class="headerlink" title="cookie的操作"></a><code>cookie</code>的操作</h2><h3 id="写入cookie"><a href="#写入cookie" class="headerlink" title="写入cookie"></a>写入<code>cookie</code></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">function setCookie(cName, cValue, days) &#123;  </div><div class="line">    var expires = new Date();  </div><div class="line">    expires.setTime(expires.getTime() + parseInt(days) * 24 * 60 * 60 * 1000);  </div><div class="line">    document.cookie = cName + &quot;=&quot; + escape(cValue) + &quot;;expires=&quot; + expires.toGMTString()+&quot;;path=/;domain=xxx.cn&quot;;  </div><div class="line">&#125;;</div></pre></td></tr></table></figure>
-<p>这个函数也十分简单,我们可以设置<code>cookie</code>的名字、值以及有效期。<br><strong>注</strong>：我们并没有重写这个<code>cookie</code>，这是添加了我们设置的<code>cookie</code>。</p>
-<ul>
-<li><code>expires</code>: cookie的过期时间，注意这里要使用格林威治时间</li>
-<li><code>path</code>: 这个参数表示cookie保存的路径，如果没有给出的话会保存为当前站点的，如果给出值”/“的话会保存到当前虚拟目录</li>
-<li><code>domain</code>: 这个参数有点类似于session的保存路径，默认情况下保存在当前客户端,也可以自定义到其他位置</li>
-</ul>
-<h3 id="读取cookie"><a href="#读取cookie" class="headerlink" title="读取cookie"></a>读取<code>cookie</code></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">function getCookie(name)&#123;    </div><div class="line">    var arr = document.cookie.match(new RegExp(&quot;(^| )&quot;+name+&quot;=([^;]*)(;|$)&quot;));  </div><div class="line">    if(arr != null) </div><div class="line">	    return decodeURI(arr[2]);</div><div class="line">    return null;  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>说一说，上面的正则表达式吧。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">new RegExp(&quot;(^| )&quot;+name+&quot;=([^;]*)(;|$)&quot;)</div></pre></td></tr></table></figure></p>
-<ul>
-<li><code>^</code>以什么开头，所以<code>(^| )&quot;+name+&quot;</code>就是以<code>&quot;name&quot;</code>或者<code>&quot; name&quot;</code>开头的</li>
-<li><code>[^;]*</code>匹配除了<code>;</code>以外的任意字符</li>
-<li><code>$</code>以什么结尾，所以<code>(;|$)</code>就是以<code>&quot;;&quot;</code>或者<code>&quot;&quot;</code>结尾</li>
-<li><code>decodeURI()</code>函数可对<code>encodeURI()</code> 函数编码过的 URI 进行解码</li>
-</ul>
-<p>上述例子，还使用了一个技巧就是<code>()</code>进行分组，得到的正则表达式结果就是一个<code>Array</code>类型，每个<code>()</code>包括的部分都是数组的一部分，<code>index</code>从1开始。</p>
-<ul>
-<li><code>arr[0]</code>是匹配的整个结果。</li>
-<li><code>arr[1]</code>是<code>&quot;&quot;</code>或者<code>&quot; &quot;</code></li>
-<li><code>arr[2]</code>是我们要获取<code>name</code>的<code>value</code>值</li>
-<li><code>arr[4]</code>是是<code>&quot;&quot;</code>或者<code>&quot;;&quot;</code></li>
-</ul>
-<h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>介绍JS操作<code>cookie</code>的文章网上也有很多，本文不胜详尽，只是列出了我熟悉的一部分。</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;前端开发中，不可避免的总要接触&lt;code&gt;session&lt;/code&gt;、&lt;code&gt;cookie&lt;/code&gt;这些网络数据打交道进行一些操作。&lt;br&gt;所以说作为一个前端er,&lt;br&gt;如果不会操作&lt;code&gt;cookie&lt;/code&gt;，怎么好意思呐。&lt;br&gt;接下来，我们就来讲讲对于&lt;code&gt;cookie&lt;/code&gt;的读写…&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="JavaScipt" scheme="https://yeaseonzhang.github.io/tags/JavaScipt/"/>
-    
-      <category term="cookie" scheme="https://yeaseonzhang.github.io/tags/cookie/"/>
     
   </entry>
   
