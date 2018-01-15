@@ -1,7 +1,7 @@
 ---
 title: Lodash学习--Array
 date: 2016-11-08 14:46:33
-tags: lodash
+tags: Lodash
 ---
 
 **Lodash**是一个具有一致接口、模块化、高性能等特性的 JavaScript 工具库。还有一个类似的库是**underscore**，不过**underscore**不能按需加载。
