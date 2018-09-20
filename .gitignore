@@ -9,3 +9,9 @@
 /.deploy_git
 
 /.vscode
+
+/.DS_Store
+
+/source/.DS_Store
+
+/source/_posts/.DS_Store
