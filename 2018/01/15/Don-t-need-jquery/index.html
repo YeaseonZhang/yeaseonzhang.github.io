@@ -1,0 +1,1476 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="JQuery," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="YeaseonZhang" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="在早期，JQuery在浏览器的兼容上为我们解决了痛点，但是随着浏览器/JavaScript的革新，我们对于浏览器的兼容要求越来越宽松，现在我们基本上兼容IE8/IE9就ok了。 很多Jquery实现的功能，我们使用原生js实现起来也不是很麻烦。">
+<meta name="keywords" content="JQuery">
+<meta property="og:type" content="article">
+<meta property="og:title" content="YOU MIGHT NOT NEED JQUERY">
+<meta property="og:url" content="https://yeaseonzhang.github.io/2018/01/15/Don-t-need-jquery/index.html">
+<meta property="og:site_name" content="YeaseonZhang">
+<meta property="og:description" content="在早期，JQuery在浏览器的兼容上为我们解决了痛点，但是随着浏览器/JavaScript的革新，我们对于浏览器的兼容要求越来越宽松，现在我们基本上兼容IE8/IE9就ok了。 很多Jquery实现的功能，我们使用原生js实现起来也不是很麻烦。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-08-16T15:51:00.230Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="YOU MIGHT NOT NEED JQUERY">
+<meta name="twitter:description" content="在早期，JQuery在浏览器的兼容上为我们解决了痛点，但是随着浏览器/JavaScript的革新，我们对于浏览器的兼容要求越来越宽松，现在我们基本上兼容IE8/IE9就ok了。 很多Jquery实现的功能，我们使用原生js实现起来也不是很麻烦。">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '6345335535917073000',
+      author: 'Yeaseon'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://yeaseonzhang.github.io/2018/01/15/Don-t-need-jquery/"/>
+
+
+
+
+
+  <title> YOU MIGHT NOT NEED JQUERY | YeaseonZhang </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?a6c706d9802419456e07ac9edc18dbb1";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">YeaseonZhang</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="https://yeaseonzhang.github.io/2018/01/15/Don-t-need-jquery/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="Yeaseon">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.png">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="YeaseonZhang">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="YeaseonZhang" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                YOU MIGHT NOT NEED JQUERY
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-01-15T17:25:15+08:00">
+                2018-01-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <a href="/2018/01/15/Don-t-need-jquery/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2018/01/15/Don-t-need-jquery/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+             <span id="/2018/01/15/Don-t-need-jquery/" class="leancloud_visitors" data-flag-title="YOU MIGHT NOT NEED JQUERY">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>在早期，<strong>JQuery</strong>在浏览器的兼容上为我们解决了痛点，但是随着浏览器/<code>JavaScript</code>的革新，我们对于浏览器的兼容要求越来越宽松，现在我们基本上兼容<strong>IE8/IE9</strong>就ok了。</p>
+<p>很多<strong>Jquery</strong>实现的功能，我们使用原生js实现起来也不是很麻烦。</p>
+<a id="more"></a>
+<blockquote>
+<p>本文转载<a href="http://youmightnotneedjquery.com/" target="_blank" rel="noopener">YOU MIGHT NOT NEED JQUERY</a>，主要为了方便自己查阅</p>
+</blockquote>
+<h2 id="Ajax"><a href="#Ajax" class="headerlink" title="Ajax"></a>Ajax</h2><h3 id="JSON"><a href="#JSON" class="headerlink" title="JSON"></a>JSON</h3><blockquote>
+<p>JQuery</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$.getJSON(<span class="string">'/my/url'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">data</span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>IE9+</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> request = <span class="keyword">new</span> XMLHttpRequest();</span><br><span class="line">request.open(<span class="string">'GET'</span>, <span class="string">'/my/url'</span>, <span class="literal">true</span>);</span><br><span class="line"></span><br><span class="line">request.onload = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (request.status &gt;= <span class="number">200</span> &amp;&amp; request.status &lt; <span class="number">400</span>) &#123;</span><br><span class="line">        <span class="comment">// success</span></span><br><span class="line">        <span class="keyword">var</span> data = <span class="built_in">JSON</span>.parse(request.responseText);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="comment">// error</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">request.onerror = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="comment">// There was a connection error of some sort</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">request.send()</span><br></pre></td></tr></table></figure>
+<h3 id="Post"><a href="#Post" class="headerlink" title="Post"></a>Post</h3><blockquote>
+<p>JQuery</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$.ajax(&#123;</span><br><span class="line">    type: <span class="string">'POST'</span>,</span><br><span class="line">    url: <span class="string">'/my/url'</span>,</span><br><span class="line">    data: data</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>IE8+</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> request = <span class="keyword">new</span> XMLHttpRequest();</span><br><span class="line">request.open(<span class="string">'POST'</span>, <span class="string">'/my/url'</span>, <span class="literal">true</span>);</span><br><span class="line">request.setRequestHeader(<span class="string">'Content-type'</span>, <span class="string">'application/x-www-form-urlencoded; charset=UTF-8'</span>);</span><br><span class="line">request.send(data);</span><br></pre></td></tr></table></figure>
+<h3 id="Request"><a href="#Request" class="headerlink" title="Request"></a>Request</h3><blockquote>
+<p>JQuest</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">$.ajax(&#123;</span><br><span class="line">    type: <span class="string">'GET'</span>,</span><br><span class="line">    url: <span class="string">'/my/url'</span>,</span><br><span class="line">    success: <span class="function"><span class="keyword">function</span> (<span class="params">res</span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">    &#125;,</span><br><span class="line">    error: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>IE9+</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> request = <span class="keyword">new</span> XMLHttpReQuest();</span><br><span class="line">request.open(<span class="string">'GET'</span>, <span class="string">'/my/url'</span>, <span class="literal">true</span>);</span><br><span class="line"></span><br><span class="line">request.onload = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (request.status &gt;= <span class="number">200</span> &amp;&amp; request.status &lt; <span class="number">400</span> ) &#123;</span><br><span class="line">        <span class="comment">// success</span></span><br><span class="line">        <span class="keyword">var</span> res = resquest.responseText;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="comment">// error</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">request.onerror = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">request.send();</span><br></pre></td></tr></table></figure>
+<h2 id="Effects"><a href="#Effects" class="headerlink" title="Effects"></a>Effects</h2><h3 id="Fade-In"><a href="#Fade-In" class="headerlink" title="Fade In"></a>Fade In</h3><blockquote>
+<p>JQuery</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(el).fadeIn();</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>IE9+</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fadeIn</span> (<span class="params">el</span>) </span>&#123;</span><br><span class="line">    el.style.opacity = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> last = + <span class="keyword">new</span> <span class="built_in">Date</span>();</span><br><span class="line">    <span class="keyword">var</span> tick = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        el.style.opacity = + el.style.opacity + (<span class="keyword">new</span> <span class="built_in">Date</span>() - last) / <span class="number">400</span>;</span><br><span class="line">        last = + <span class="keyword">new</span> <span class="built_in">Date</span>();</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (+ el.style.opacity &lt; <span class="number">1</span>) &#123;</span><br><span class="line">            (<span class="built_in">window</span>.requestAnimationFrame &amp;&amp; requestAnimationFrame(tick)) || setTimeout(tick, <span class="number">16</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">    tick();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">fadeIn(el);</span><br></pre></td></tr></table></figure>
+<h3 id="Hide"><a href="#Hide" class="headerlink" title="Hide"></a>Hide</h3><blockquote>
+<p>JQuery</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(el).hide();</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>IE8+</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">el.style.display = <span class="string">'none'</span>;</span><br></pre></td></tr></table></figure>
+<h3 id="Show"><a href="#Show" class="headerlink" title="Show"></a>Show</h3><blockquote>
+<p>JQuery</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(el).show();</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>IE8+</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">el.style.display = <span class="string">''</span>;</span><br></pre></td></tr></table></figure>
+<h2 id="Elements"><a href="#Elements" class="headerlink" title="Elements"></a>Elements</h2><h3 id="Add-Class"><a href="#Add-Class" class="headerlink" title="Add Class"></a>Add Class</h3><blockquote>
+<p>JQuery</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(el).addClass(className)；</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>IE8+</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (el.classList) &#123;</span><br><span class="line">    el.classList.add(className);</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    el.className += <span class="string">' '</span> + className;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="After"><a href="#After" class="headerlink" title="After"></a>After</h3><blockquote>
+<p>JQuery</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(el).after(htmlString);</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>IE8+</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">el.insertAdjacentHTML(<span class="string">'afterend'</span>, htmlString);</span><br></pre></td></tr></table></figure>
+<h3 id="Append"><a href="#Append" class="headerlink" title="Append"></a>Append</h3><blockquote>
+<p>JQuery</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(parent).append(el);</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>IE8+</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">parent.appendChild(el);</span><br></pre></td></tr></table></figure>
+<h3 id="Before"><a href="#Before" class="headerlink" title="Before"></a>Before</h3><blockquote>
+<p>JQuery</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(el).before(htmlString);</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>IE8+</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">el.insertAdjacentHTML(<span class="string">'beforebegin'</span>, htmlString);</span><br></pre></td></tr></table></figure>
+<h3 id="Children"><a href="#Children" class="headerlink" title="Children"></a>Children</h3><blockquote>
+<p>JQuery</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(el).children();</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>IE9+</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">el.children;</span><br></pre></td></tr></table></figure>
+<h3 id="Clone"><a href="#Clone" class="headerlink" title="Clone"></a>Clone</h3><blockquote>
+<p>JQuery</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(el).clone();</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>IE8+</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">el.cloneNode(<span class="literal">true</span>);</span><br></pre></td></tr></table></figure>
+<h3 id="Contains"><a href="#Contains" class="headerlink" title="Contains"></a>Contains</h3><blockquote>
+<p>JQuery</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$.contains(el, child);</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>IE8+</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">el !== child &amp;&amp; el.contains(child);</span><br></pre></td></tr></table></figure>
+<h3 id="Contains-Selector"><a href="#Contains-Selector" class="headerlink" title="Contains Selector"></a>Contains Selector</h3><blockquote>
+<p>JQuery</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(el).find(selector).length;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>IE8+</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">el.querySelector(selector) !== <span class="literal">null</span>;</span><br></pre></td></tr></table></figure>
+<h3 id="Each"><a href="#Each" class="headerlink" title="Each"></a>Each</h3><blockquote>
+<p>JQuery</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$(selector).each(<span class="function"><span class="keyword">function</span> (<span class="params">i, el</span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>IE9+</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> elements = <span class="built_in">document</span>.querySelectorAll(selector);</span><br><span class="line"><span class="built_in">Array</span>.prototype.forEach.call(elements, <span class="function"><span class="keyword">function</span>(<span class="params">el, i</span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h3 id="Empty"><a href="#Empty" class="headerlink" title="Empty"></a>Empty</h3><blockquote>
+<p>JQuery</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(el).empty();</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>IE9+</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">el.innerHTML = <span class="string">''</span>;</span><br></pre></td></tr></table></figure>
+<h3 id="Filter"><a href="#Filter" class="headerlink" title="Filter"></a>Filter</h3><blockquote>
+<p>JQuery</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(selector).filter(filterFn);</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>IE9+</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Array</span>.prototype.filter.call(<span class="built_in">document</span>.querySeletorAll(selector), filterFn);</span><br></pre></td></tr></table></figure>
+<h3 id="Find-Children"><a href="#Find-Children" class="headerlink" title="Find Children"></a>Find Children</h3><blockquote>
+<p>JQuery</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(el).find(selector);</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>IE8+</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">el.querySelectorAll(selector);</span><br></pre></td></tr></table></figure>
+<h3 id="Find-Elements"><a href="#Find-Elements" class="headerlink" title="Find Elements"></a>Find Elements</h3><blockquote>
+<p>JQuery</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">'.my #awesome selextor'</span>);</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>IE8+</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">document</span>.querySelectorAll(<span class="string">'.my #awesome selector'</span>);</span><br></pre></td></tr></table></figure>
+<h3 id="Get-Attributes"><a href="#Get-Attributes" class="headerlink" title="Get Attributes"></a>Get Attributes</h3><blockquote>
+<p>JQuery</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(el).attr(<span class="string">'tabindex'</span>);</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>IE8+</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">el.getAttribute(<span class="string">'tabindex'</span>);</span><br></pre></td></tr></table></figure>
+<h3 id="Get-Html"><a href="#Get-Html" class="headerlink" title="Get Html"></a>Get Html</h3><blockquote>
+<p>JQuery</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(el).html();</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>IE8+</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">el.innerHTML;</span><br></pre></td></tr></table></figure>
+<h3 id="Get-Outer-Html"><a href="#Get-Outer-Html" class="headerlink" title="Get Outer Html"></a>Get Outer Html</h3><blockquote>
+<p>JQuery</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">'&lt;div&gt;'</span>).append($(el).clone()).html();</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>IE8+</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">el.outerHTML;</span><br></pre></td></tr></table></figure>
+<h3 id="Get-Style"><a href="#Get-Style" class="headerlink" title="Get Style"></a>Get Style</h3><blockquote>
+<p>JQuery</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(el).css(ruleName);</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>IE9+</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">getComputedStyle(el)[ruleName];</span><br></pre></td></tr></table></figure>
+<h3 id="Get-Text"><a href="#Get-Text" class="headerlink" title="Get Text"></a>Get Text</h3><blockquote>
+<p>JQuery</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(el).text();</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>IE9+</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">el.textContent;</span><br></pre></td></tr></table></figure>
+<h3 id="Has-Class"><a href="#Has-Class" class="headerlink" title="Has Class"></a>Has Class</h3><blockquote>
+<p>JQuery</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(el).hasClass（className);</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>IE8+</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (el.classList) &#123;</span><br><span class="line">    el.classList.contains(className);</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="keyword">new</span> <span class="built_in">RegExp</span>(<span class="string">'(^| )'</span> + className + <span class="string">'( |$)'</span>, <span class="string">'gi'</span>).test(el.className);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Matches"><a href="#Matches" class="headerlink" title="Matches"></a>Matches</h3><blockquote>
+<p>JQuery</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(el).is($(otherEl));</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>IE8+</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">el === otherEl</span><br></pre></td></tr></table></figure>
+<h3 id="Matches-Selector"><a href="#Matches-Selector" class="headerlink" title="Matches Selector"></a>Matches Selector</h3><blockquote>
+<p>JQuery</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(el).is(<span class="string">'.my-class'</span>);</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>IE9+</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> matches = <span class="function"><span class="keyword">function</span> (<span class="params">el, selector</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> (el.matches || el.matchesSelector || el.mozMatchesSelector || el.webkitMatchesSelector || el.oMatchesSelector).call(el, selector);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">matches(el, <span class="string">'.my-class'</span>);</span><br></pre></td></tr></table></figure>
+<h3 id="Next"><a href="#Next" class="headerlink" title="Next"></a>Next</h3><blockquote>
+<p>JQuery</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(el).next();</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>IE9+</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">el.nextElementSibling</span><br></pre></td></tr></table></figure>
+<h3 id="Offset"><a href="#Offset" class="headerlink" title="Offset"></a>Offset</h3><blockquote>
+<p>JQuery</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(el).offset();</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>IE8+</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> rect = el.getBoundingClientRect();</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line">    top: rect.top + <span class="built_in">document</span>.body.scrollTop,</span><br><span class="line">    left: rect.left + <span class="built_in">document</span>.body.scrollLeft</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Offset-Parent"><a href="#Offset-Parent" class="headerlink" title="Offset Parent"></a>Offset Parent</h3><blockquote>
+<p>JQuery</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(el).offsetParent();</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>IE8+</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">el.offsetParent || el</span><br></pre></td></tr></table></figure>
+<h3 id="Outer-Height"><a href="#Outer-Height" class="headerlink" title="Outer Height"></a>Outer Height</h3><blockquote>
+<p>JQuery</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(el).outerHeight();</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>IE8+</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">el.offsetHeight;</span><br></pre></td></tr></table></figure>
+<h3 id="Outer-Height-With-Margin"><a href="#Outer-Height-With-Margin" class="headerlink" title="Outer Height With Margin"></a>Outer Height With Margin</h3><blockquote>
+<p>JQuery</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(el).outerHeight(<span class="literal">true</span>);</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>IE9+</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">outerHeight</span>(<span class="params">el</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> height = el.offsetHeight;</span><br><span class="line">    <span class="keyword">var</span> style = getComputedStyle(el);</span><br><span class="line"></span><br><span class="line">    height += <span class="built_in">parseInt</span>(style.marginTop) + <span class="built_in">parseInt</span>(style.marginBottom);</span><br><span class="line">    <span class="keyword">return</span> height;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">outerHeight(el);</span><br></pre></td></tr></table></figure>
+<h3 id="Parent"><a href="#Parent" class="headerlink" title="Parent"></a>Parent</h3><blockquote>
+<p>JQuery</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(el).parent();</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>IE8+</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">el.parentNode;</span><br></pre></td></tr></table></figure>
+<h3 id="Position"><a href="#Position" class="headerlink" title="Position"></a>Position</h3><blockquote>
+<p>JQuery</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(el).position();</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>IE8+</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    left: el.offsetLeft,</span><br><span class="line">    top: el.offsetTop</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Position-Relative-To-Viewport"><a href="#Position-Relative-To-Viewport" class="headerlink" title="Position Relative To Viewport"></a>Position Relative To Viewport</h3><blockquote>
+<p>JQuery</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> offset = el.offset();</span><br><span class="line">&#123;</span><br><span class="line">    top: offset.top - <span class="built_in">document</span>.body.scrollTop,</span><br><span class="line">    left: offset.left - <span class="built_in">document</span>.body.scrollLeft</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>IE8+</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">el.getBoundingClientRect();</span><br></pre></td></tr></table></figure>
+<h3 id="Prepend"><a href="#Prepend" class="headerlink" title="Prepend"></a>Prepend</h3><blockquote>
+<p>JQuery</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(parent).prepend(el);</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>IE8+</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">parent.insertBefore(el, parent.firstChild);</span><br></pre></td></tr></table></figure>
+<h3 id="Prev"><a href="#Prev" class="headerlink" title="Prev"></a>Prev</h3><blockquote>
+<p>JQuery</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(el).prev();</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>IE9+</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">el.previousElementSibling</span><br></pre></td></tr></table></figure>
+<h3 id="Remove"><a href="#Remove" class="headerlink" title="Remove"></a>Remove</h3><blockquote>
+<p>JQuery</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(el).remove();</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>IE8+</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">el.parentNode.removeChild(el);</span><br></pre></td></tr></table></figure>
+<h3 id="Remove-Class"><a href="#Remove-Class" class="headerlink" title="Remove Class"></a>Remove Class</h3><blockquote>
+<p>JQuery</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(el).removeClass(className);</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>IE8+</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (el.classList) &#123;</span><br><span class="line">    el.classList.remove(className);</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    el.className = el.className.replace(<span class="keyword">new</span> <span class="built_in">RegExp</span>(<span class="string">'(^|\\b)'</span> + className.split(<span class="string">' '</span>).join(<span class="string">'|'</span>) + <span class="string">'(\\b|$)'</span>, <span class="string">'gi'</span>, <span class="string">' '</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Replace-From-Html"><a href="#Replace-From-Html" class="headerlink" title="Replace From Html"></a>Replace From Html</h3><blockquote>
+<p>JQuery</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(el).replaceWith(string);</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>IE8+</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">el.outerHTML = string;</span><br></pre></td></tr></table></figure>
+<h3 id="Set-Attributes"><a href="#Set-Attributes" class="headerlink" title="Set Attributes"></a>Set Attributes</h3><blockquote>
+<p>JQuery</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(el).attr(<span class="string">'tabindex'</span>, <span class="number">3</span>);</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>IE8+</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">el.setAttribute(<span class="string">'tabindex'</span>, <span class="number">3</span>);</span><br></pre></td></tr></table></figure>
+<h3 id="Set-Html"><a href="#Set-Html" class="headerlink" title="Set Html"></a>Set Html</h3><blockquote>
+<p>JQuery</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(el).html(string);</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>IE8+</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">el.innerHTML = string;</span><br></pre></td></tr></table></figure>
+<h3 id="Set-Style"><a href="#Set-Style" class="headerlink" title="Set Style"></a>Set Style</h3><blockquote>
+<p>JQuery</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(el).css(<span class="string">'border-width'</span>, <span class="string">'20px'</span>);</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>IE8+</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">el.style.borderWidth = <span class="string">'20px'</span>;</span><br></pre></td></tr></table></figure>
+<h3 id="Set-Text"><a href="#Set-Text" class="headerlink" title="Set Text"></a>Set Text</h3><blockquote>
+<p>JQuery</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(el).text(string);</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>IE9+</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">el.textContent = string;</span><br></pre></td></tr></table></figure>
+<h3 id="Siblings"><a href="#Siblings" class="headerlink" title="Siblings"></a>Siblings</h3><blockquote>
+<p>JQuery</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(el).siblings();</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>IE9+</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Array</span>.prototype.filter.call(el.parentNode.children, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> child !== el;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h3 id="Toggle-Class"><a href="#Toggle-Class" class="headerlink" title="Toggle Class"></a>Toggle Class</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(el).toggleClass(className);</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>IE9+</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (el.classList) &#123;</span><br><span class="line">    el.classList.toggle(className);</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="keyword">var</span> classes = el.className.split(<span class="string">' '</span>);</span><br><span class="line">    <span class="keyword">var</span> existingIndex = classes.indexOf(className);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (existingIndex &gt;= <span class="number">0</span>) &#123;</span><br><span class="line">        classes.splice(existingIndex, <span class="number">1</span>);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        classes.push(className);</span><br><span class="line">    &#125;</span><br><span class="line">    el.className = classes.join(<span class="string">' '</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="Events"><a href="#Events" class="headerlink" title="Events"></a>Events</h2><h3 id="Off"><a href="#Off" class="headerlink" title="Off"></a>Off</h3><blockquote>
+<p>JQuery</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(el).off(eventName, eventHandler);</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>IE9+</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">el.remoreEventListener(eventName, eventHandler);</span><br></pre></td></tr></table></figure>
+<h3 id="On"><a href="#On" class="headerlink" title="On"></a>On</h3><blockquote>
+<p>JQuery</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(el).on(eventName, eventHandler);</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>IE9+</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">el.addEventListener(eventName, eventHandler);</span><br></pre></td></tr></table></figure>
+<h3 id="Ready"><a href="#Ready" class="headerlink" title="Ready"></a>Ready</h3><blockquote>
+<p>JQuery</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="built_in">document</span>).ready(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>IE9+</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">ready</span>(<span class="params">fn</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">document</span>.attachEvent ? <span class="built_in">document</span>.readyState === <span class="string">'complete'</span> : <span class="built_in">document</span>.readyState !== <span class="string">'loading'</span>) &#123;</span><br><span class="line">        fn();</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="built_in">document</span>.addEventListener(<span class="string">'DOMContentLoaded'</span>, fn);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Tigger-Custom"><a href="#Tigger-Custom" class="headerlink" title="Tigger Custom"></a>Tigger Custom</h3><blockquote>
+<p>JQuery</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(el).trigger(<span class="string">'my-event'</span>, &#123;<span class="attr">some</span>: <span class="string">'data'</span>&#125;);</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>IE9+</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (<span class="built_in">window</span>.CustomEvent) &#123;</span><br><span class="line">    <span class="keyword">var</span> event = <span class="keyword">new</span> CustomEvent(<span class="string">'my-event'</span>, &#123;<span class="attr">detail</span>: &#123;<span class="attr">some</span>: <span class="string">'data'</span>&#125;&#125;);</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="keyword">var</span> event = <span class="built_in">document</span>.createEvent(<span class="string">'CustomEvent'</span>);</span><br><span class="line">    event.initCustomEvent(<span class="string">'my-event'</span>, <span class="literal">true</span>, <span class="literal">true</span>, &#123;<span class="attr">some</span>: <span class="string">'data'</span>&#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">el.dispathchEvent(event);</span><br></pre></td></tr></table></figure>
+<h3 id="Trigger-Native"><a href="#Trigger-Native" class="headerlink" title="Trigger Native"></a>Trigger Native</h3><blockquote>
+<p>JQuery</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(el).trigger(<span class="string">'change'</span>);</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>IE9+</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> event = <span class="built_in">document</span>.createEvent(<span class="string">'HTMLEvents'</span>);</span><br><span class="line">event.initEvent(<span class="string">'change'</span>, <span class="literal">true</span>, <span class="literal">false</span>);</span><br><span class="line">el.dispatchEvent(event);</span><br></pre></td></tr></table></figure>
+<h2 id="UTILS"><a href="#UTILS" class="headerlink" title="UTILS"></a>UTILS</h2><h3 id="Bind"><a href="#Bind" class="headerlink" title="Bind"></a>Bind</h3><blockquote>
+<p>JQuery</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$.proxy(fn, context);</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>IE9+</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fn.bind(context);</span><br></pre></td></tr></table></figure>
+<h3 id="Array-Each"><a href="#Array-Each" class="headerlink" title="Array Each"></a>Array Each</h3><blockquote>
+<p>JQuery</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$.each(array, <span class="function"><span class="keyword">function</span> (<span class="params">i, item</span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>IE9+</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">array.forEach(<span class="function"><span class="keyword">function</span>(<span class="params">item, i</span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h3 id="Deep-Extend"><a href="#Deep-Extend" class="headerlink" title="Deep Extend"></a>Deep Extend</h3><blockquote>
+<p>JQuery</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$.extend(<span class="literal">true</span>, &#123;&#125;, objA, objB);</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>IE8+</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> deepExtend = <span class="function"><span class="keyword">function</span> (<span class="params">out</span>) </span>&#123;</span><br><span class="line">    out = out || &#123;&#125;;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">1</span>; i &lt; <span class="built_in">arguments</span>.length; i++) &#123;</span><br><span class="line">        <span class="keyword">var</span> obj = <span class="built_in">arguments</span>[i];</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (!obj)</span><br><span class="line">            <span class="keyword">continue</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">var</span> key <span class="keyword">in</span> obj) &#123;</span><br><span class="line">            <span class="keyword">if</span> (obj.hasOwnProperty(key)) &#123;</span><br><span class="line">                <span class="keyword">if</span> (<span class="keyword">typeof</span> obj[key] === <span class="string">'object'</span>) &#123;</span><br><span class="line">                    out[key] = deepExtend(out[key], obj[key]);</span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    out[key] = obj[key];</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> out;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Extend"><a href="#Extend" class="headerlink" title="Extend"></a>Extend</h3><blockquote>
+<p>JQuery</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$.extend(&#123;&#125;, objA, objB);</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>IE8+</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> extend = <span class="function"><span class="keyword">function</span> (<span class="params">out</span>) </span>&#123;</span><br><span class="line">    out = out || &#123;&#125;;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> i  = <span class="number">1</span>; i &lt; <span class="built_in">arguments</span>.length; i++) &#123;</span><br><span class="line">        <span class="keyword">if</span> (!<span class="built_in">arguments</span>[i]) &#123;</span><br><span class="line">            <span class="keyword">continue</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">var</span> key <span class="keyword">in</span> <span class="built_in">arguments</span>[i]) &#123;</span><br><span class="line">            <span class="keyword">if</span> (<span class="built_in">arguments</span>[i].hasOwnProperty(key)) &#123;</span><br><span class="line">                out[key] = <span class="built_in">arguments</span>[i][key];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> out;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">extend(&#123;&#125;, objA, objB);</span><br></pre></td></tr></table></figure>
+<h3 id="Index-Of"><a href="#Index-Of" class="headerlink" title="Index Of"></a>Index Of</h3><blockquote>
+<p>JQuery</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$.inArray(item, array);</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>IE9+</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">array.indexOf(item);</span><br></pre></td></tr></table></figure>
+<h3 id="Is-Array"><a href="#Is-Array" class="headerlink" title="Is Array"></a>Is Array</h3><blockquote>
+<p>JQuery</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$.isArray(arr);</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>IE9+</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Array</span>.isArray(arr);</span><br></pre></td></tr></table></figure>
+<h3 id="Map"><a href="#Map" class="headerlink" title="Map"></a>Map</h3><blockquote>
+<p>JQuery</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$.map(array, <span class="function"><span class="keyword">function</span> (<span class="params">value, index</span>)</span>&#123;</span><br><span class="line"></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>IE9+</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">array.map(<span class="function"><span class="keyword">function</span> (<span class="params">value, index</span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h3 id="Now"><a href="#Now" class="headerlink" title="Now"></a>Now</h3><blockquote>
+<p>JQuery</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$.now();</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>IE9+</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Date</span>.now();</span><br></pre></td></tr></table></figure>
+<h3 id="Parse-Html"><a href="#Parse-Html" class="headerlink" title="Parse Html"></a>Parse Html</h3><blockquote>
+<p>JQuery</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$.parseHTML(htmlString);</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>IE9+</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> parseHTML = <span class="function"><span class="keyword">function</span> (<span class="params">str</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> tmp = <span class="built_in">document</span>.implementation.createHTMLDocument();</span><br><span class="line">    tmp.body.innerHTML = str;</span><br><span class="line">    <span class="keyword">return</span> tmp.body.children;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">parseHTML(htmlString);</span><br></pre></td></tr></table></figure>
+<h3 id="Parse-JSON"><a href="#Parse-JSON" class="headerlink" title="Parse JSON"></a>Parse JSON</h3><blockquote>
+<p>JQuery</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$.parseJSON(string);</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>IE8+</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">JSON</span>.parse(string);</span><br></pre></td></tr></table></figure>
+<h3 id="Trim"><a href="#Trim" class="headerlink" title="Trim"></a>Trim</h3><blockquote>
+<p>JQuery</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$.trim(string);</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>IE9+</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">string.trim();</span><br></pre></td></tr></table></figure>
+<h3 id="Type"><a href="#Type" class="headerlink" title="Type"></a>Type</h3><blockquote>
+<p>JQuery</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$.type(obj);</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>IE8+<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Object</span>.prototype.toString.call(obj).replace(<span class="regexp">/^\[object (.+)\]$/</span>, <span class="string">'$1'</span>).toLowerCase();</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/JQuery/" rel="tag"># JQuery</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/01/15/chrome-plugin/" rel="next" title="Chrome插件推荐">
+                <i class="fa fa-chevron-left"></i> Chrome插件推荐
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/03/10/2018年书单/" rel="prev" title="2018年书单">
+                2018年书单 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.png"
+               alt="Yeaseon" />
+          <p class="site-author-name" itemprop="name">Yeaseon</p>
+          <p class="site-description motion-element" itemprop="description">做一个有信仰的人。如果没有，那么就让你成为自己的信仰！</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">28</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              
+                <span class="site-state-item-count">22</span>
+                <span class="site-state-item-name">标签</span>
+              
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/YeaseonZhang" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/yeaseonzhang" target="_blank" title="Weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  Weibo
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Ajax"><span class="nav-number">1.</span> <span class="nav-text">Ajax</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#JSON"><span class="nav-number">1.1.</span> <span class="nav-text">JSON</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Post"><span class="nav-number">1.2.</span> <span class="nav-text">Post</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Request"><span class="nav-number">1.3.</span> <span class="nav-text">Request</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Effects"><span class="nav-number">2.</span> <span class="nav-text">Effects</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Fade-In"><span class="nav-number">2.1.</span> <span class="nav-text">Fade In</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Hide"><span class="nav-number">2.2.</span> <span class="nav-text">Hide</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Show"><span class="nav-number">2.3.</span> <span class="nav-text">Show</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Elements"><span class="nav-number">3.</span> <span class="nav-text">Elements</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Add-Class"><span class="nav-number">3.1.</span> <span class="nav-text">Add Class</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#After"><span class="nav-number">3.2.</span> <span class="nav-text">After</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Append"><span class="nav-number">3.3.</span> <span class="nav-text">Append</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Before"><span class="nav-number">3.4.</span> <span class="nav-text">Before</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Children"><span class="nav-number">3.5.</span> <span class="nav-text">Children</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Clone"><span class="nav-number">3.6.</span> <span class="nav-text">Clone</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Contains"><span class="nav-number">3.7.</span> <span class="nav-text">Contains</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Contains-Selector"><span class="nav-number">3.8.</span> <span class="nav-text">Contains Selector</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Each"><span class="nav-number">3.9.</span> <span class="nav-text">Each</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Empty"><span class="nav-number">3.10.</span> <span class="nav-text">Empty</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Filter"><span class="nav-number">3.11.</span> <span class="nav-text">Filter</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Find-Children"><span class="nav-number">3.12.</span> <span class="nav-text">Find Children</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Find-Elements"><span class="nav-number">3.13.</span> <span class="nav-text">Find Elements</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Get-Attributes"><span class="nav-number">3.14.</span> <span class="nav-text">Get Attributes</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Get-Html"><span class="nav-number">3.15.</span> <span class="nav-text">Get Html</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Get-Outer-Html"><span class="nav-number">3.16.</span> <span class="nav-text">Get Outer Html</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Get-Style"><span class="nav-number">3.17.</span> <span class="nav-text">Get Style</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Get-Text"><span class="nav-number">3.18.</span> <span class="nav-text">Get Text</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Has-Class"><span class="nav-number">3.19.</span> <span class="nav-text">Has Class</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Matches"><span class="nav-number">3.20.</span> <span class="nav-text">Matches</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Matches-Selector"><span class="nav-number">3.21.</span> <span class="nav-text">Matches Selector</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Next"><span class="nav-number">3.22.</span> <span class="nav-text">Next</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Offset"><span class="nav-number">3.23.</span> <span class="nav-text">Offset</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Offset-Parent"><span class="nav-number">3.24.</span> <span class="nav-text">Offset Parent</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Outer-Height"><span class="nav-number">3.25.</span> <span class="nav-text">Outer Height</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Outer-Height-With-Margin"><span class="nav-number">3.26.</span> <span class="nav-text">Outer Height With Margin</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Parent"><span class="nav-number">3.27.</span> <span class="nav-text">Parent</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Position"><span class="nav-number">3.28.</span> <span class="nav-text">Position</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Position-Relative-To-Viewport"><span class="nav-number">3.29.</span> <span class="nav-text">Position Relative To Viewport</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Prepend"><span class="nav-number">3.30.</span> <span class="nav-text">Prepend</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Prev"><span class="nav-number">3.31.</span> <span class="nav-text">Prev</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Remove"><span class="nav-number">3.32.</span> <span class="nav-text">Remove</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Remove-Class"><span class="nav-number">3.33.</span> <span class="nav-text">Remove Class</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Replace-From-Html"><span class="nav-number">3.34.</span> <span class="nav-text">Replace From Html</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Set-Attributes"><span class="nav-number">3.35.</span> <span class="nav-text">Set Attributes</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Set-Html"><span class="nav-number">3.36.</span> <span class="nav-text">Set Html</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Set-Style"><span class="nav-number">3.37.</span> <span class="nav-text">Set Style</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Set-Text"><span class="nav-number">3.38.</span> <span class="nav-text">Set Text</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Siblings"><span class="nav-number">3.39.</span> <span class="nav-text">Siblings</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Toggle-Class"><span class="nav-number">3.40.</span> <span class="nav-text">Toggle Class</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Events"><span class="nav-number">4.</span> <span class="nav-text">Events</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Off"><span class="nav-number">4.1.</span> <span class="nav-text">Off</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#On"><span class="nav-number">4.2.</span> <span class="nav-text">On</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Ready"><span class="nav-number">4.3.</span> <span class="nav-text">Ready</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Tigger-Custom"><span class="nav-number">4.4.</span> <span class="nav-text">Tigger Custom</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Trigger-Native"><span class="nav-number">4.5.</span> <span class="nav-text">Trigger Native</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#UTILS"><span class="nav-number">5.</span> <span class="nav-text">UTILS</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Bind"><span class="nav-number">5.1.</span> <span class="nav-text">Bind</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Array-Each"><span class="nav-number">5.2.</span> <span class="nav-text">Array Each</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Deep-Extend"><span class="nav-number">5.3.</span> <span class="nav-text">Deep Extend</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Extend"><span class="nav-number">5.4.</span> <span class="nav-text">Extend</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Index-Of"><span class="nav-number">5.5.</span> <span class="nav-text">Index Of</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Is-Array"><span class="nav-number">5.6.</span> <span class="nav-text">Is Array</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Map"><span class="nav-number">5.7.</span> <span class="nav-text">Map</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Now"><span class="nav-number">5.8.</span> <span class="nav-text">Now</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Parse-Html"><span class="nav-number">5.9.</span> <span class="nav-text">Parse Html</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Parse-JSON"><span class="nav-number">5.10.</span> <span class="nav-text">Parse JSON</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Trim"><span class="nav-number">5.11.</span> <span class="nav-text">Trim</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Type"><span class="nav-number">5.12.</span> <span class="nav-text">Type</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2016 - 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Yeaseon</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+<div class="busuanzi-count">
+
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">本站访客数<span class="busuanzi-value" id="busuanzi_value_site_uv"></span>人次</span>
+  
+
+  
+    <span class="site-pv">本站总访问量<span class="busuanzi-value" id="busuanzi_value_site_pv"></span>次</span>
+  
+  
+</div>
+
+
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+
+  
+
+    <script type="text/javascript">
+      var disqus_shortname = 'https-yeaseonzhang-github-io';
+      var disqus_identifier = '2018/01/15/Don-t-need-jquery/';
+
+      var disqus_title = "YOU MIGHT NOT NEED JQUERY";
+
+
+      function run_disqus_script(disqus_script) {
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      }
+
+      run_disqus_script('count.js');
+
+      
+        var disqus_config = function () {
+            this.page.url = disqus_url;
+            this.page.identifier = disqus_identifier;
+            this.page.title = disqus_title;
+        };
+        run_disqus_script('embed.js');
+      
+
+    </script>
+  
+
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+      search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+      $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = $( "entry", xmlResponse ).map(function() {
+            return {
+              title: $( "title", this ).text(),
+              content: $("content",this).text(),
+              url: $( "url" , this).text()
+            };
+          }).get();
+          var $input = document.getElementById(search_id);
+          var $resultContent = document.getElementById(content_id);
+          $input.addEventListener('input', function(){
+            var matchcounts = 0;
+            var str='<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length > 1) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var content_index = [];
+                var data_title = data.title.trim().toLowerCase();
+                var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                var data_url = decodeURIComponent(data.url);
+                var index_title = -1;
+                var index_content = -1;
+                var first_occur = -1;
+                // only match artiles with not empty titles and contents
+                if(data_title != '') {
+                  keywords.forEach(function(keyword, i) {
+                    index_title = data_title.indexOf(keyword);
+                    index_content = data_content.indexOf(keyword);
+                    if( index_title >= 0 || index_content >= 0 ){
+                      isMatch = true;
+                      if (i == 0) {
+                        first_occur = index_content;
+                      }
+                    }
+
+                  });
+                }
+                // show search results
+                if (isMatch) {
+                  matchcounts += 1;
+                  str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                  var content = data.content.trim().replace(/<[^>]+>/g,"");
+                  if (first_occur >= 0) {
+                    // cut out 100 characters
+                    var start = first_occur - 20;
+                    var end = first_occur + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if(start == 0){
+                      end = 50;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    var match_content = content.substring(start, end);
+                    // highlight all keywords
+                    keywords.forEach(function(keyword){
+                      var regS = new RegExp(keyword, "gi");
+                      match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                    });
+
+                    str += "<p class=\"search-result\">" + match_content +"...</p>"
+                  }
+                  str += "</li>";
+                }
+              })};
+            str += "</ul>";
+            if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+            if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+            $resultContent.innerHTML = str;
+          });
+          proceedsearch();
+        }
+      });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+  
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("WRhU6WJqX6Fl91VYiTKraW5C-gzGzoHsz", "Wnpzp3uupeQuANib4F7Ew7dv");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+
+</body>
+</html>
