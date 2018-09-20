@@ -3,7 +3,7 @@
   <entry>
     <title><![CDATA[vue-awesome-swiper 踩坑]]></title>
     <url>%2F2018%2F09%2F20%2Fvue-awesome-swiper-%E8%B8%A9%E5%9D%91%2F</url>
-    <content type="text"><![CDATA[实际业务中经常会有轮播展示的需求，一般我们会选择名气最大的swiper，在vue中与之对应的就是vue-awesome-swiper，但是在使用中我们还是会遇到一些“坑”。 时间轴是一个swiper，下面的商品也是一个swiper。切换时间轴，下面的商品也会切换。最初的想法就是每个时间段设置一个对应的商品swiper，然后通过判断点击的时间点，去改变display显示不同的商品swiper。由于高度有限只展示了两行商品swiper。 但是这样存在一个问题，就是切换“时间”，第二次点击同一“时间”，商品swiper会滚动到最后的位置。 解决该问题的方案就是不通过display去控制显示与否，通过height: 0; overflow: hidden去隐藏，通过设置真实高度去显示。 loop: true 循环轮播设置loop: true也会存在问题，就是前后复制的slide节点，只是显示层的复制了dom元素，并没有将事件给复制到节点上，导致点击事件无效。如果slide内部多个点击事件，不建议开启loop: true。 单个事件的话，可以通过监听slide层级的点击事件，然后通过realIndex（切记是realIndex，不是activeIndex），去判断哪个slide进行了点击。 但是这种处理方式并不优雅，对于slide内部是一个组件的形式不够友好，内部的状态需要通过外部的事件去处理。希望vue-awesome-swiper以后会改进这个问题吧。 参考： 那些年，那些坑–swiper loop：true引发绑定dom的click事件无效及解决方案]]></content>
+    <content type="text"><![CDATA[实际业务中经常会有轮播展示的需求，一般我们会选择名气最大的swiper，在vue中与之对应的就是vue-awesome-swiper，但是在使用中我们还是会遇到一些“坑”。 swiper 设置display: none;的坑 时间轴是一个swiper，下面的商品也是一个swiper。切换时间轴，下面的商品也会切换。最初的想法就是每个时间段设置一个对应的商品swiper，然后通过判断点击的时间点，去改变display显示不同的商品swiper。由于高度有限只展示了两行商品swiper。 但是这样存在一个问题，就是切换“时间”，第二次点击同一“时间”，商品swiper会滚动到最后的位置。 解决该问题的方案就是不通过display去控制显示与否，通过height: 0; overflow: hidden去隐藏，通过设置真实高度去显示。 loop: true 循环轮播设置loop: true也会存在问题，就是前后复制的slide节点，只是显示层的复制了dom元素，并没有将事件给复制到节点上，导致点击事件无效。如果slide内部多个点击事件，不建议开启loop: true。 单个事件的话，可以通过监听slide层级的点击事件，然后通过realIndex（切记是realIndex，不是activeIndex），去判断哪个slide进行了点击。 但是这种处理方式并不优雅，对于slide内部是一个组件的形式不够友好，内部的状态需要通过外部的事件去处理。希望vue-awesome-swiper以后会改进这个问题吧。 参考： 那些年，那些坑–swiper loop：true引发绑定dom的click事件无效及解决方案]]></content>
       <tags>
         <tag>vue组件</tag>
       </tags>

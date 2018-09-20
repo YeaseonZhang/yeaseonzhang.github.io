@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://yeaseonzhang.github.io/"/>
-  <updated>2018-09-20T14:40:32.683Z</updated>
+  <updated>2018-09-20T14:52:05.370Z</updated>
   <id>https://yeaseonzhang.github.io/</id>
   
   <author>
@@ -21,9 +21,9 @@
     <link href="https://yeaseonzhang.github.io/2018/09/20/vue-awesome-swiper-%E8%B8%A9%E5%9D%91/"/>
     <id>https://yeaseonzhang.github.io/2018/09/20/vue-awesome-swiper-踩坑/</id>
     <published>2018-09-20T14:27:20.000Z</published>
-    <updated>2018-09-20T14:40:32.683Z</updated>
+    <updated>2018-09-20T14:52:05.370Z</updated>
     
-    <content type="html"><![CDATA[<p>实际业务中经常会有轮播展示的需求，一般我们会选择名气最大的<strong>swiper</strong>，在vue中与之对应的就是<strong>vue-awesome-swiper</strong>，但是在使用中我们还是会遇到一些“坑”。</p><a id="more"></a><img src="/2018/09/20/vue-awesome-swiper-踩坑/效果图.png"><p>时间轴是一个<strong>swiper</strong>，下面的商品也是一个<strong>swiper</strong>。切换时间轴，下面的商品也会切换。最初的想法就是每个时间段设置一个对应的商品<strong>swiper</strong>，然后通过判断点击的<strong>时间点</strong>，去改变<code>display</code>显示不同的商品<strong>swiper</strong>。由于高度有限只展示了两行商品<strong>swiper</strong>。</p><img src="/2018/09/20/vue-awesome-swiper-踩坑/实际布局.png" title="实际布局"><p>但是这样存在一个问题，就是切换“时间”，第二次点击同一“时间”，商品<strong>swiper</strong>会滚动到最后的位置。</p><p>解决该问题的方案就是不通过<code>display</code>去控制显示与否，通过<code>height: 0; overflow: hidden</code>去隐藏，通过设置真实高度去显示。</p><h3 id="loop-true-循环轮播"><a href="#loop-true-循环轮播" class="headerlink" title="loop: true 循环轮播"></a><code>loop: true</code> 循环轮播</h3><p>设置<code>loop: true</code>也会存在问题，就是前后复制的<code>slide</code>节点，只是显示层的复制了<strong>dom</strong>元素，并没有将事件给复制到节点上，导致点击事件无效。如果<code>slide</code>内部多个点击事件，不建议开启<code>loop: true</code>。</p><p>单个事件的话，可以通过监听<code>slide</code>层级的点击事件，然后通过<code>realIndex</code>（切记是<code>realIndex</code>，不是<code>activeIndex</code>），去判断哪个<code>slide</code>进行了点击。</p><p>但是这种处理方式并不优雅，对于<code>slide</code>内部是一个组件的形式不够友好，内部的状态需要通过外部的事件去处理。希望<code>vue-awesome-swiper</code>以后会改进这个问题吧。</p><p>参考： <a href="https://segmentfault.com/a/1190000015327048" target="_blank" rel="noopener">那些年，那些坑–swiper loop：true引发绑定dom的click事件无效及解决方案</a></p>]]></content>
+    <content type="html"><![CDATA[<p>实际业务中经常会有轮播展示的需求，一般我们会选择名气最大的<strong>swiper</strong>，在vue中与之对应的就是<strong>vue-awesome-swiper</strong>，但是在使用中我们还是会遇到一些“坑”。</p><a id="more"></a><h3 id="swiper-设置display-none-的坑"><a href="#swiper-设置display-none-的坑" class="headerlink" title="swiper 设置display: none;的坑"></a><strong>swiper</strong> 设置<code>display: none;</code>的坑</h3><img src="/2018/09/20/vue-awesome-swiper-踩坑/效果图.png"><p>时间轴是一个<strong>swiper</strong>，下面的商品也是一个<strong>swiper</strong>。切换时间轴，下面的商品也会切换。最初的想法就是每个时间段设置一个对应的商品<strong>swiper</strong>，然后通过判断点击的<strong>时间点</strong>，去改变<code>display</code>显示不同的商品<strong>swiper</strong>。由于高度有限只展示了两行商品<strong>swiper</strong>。</p><img src="/2018/09/20/vue-awesome-swiper-踩坑/实际布局.png" title="实际布局"><p>但是这样存在一个问题，就是切换“时间”，第二次点击同一“时间”，商品<strong>swiper</strong>会滚动到最后的位置。</p><p>解决该问题的方案就是不通过<code>display</code>去控制显示与否，通过<code>height: 0; overflow: hidden</code>去隐藏，通过设置真实高度去显示。</p><h3 id="loop-true-循环轮播"><a href="#loop-true-循环轮播" class="headerlink" title="loop: true 循环轮播"></a><code>loop: true</code> 循环轮播</h3><p>设置<code>loop: true</code>也会存在问题，就是前后复制的<code>slide</code>节点，只是显示层的复制了<strong>dom</strong>元素，并没有将事件给复制到节点上，导致点击事件无效。如果<code>slide</code>内部多个点击事件，不建议开启<code>loop: true</code>。</p><p>单个事件的话，可以通过监听<code>slide</code>层级的点击事件，然后通过<code>realIndex</code>（切记是<code>realIndex</code>，不是<code>activeIndex</code>），去判断哪个<code>slide</code>进行了点击。</p><p>但是这种处理方式并不优雅，对于<code>slide</code>内部是一个组件的形式不够友好，内部的状态需要通过外部的事件去处理。希望<code>vue-awesome-swiper</code>以后会改进这个问题吧。</p><p>参考： <a href="https://segmentfault.com/a/1190000015327048" target="_blank" rel="noopener">那些年，那些坑–swiper loop：true引发绑定dom的click事件无效及解决方案</a></p>]]></content>
     
     <summary type="html">
     
